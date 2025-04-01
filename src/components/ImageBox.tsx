@@ -8,6 +8,7 @@ interface ImageBoxProps extends React.HTMLAttributes<HTMLDivElement> {
   media: Media
   quality?: number
   sizes?: string
+  disableBlurhash?: boolean
 }
 
 export const ImageBox: React.FC<ImageBoxProps> = ({
@@ -16,6 +17,7 @@ export const ImageBox: React.FC<ImageBoxProps> = ({
   sizes,
   lazyload = true,
   quality = 85,
+  disableBlurhash = false,
   ...rest
 }) => {
   const { width: imageWidth, height: imageHeight } = media
@@ -41,8 +43,8 @@ export const ImageBox: React.FC<ImageBoxProps> = ({
         objectFit: "cover",
         objectPosition,
       }}
-      placeholder={media.blurhash ? "blur" : "empty"}
-      blurDataURL={media.blurhash || undefined}
+      placeholder={(!disableBlurhash && media.blurhash) ? "blur" : "empty"}
+      blurDataURL={(!disableBlurhash && media.blurhash) || undefined}
       {...rest}
     />
   )

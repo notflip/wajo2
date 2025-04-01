@@ -8,8 +8,7 @@ import { ButtonHTMLAttributes, ReactNode } from "react"
 
 type Props = {
   children: ReactNode
-  variant?: "default" | "outline" | "link"
-  color?: "light" | "dark"
+  variant?: "default" | "light" | "link"
   hasArrow?: boolean
   asChild?: boolean
 } & ButtonHTMLAttributes<HTMLButtonElement>
@@ -19,55 +18,13 @@ const animatedButtonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary hover:bg-primary/90 text-black",
-        outline: "bg-transparent border",
-        link: "bg-transparent px-3",
-      },
-      color: {
-        light: "",
-        dark: "text-black",
+        default: "bg-primary hover:bg-primary/90 text-white",
+        light: "bg-blue-50 text-blue-950",
+        link: "bg-transparent",
       },
     },
-    compoundVariants: [
-      { variant: "outline", color: "dark", className: "border-black" },
-      {
-        variant: "outline",
-        color: "light",
-        className: "border-white text-white hover:bg-white/30",
-      },
-    ],
     defaultVariants: {
       variant: "default",
-      color: "dark",
-    },
-  },
-)
-
-const arrowContainerVariants = cva(
-  "ml-2 relative flex items-center justify-center w-8 h-8 rounded-full transform transition-transform duration-300 ease-in-out group-hover:translate-x-1",
-  {
-    variants: {
-      variant: {
-        default: "",
-        outline: "",
-        link: "-ml-2",
-      },
-      color: {
-        light: "bg-white bg-opacity-30",
-        dark: "bg-white bg-opacity-30",
-      },
-    },
-    compoundVariants: [
-      { variant: "outline", className: "bg-black bg-opacity-100 text-white" },
-      {
-        variant: "outline",
-        color: "light",
-        className: "bg-white bg-opacity-30",
-      },
-      { variant: "link", color: "light", className: "bg-transparent" },
-    ],
-    defaultVariants: {
-      color: "dark",
     },
   },
 )
@@ -75,7 +32,6 @@ const arrowContainerVariants = cva(
 export default function AnimatedButton({
   children,
   variant = "default",
-  color = "dark",
   hasArrow = true,
   asChild = false,
   ...props
@@ -85,14 +41,11 @@ export default function AnimatedButton({
   return (
     <Comp
       {...props}
-      className={cn(
-        animatedButtonVariants({ variant, color }),
-        props.className,
-      )}
+      className={cn(animatedButtonVariants({ variant }), props.className)}
     >
       <Slottable>{children}</Slottable>
       {hasArrow && (
-        <div className={cn(arrowContainerVariants({ variant, color }))}>
+        <div>
           <ArrowRight size={16} />
         </div>
       )}

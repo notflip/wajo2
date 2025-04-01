@@ -8,6 +8,7 @@ import localFont from "next/font/local"
 import { Footer } from "@/components/footer"
 import { Metadata } from "next"
 import { getCachedGlobal } from "@/utils/getGlobals"
+import TopNav from "@/components/top-nav"
 
 const gilroy = localFont({
   src: [
@@ -56,11 +57,13 @@ export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   const { isEnabled } = await draftMode()
+  const websiteSettings = await getCachedGlobal("settings")()
 
   return (
     <html lang="en">
-      <body className={`${gilroy.variable} font-sans antialiased`}>
-        <Nav />
+      <body className={`${gilroy.variable} font-sans antialiased relative`}>
+        {/* <TopNav settings={websiteSettings} /> */}
+        <Nav settings={websiteSettings} />
         {children}
         <AdminBar draft={isEnabled} />
         <Footer />

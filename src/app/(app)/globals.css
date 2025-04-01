@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --background: 0 0 100%;
-  --foreground: 11 5% 0%;
+  --background: 0 0 100%; /* white */
+  --foreground: 224 90% 4%;
   --card: 11 50% 90%;
   --card-foreground: 11 5% 10%;
   --popover: 11 100% 95%;
   --popover-foreground: 11 100% 0%;
 
-  --primary-foreground: 0 0% 0%;
+  
 
   --secondary-foreground: 0 0% 0%;
   --muted: -27 30% 85%;
@@ -24,12 +24,16 @@
   --ring: 11 81.8% 89.2%;
   --radius: 0.5rem;
 
-  --primary: 11 82% 89%;
-  --secondary: 5 92% 95%;
-  --tertiary: 6 100% 98%;
+  /* Blue */
+  --blue-50: 223 60% 94%;
+  --blue-500: 223 88% 41%;
+  --blue-950: 224 90% 4%;
 
-  --brand-yellow: 26 95% 92%;
-
+  /* Definitions */
+  --primary: var(--blue-500);
+  --primary-foreground: var(--blue-950);
+  
+  /* Swiper */
   --swiper-pagination-color: #000;
   --swiper-pagination-bullet-inactive-color: #fff;
   --swiper-pagination-bullet-opacity: 1;

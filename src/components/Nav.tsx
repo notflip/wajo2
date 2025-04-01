@@ -4,26 +4,26 @@ import { getCachedGlobal } from "@/utils/getGlobals"
 import DesktopNav from "@/components/DesktopNav"
 import MobileNavWithClipPath from "@/components/MobileNavWithClipPath"
 import AnimatedButton from "@/components/interface/AnimatedButton"
-import TopNav from "@/components/top-nav"
+import { Media, Setting } from "@payload-types"
+import { ImageBox } from "@/components/ImageBox"
 
-export const Nav = async () => {
+type Props = {
+  settings: Setting
+}
+export const Nav = async ({ settings }: Props) => {
   const navigationMain = await getCachedGlobal("navigation_main", 1)()
-  const websiteSettings = await getCachedGlobal("settings")()
 
   return (
-    <section className="relative">
-      <TopNav settings={websiteSettings} />
+    <section>
       <div className="mx-auto max-w-screen-2xl px-4 md:px-8 2xl:px-16">
         <div className="flex items-center justify-between h-28">
           <div className="flex items-center justify-between w-full gap-4 xl:gap-8 2xl:gap-16">
             <Link href="/" className="flex-none">
-              <Image
-                alt="Logo"
-                src="/logo.png"
-                width={404}
-                height={121}
-                className="w-[140px] md:w-[180px]"
-                priority
+              <ImageBox
+                disableBlurhash
+                media={settings.logo as Media}
+                className="w-[120px]"
+                sizes="120px"
               />
             </Link>
             {/*Desktop View*/}
@@ -33,6 +33,9 @@ export const Nav = async () => {
             {/*Button*/}
             <div className="hidden lg:block">
               <AnimatedButton asChild>
+                <Link href="/afspraak-maken">Afspraak Maken</Link>
+              </AnimatedButton>
+              <AnimatedButton variant="light" asChild>
                 <Link href="/afspraak-maken">Afspraak Maken</Link>
               </AnimatedButton>
             </div>

@@ -58,6 +58,12 @@ export const Settings: GlobalConfig = {
               label: "Telefoonnummer",
               required: true,
             },
+            {
+              name: "logo",
+              type: "upload",
+              relationTo: "media",
+              required: true,
+            },
           ],
         },
         {
