@@ -10,8 +10,6 @@ export const nonDeletablePages = [
   "home",
   "privacy-policy",
   "blog",
-  "onze-merken",
-  "afspraak-maken",
 ]
 export const nonEditablePages = ["blog"]
 

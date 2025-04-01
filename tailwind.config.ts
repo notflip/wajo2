@@ -1,5 +1,35 @@
 import type { Config } from "tailwindcss"
 
+// Texts
+const texts: Record<
+  string,
+  [
+    string,
+    {
+      lineHeight: string
+      letterSpacing?: string
+      fontWeight?: string | number
+    },
+  ]
+> = {
+  "title-h1": [
+    "3.5rem",
+    {
+      lineHeight: "4rem",
+      letterSpacing: "-0.01em",
+      fontWeight: "500",
+    },
+  ],
+  "title-h2": [
+    "3rem",
+    {
+      lineHeight: "3.5rem",
+      letterSpacing: "-0.01em",
+      fontWeight: "500",
+    },
+  ],
+}
+
 export default {
   content: [
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,59 +39,51 @@ export default {
   ],
   darkMode: ["class"],
   theme: {
+    fontSize: {
+      ...texts,
+      inherit: "inherit",
+    },
     extend: {
       container: {
         center: true,
       },
       fontFamily: {
-        cormorant: ["var(--font-cormorant)"],
-        sans: ["var(--font-switzer)"],
+        sans: ["var(--font-gilroy)"],
       },
-      fontSize: {
-        xs: ["0.75rem", "1.75"],
-        base: ["1rem", "1.75"],
-        lg: ["1.125rem", "1.5"],
-        "2xl": "1.5rem",
-        "3xl": ["1.75rem", "1.1"],
-        "4xl": ["2.25rem", "1.1"],
-        "5xl": "3rem",
-        "6xl": "3.5rem",
-        "7xl": "4rem",
-      },
-      typography: {
-        DEFAULT: {
-          css: {
-            "--tw-prose-body": "hsl(var(--foreground))",
-            maxWidth: "90ch",
-            "h2,h3,h4,h5": {
-              fontWeight: "400",
-              lineHeight: "1.1",
-            },
-            h2: {
-              fontSize: "2.25rem",
-            },
-            h3: {
-              fontSize: "1.75rem",
-            },
-            h4: {
-              fontSize: "1.5rem",
-            },
-          },
-        },
-        lg: {
-          css: {
-            h2: {
-              fontSize: "3rem",
-            },
-            h3: {
-              fontSize: "2.25rem",
-            },
-            h4: {
-              fontSize: "1.75rem",
-            },
-          },
-        },
-      },
+      //   typography: {
+      //     DEFAULT: {
+      //       css: {
+      //         "--tw-prose-body": "hsl(var(--foreground))",
+      //         maxWidth: "90ch",
+      //         "h2,h3,h4,h5": {
+      //           fontWeight: "400",
+      //           lineHeight: "1.1",
+      //         },
+      //         h2: {
+      //           fontSize: "2.25rem",
+      //         },
+      //         h3: {
+      //           fontSize: "1.75rem",
+      //         },
+      //         h4: {
+      //           fontSize: "1.5rem",
+      //         },
+      //       },
+      //     },
+      //     lg: {
+      //       css: {
+      //         h2: {
+      //           fontSize: "3rem",
+      //         },
+      //         h3: {
+      //           fontSize: "2.25rem",
+      //         },
+      //         h4: {
+      //           fontSize: "1.75rem",
+      //         },
+      //       },
+      //     },
+      //   },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
