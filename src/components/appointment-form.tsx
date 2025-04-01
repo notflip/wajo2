@@ -1,24 +1,27 @@
 "use client"
 
-import {Form} from "@/components/ui/form"
-import {ContactFormValues, getAppointmentFormSchema,} from "@/lib/contact-form.schema"
-import {zodResolver} from "@hookform/resolvers/zod"
-import {useForm, useWatch} from "react-hook-form"
-import {TextField} from "@/form/TextField"
-import {EmailField} from "@/form/EmailField"
-import {SelectField} from "@/form/SelectField"
-import {TextareaField} from "@/form/TextareaField"
-import {CheckboxField} from "@/form/CheckboxField"
-import {useState} from "react"
-import {Alert, AlertDescription, AlertTitle} from "@/components/ui/alert"
-import {AppointmentForm as AppointmentFormType} from "@payload-types"
-import {slugify} from "@/lib/utils"
+import { Form } from "@/components/ui/form"
+import {
+  ContactFormValues,
+  getAppointmentFormSchema,
+} from "@/lib/contact-form.schema"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm, useWatch } from "react-hook-form"
+import { TextField } from "@/form/TextField"
+import { EmailField } from "@/form/EmailField"
+import { SelectField } from "@/form/SelectField"
+import { TextareaField } from "@/form/TextareaField"
+import { CheckboxField } from "@/form/CheckboxField"
+import { useState } from "react"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { AppointmentForm as AppointmentFormType } from "@payload-types"
+import { slugify } from "@/lib/utils"
 
 import AnimatedButton from "@/components/interface/AnimatedButton"
 
 export function AppointmentForm({
-                                  types,
-                                }: {
+  types,
+}: {
   types: AppointmentFormType["types"]
 }) {
   const [loading, setLoading] = useState<boolean>(false)
@@ -38,11 +41,11 @@ export function AppointmentForm({
     },
   })
 
-  const safeTypes = (types || []).filter(t => t.title)
+  const safeTypes = (types || []).filter((t) => t.title)
 
   const typeOptions = safeTypes.map((item) => ({
     value: slugify(item.title),
-    label: item.title
+    label: item.title,
   }))
 
   // Replace your current selectedTypeId line with:
@@ -77,13 +80,13 @@ export function AppointmentForm({
     safeTypes
       .find((item) => slugify(item.title) === selectedTypeId)
       ?.treatments?.map((treatment) => ({
-      value: slugify(treatment.title),
-      label: treatment.title,
-    })) ?? []
+        value: slugify(treatment.title),
+        label: treatment.title,
+      })) ?? []
 
   const treatmentOptions = [
     ...mappedTreatments,
-    {value: "andere-behandelingen", label: "Andere Behandeling"},
+    { value: "andere-behandelingen", label: "Andere Behandeling" },
   ]
 
   async function onSubmit(data: ContactFormValues) {
@@ -163,7 +166,7 @@ export function AppointmentForm({
                 options={treatmentOptions}
               />
             )}
-            <TextField label="Naam" control={form.control} name="naam"/>
+            <TextField label="Naam" control={form.control} name="naam" />
             <EmailField
               name="email"
               label="E-mail adres"

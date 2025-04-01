@@ -1,6 +1,6 @@
 import type React from "react"
-import {getCachedRedirects} from "@/utils/getRedirects"
-import {notFound, permanentRedirect, redirect} from "next/navigation"
+import { getCachedRedirects } from "@/utils/getRedirects"
+import { notFound, permanentRedirect, redirect } from "next/navigation"
 
 interface Props {
   disableNotFound?: boolean
@@ -11,7 +11,7 @@ interface Props {
  * PayloadRedirects
  * Right now this is the only way to use revalidateTag with redirects (next.config and middleware don't allow this.
  */
-export const PayloadRedirects: React.FC<Props> = async ({path}) => {
+export const PayloadRedirects: React.FC<Props> = async ({ path }) => {
   const redirects = await getCachedRedirects()()
 
   if (!redirects || redirects.length === 0) {

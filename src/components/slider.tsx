@@ -1,17 +1,17 @@
 "use client"
 
-import {Swiper, SwiperSlide} from "swiper/react"
-import {Navigation, Pagination} from "swiper/modules"
+import { Swiper, SwiperSlide } from "swiper/react"
+import { Navigation, Pagination } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"
 import Image from "next/image"
 
-import {ArrowLeft, ArrowRight} from "lucide-react"
+import { ArrowLeft, ArrowRight } from "lucide-react"
 
-import {Media} from "@payload-types"
-import {useRef} from "react"
-import {NavigationOptions} from "swiper/types"
+import { Media } from "@payload-types"
+import { useRef } from "react"
+import { NavigationOptions } from "swiper/types"
 
 type SliderProps = {
   items: Array<{ image?: number | Media }>
@@ -19,7 +19,7 @@ type SliderProps = {
 }
 
 export const Slider: React.FC<SliderProps> = (props) => {
-  const {items, slideHeight = 400} = props
+  const { items, slideHeight = 400 } = props
 
   const prevRef = useRef(null)
   const nextRef = useRef(null)
@@ -83,7 +83,7 @@ export const Slider: React.FC<SliderProps> = (props) => {
                     width={computedWidth}
                     height={slideHeight}
                     sizes="(max-width: 767px) 500px, 800px"
-                    style={{objectFit: "contain"}}
+                    style={{ objectFit: "contain" }}
                   />
                 </SwiperSlide>
               )
@@ -107,14 +107,14 @@ export const Slider: React.FC<SliderProps> = (props) => {
               className="bg-white rounded-full w-10 h-10 flex items-center justify-center"
               ref={prevRef}
             >
-              <ArrowLeft/>
+              <ArrowLeft />
             </button>
             <button
               aria-label="Next slide"
               className="bg-white rounded-full w-10 h-10 flex items-center justify-center"
               ref={nextRef}
             >
-              <ArrowRight/>
+              <ArrowRight />
             </button>
           </div>
         </div>

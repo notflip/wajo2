@@ -59,9 +59,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body
-        className={`${gilroy.variable} font-sans antialiased`}
-      >
+      <body className={`${gilroy.variable} font-sans antialiased`}>
         <Nav />
         {children}
         <AdminBar draft={isEnabled} />

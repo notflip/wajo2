@@ -15,7 +15,7 @@ export const Cell: React.FC<DefaultCellComponentProps> = ({
   const parentTitle = (rowData.parent && rowData.breadcrumbs[0].label) ?? null
   const content = (
     <span>
-      {cellData ?? '(Naamloos)'}{" "}
+      {cellData ?? "(Naamloos)"}{" "}
       {parentTitle && <span style={{ opacity: 0.5 }}>({parentTitle})</span>}
     </span>
   )

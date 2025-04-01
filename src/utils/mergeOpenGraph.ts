@@ -4,7 +4,7 @@ import type { Media } from "@payload-types"
 async function defaultOpenGraph() {
   const settings = await getCachedGlobal("settings")()
   const ogImage = settings.seo.image as Media
-  const ogImageUrl = ogImage?.sizes?.og?.url || ogImage?.url || ''
+  const ogImageUrl = ogImage?.sizes?.og?.url || ogImage?.url || ""
 
   return {
     type: "website",

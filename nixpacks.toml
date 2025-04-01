@@ -5,7 +5,6 @@ NIXPACKS_NODE_VERSION = "20"
 cmds = [
   'npm install -g corepack',
   'corepack enable',
-  'corepack prepare pnpm@10.6.2 --activate',
   'pnpm install'
 ]
 

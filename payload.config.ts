@@ -1,23 +1,23 @@
 import sharp from "sharp"
-import {lexicalEditor} from "@payloadcms/richtext-lexical"
-import {postgresAdapter} from "@payloadcms/db-postgres"
-import {buildConfig} from "payload"
-import {Pages} from "@/collections/Pages"
-import {Settings} from "@/globals/Settings"
-import {NavigationMain} from "@/globals/NavigationMain/NavigationMain"
-import {nodemailerAdapter} from "@payloadcms/email-nodemailer"
-import {nestedDocsPlugin} from "@payloadcms/plugin-nested-docs"
+import { lexicalEditor } from "@payloadcms/richtext-lexical"
+import { postgresAdapter } from "@payloadcms/db-postgres"
+import { buildConfig } from "payload"
+import { Pages } from "@/collections/Pages"
+import { Settings } from "@/globals/Settings"
+import { NavigationMain } from "@/globals/NavigationMain/NavigationMain"
+import { nodemailerAdapter } from "@payloadcms/email-nodemailer"
+import { nestedDocsPlugin } from "@payloadcms/plugin-nested-docs"
 
-import {seoPlugin} from "@payloadcms/plugin-seo"
+import { seoPlugin } from "@payloadcms/plugin-seo"
 import Media from "@/collections/Media"
-import {Redirects} from "@/collections/Redirects"
-import {Users} from "@/collections/Users"
-import {Posts} from "@/collections/Posts"
-import {PostCategories} from "@/collections/PostCategories"
-import {BlogSettings} from "@/globals/BlogSettings"
-import {Footer} from "@/globals/Footer"
-import {SharedBlocks} from "@/collections/SharedBlocks"
-import {Submissions} from "@/collections/Submissions"
+import { Redirects } from "@/collections/Redirects"
+import { Users } from "@/collections/Users"
+import { Posts } from "@/collections/Posts"
+import { PostCategories } from "@/collections/PostCategories"
+import { BlogSettings } from "@/globals/BlogSettings"
+import { Footer } from "@/globals/Footer"
+import { SharedBlocks } from "@/collections/SharedBlocks"
+import { Submissions } from "@/collections/Submissions"
 
 export default buildConfig({
   editor: lexicalEditor(),
@@ -124,10 +124,10 @@ export default buildConfig({
 
     seoPlugin({
       uploadsCollection: "media",
-      generateTitle: async ({doc}) => {
+      generateTitle: async ({ doc }) => {
         return doc.title
       },
-      generateDescription: async ({doc}) => {
+      generateDescription: async ({ doc }) => {
         return doc.description
       },
     }),
