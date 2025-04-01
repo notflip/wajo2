@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 11 100% 95%;
+  --foreground: 11 5% 0%;
+  --card: 11 50% 90%;
+  --card-foreground: 11 5% 10%;
+  --popover: 11 100% 95%;
+  --popover-foreground: 11 100% 0%;
+
+  --primary-foreground: 0 0% 0%;
+
+  --secondary-foreground: 0 0% 0%;
+  --muted: -27 30% 85%;
+  --muted-foreground: 11 5% 35%;
+  --accent: -27 30% 80%;
+  --accent-foreground: 11 5% 10%;
+  --destructive: 0 100% 30%;
+  --destructive-foreground: 11 5% 90%;
+  --border: 11 30% 50%;
+  --input: 11 30% 17%;
+  --ring: 11 81.8% 89.2%;
+  --radius: 0.5rem;
+
+  --primary: 11 82% 89%;
+  --secondary: 5 92% 95%;
+  --tertiary: 6 100% 98%;
+
+  --brand-yellow: 26 95% 92%;
+
+  --swiper-pagination-color: #000;
+  --swiper-pagination-bullet-inactive-color: #fff;
+  --swiper-pagination-bullet-opacity: 1;
+  --swiper-pagination-bullet-inactive-opacity: 1;
+  --swiper-pagination-bullet-size: 10px;
+}
+
+@layer base {
+  h1,
+  .h1 {
+    @apply font-cormorant text-5xl md:text-6xl leading-[1];
+  }
+
+  h2,
+  .h2 {
+    @apply font-cormorant text-4xl md:text-5xl leading-[1];
+  }
+
+  h3,
+  .h3 {
+    @apply font-cormorant text-3xl md:text-4xl leading-[1];
+  }
+
+  h4,
+  .h4 {
+    @apply font-cormorant text-2xl md:text-3xl;
+  }
+
+  h5,
+  .h5 {
+    @apply font-cormorant text-3xl;
+  }
+
+  h6,
+  .h6 {
+    @apply font-cormorant text-2xl;
+  }
+
+  body,
+  p,
+  .p {
+    @apply font-sans text-sm md:text-base leading-[1.75];
+  }
+}
+
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
