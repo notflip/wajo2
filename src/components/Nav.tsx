@@ -6,6 +6,7 @@ import MobileNavWithClipPath from "@/components/MobileNavWithClipPath"
 import AnimatedButton from "@/components/interface/AnimatedButton"
 import { Media, Setting } from "@payload-types"
 import { ImageBox } from "@/components/ImageBox"
+import { HiArchive, HiArrowRight, HiOutlineChat } from "react-icons/hi"
 
 type Props = {
   settings: Setting
@@ -32,10 +33,14 @@ export const Nav = async ({ settings }: Props) => {
             </div>
             {/*Button*/}
             <div className="hidden lg:block">
-              <AnimatedButton asChild>
+              <AnimatedButton icon={<HiOutlineChat size="20" />} asChild>
                 <Link href="/afspraak-maken">Afspraak Maken</Link>
               </AnimatedButton>
-              <AnimatedButton variant="light" asChild>
+              <AnimatedButton
+                variant="light"
+                icon={<HiArrowRight size="16" />}
+                asChild
+              >
                 <Link href="/afspraak-maken">Afspraak Maken</Link>
               </AnimatedButton>
             </div>

@@ -87,6 +87,8 @@ export default async function Page({ params }: { params: any }) {
     <div>
       {draft && <LivePreviewListener />}
 
+      <p className="text-muted-foreground">Hello World</p>
+
       <div>
         {/*@ts-ignore*/}
         <Blocks blocks={page.blocks} />

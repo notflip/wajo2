@@ -11,6 +11,8 @@ type Props = {
   variant?: "default" | "light" | "link"
   hasArrow?: boolean
   asChild?: boolean
+  icon?: ReactNode
+  iconSize?: number
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
 const animatedButtonVariants = cva(
@@ -19,7 +21,7 @@ const animatedButtonVariants = cva(
     variants: {
       variant: {
         default: "bg-primary hover:bg-primary/90 text-white",
-        light: "bg-blue-50 text-blue-950",
+        light: "bg-blue-50 hover:bg-primary/10 text-blue-950",
         link: "bg-transparent",
       },
     },
@@ -34,6 +36,7 @@ export default function AnimatedButton({
   variant = "default",
   hasArrow = true,
   asChild = false,
+  icon,
   ...props
 }: Props) {
   const Comp = asChild ? Slot : "button"
@@ -44,11 +47,7 @@ export default function AnimatedButton({
       className={cn(animatedButtonVariants({ variant }), props.className)}
     >
       <Slottable>{children}</Slottable>
-      {hasArrow && (
-        <div>
-          <ArrowRight size={16} />
-        </div>
-      )}
+      {icon && <div>{icon}</div>}
     </Comp>
   )
 }

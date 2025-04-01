@@ -1,17 +1,7 @@
 import type { Config } from "tailwindcss"
 
 // Texts
-const texts: Record<
-  string,
-  [
-    string,
-    {
-      lineHeight: string
-      letterSpacing?: string
-      fontWeight?: string | number
-    },
-  ]
-> = {
+const texts: Record<string, any> = {
   "title-h1": [
     "3.5rem",
     {
@@ -94,12 +84,6 @@ export default {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        tertiary: "hsl(var(--tertiary))",
-        "brand-yellow": "hsl(var(--brand-yellow))",
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
