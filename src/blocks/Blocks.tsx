@@ -1,9 +1,9 @@
-import React from "react"
 import { CtaBlockComponent } from "@/blocks/CtaBlock/CtaBlockComponent"
 import { SharedBlockComponent } from "@/blocks/SharedBlock/SharedBlockComponent"
 import { HeroComponent } from "@/blocks/HeroBlock/HeroComponent"
 import { ImageComponent } from "@/blocks/Image/ImageComponent"
 import { ParagraphComponent } from "@/blocks/Paragraph/ParagraphComponent"
+import { CardsComponent } from "@/blocks/Cards/CardsComponent"
 
 export type BlockType = keyof Partial<typeof blockComponents>
 
@@ -17,10 +17,19 @@ export interface BlockProps {
   blocks?: BlockItem[] | null
 }
 
+export const bgColorMap: Record<string, string> = {
+  beige: "secondary",
+}
+
+export const bgGradientMap: Record<string, string> = {
+  beige: "bg-fade-to-secondary",
+}
+
 export const blockComponents = {
   hero: HeroComponent,
   image: ImageComponent,
   paragraph: ParagraphComponent,
+  cards: CardsComponent,
   cta: CtaBlockComponent,
   shared: SharedBlockComponent,
 }
@@ -38,12 +47,17 @@ const Blocks: React.FC<BlockProps> = (props) => {
 
           if (blockType && blockType in blockComponents) {
             const Block = blockComponents[blockType as BlockType]
+            const nextBlock = blocks[index + 1]
 
             if (Block) {
               return (
                 <div key={index}>
                   {/*@ts-ignore*/}
-                  <Block {...block} index={index} />
+                  <Block
+                    {...block}
+                    index={index}
+                    nextBgColor={nextBlock?.bgColor}
+                  />
                 </div>
               )
             }

@@ -16,6 +16,10 @@ export default {
       container: {
         center: true,
       },
+      backgroundImage: {
+        "fade-to-secondary":
+          "linear-gradient(180deg, white 60%, hsl(var(--secondary)) 60%)",
+      },
       fontSize: {
         "heading-1": [
           "4rem",
@@ -42,6 +46,7 @@ export default {
           "1.78rem",
           {
             fontWeight: "600",
+            lineHeight: "2.125rem",
           },
         ],
         "heading-5": [
@@ -112,6 +117,9 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",

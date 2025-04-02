@@ -11,12 +11,17 @@
   /* Slate */
   --slate-950: 224 6% 45%;
 
+  /* Beige */
+  --beige-50: 33 52% 96%;
+
   /* Definitions */
   --background: 0 0 100%; /* white */
   --foreground: var(--blue-950); /* blueish almost black */
 
   --primary: var(--blue-500);
   --primary-foreground: var(--background);
+
+  --secondary: var(--beige-50);
 
   --muted-foreground: var(--slate-950);
 
@@ -60,7 +65,10 @@
   h3 {
     @apply text-heading-5 md:text-heading-4 xl:text-heading-3;
   }
+  h4 {
+    @apply md:text-heading-5 xl:text-heading-4;
+  }
   p {
-    @apply text-base;
+    @apply text-base text-muted-foreground;
   }
 }

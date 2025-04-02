@@ -15,5 +15,20 @@ export const Paragraph: Block = {
       type: "textarea",
       required: true,
     },
+    {
+      name: "bgColor",
+      type: "select",
+      defaultValue: "transparent",
+      options: [
+        {
+          label: "Transparent",
+          value: "transparent",
+        },
+        {
+          label: "Beige",
+          value: "beige",
+        },
+      ],
+    },
   ],
 }

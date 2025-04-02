@@ -2,9 +2,16 @@ import { Image as PayloadImage, Media, Case } from "@payload-types"
 import { ImageBox } from "@/components/ImageBox"
 import Link from "next/link"
 import { HiOutlineArrowUpRight } from "react-icons/hi2"
+import { cn } from "@/lib/utils"
+import { bgColorMap, bgGradientMap } from "@/blocks/Blocks"
 
-export const ImageComponent: React.FC<PayloadImage> = (props) => {
-  const { image, callout } = props
+export type ImageComponentWithBlock = PayloadImage & {
+  nextBgColor: string
+  index: number
+}
+
+export const ImageComponent: React.FC<ImageComponentWithBlock> = (props) => {
+  const { image, callout, nextBgColor } = props
 
   const calloutContent = (
     <div className="flex gap-4">
@@ -29,7 +36,12 @@ export const ImageComponent: React.FC<PayloadImage> = (props) => {
   )
 
   return (
-    <section className="relative pt-[1rem] lg:pt-[3rem] pb-[3rem]">
+    <section
+      className={cn(
+        bgGradientMap[nextBgColor],
+        "relative pt-[3rem] lg:pt-[6rem]",
+      )}
+    >
       <div className="mx-auto max-w-screen-2xl px-4 md:px-8 2xl:px-16">
         <div className="relative h-[350px] md:h-[500px]">
           {image && (

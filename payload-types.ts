@@ -280,6 +280,7 @@ export interface Case {
 export interface Paragraph {
   badge: string;
   content: string;
+  bgColor?: ('transparent' | 'beige') | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'paragraph';
@@ -624,6 +625,7 @@ export interface ImageSelect<T extends boolean = true> {
 export interface ParagraphSelect<T extends boolean = true> {
   badge?: T;
   content?: T;
+  bgColor?: T;
   id?: T;
   blockName?: T;
 }
