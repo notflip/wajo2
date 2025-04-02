@@ -18,6 +18,7 @@ import { BlogSettings } from "@/globals/BlogSettings"
 import { Footer } from "@/globals/Footer"
 import { SharedBlocks } from "@/collections/SharedBlocks"
 import { Submissions } from "@/collections/Submissions"
+import { Cases } from "@/collections/Cases"
 
 export default buildConfig({
   editor: lexicalEditor(),
@@ -68,6 +69,7 @@ export default buildConfig({
   // Define and configure your collections in this array
   collections: [
     Pages,
+    Cases,
     Redirects,
     Users,
     Posts,

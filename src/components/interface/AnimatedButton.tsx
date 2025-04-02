@@ -1,18 +1,16 @@
 "use client"
 
 import { cva } from "class-variance-authority"
-import { ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Slottable, Slot } from "@radix-ui/react-slot"
 import { ButtonHTMLAttributes, ReactNode } from "react"
 
 type Props = {
   children: ReactNode
-  variant?: "default" | "light" | "link"
+  variant?: "default" | "light" | "link" | "avatars"
   hasArrow?: boolean
   asChild?: boolean
   icon?: ReactNode
-  iconSize?: number
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
 const animatedButtonVariants = cva(
@@ -22,6 +20,7 @@ const animatedButtonVariants = cva(
       variant: {
         default: "bg-primary hover:bg-primary/90 text-white",
         light: "bg-blue-50 hover:bg-primary/10 text-blue-950",
+        avatars: "bg-blue-50 hover:bg-primary/10 text-blue-950",
         link: "bg-transparent",
       },
     },
@@ -30,6 +29,12 @@ const animatedButtonVariants = cva(
     },
   },
 )
+
+function Avatars() {
+    return (
+        <div>AAA</div>
+    )
+}
 
 export default function AnimatedButton({
   children,
@@ -46,8 +51,9 @@ export default function AnimatedButton({
       {...props}
       className={cn(animatedButtonVariants({ variant }), props.className)}
     >
+      {variant === "avatars" && <Avatars />}
       <Slottable>{children}</Slottable>
-      {icon && <div>{icon}</div>}
+      {icon && (<div>{icon}</div>)}
     </Comp>
   )
 }

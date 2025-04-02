@@ -9,7 +9,7 @@ interface ImageValidatorOptions {
  * Returns a validation function that checks an image upload.
  * @param options - An object containing the isRequired flag.
  */
-export const createImageValidator = ({ isRequired }: ImageValidatorOptions) => {
+export const validateLandscapeImage = ({ isRequired }: ImageValidatorOptions) => {
   return async (
     value: any,
     { req }: { req: PayloadRequest },

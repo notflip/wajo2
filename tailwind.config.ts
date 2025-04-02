@@ -1,25 +1,5 @@
 import type { Config } from "tailwindcss"
 
-// Texts
-const texts: Record<string, any> = {
-  "title-h1": [
-    "3.5rem",
-    {
-      lineHeight: "4rem",
-      letterSpacing: "-0.01em",
-      fontWeight: "500",
-    },
-  ],
-  "title-h2": [
-    "3rem",
-    {
-      lineHeight: "3.5rem",
-      letterSpacing: "-0.01em",
-      fontWeight: "500",
-    },
-  ],
-}
-
 export default {
   content: [
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -30,12 +10,61 @@ export default {
   darkMode: ["class"],
   theme: {
     fontSize: {
-      ...texts,
       inherit: "inherit",
     },
     extend: {
       container: {
         center: true,
+      },
+      fontSize: {
+        "heading-1": [
+          "4rem",
+          {
+            lineHeight: "4rem",
+            fontWeight: "700",
+          },
+        ],
+        "heading-2": [
+          "3rem",
+          {
+            lineHeight: "3.5rem",
+            fontWeight: "700",
+          },
+        ],
+        "heading-3": [
+          "2.375rem",
+          {
+            lineHeight: "3rem",
+            fontWeight: "700",
+          },
+        ],
+        "heading-4": [
+          "1.78rem",
+          {
+            fontWeight: "600",
+          },
+        ],
+        "heading-5": [
+          "1.33rem",
+          {
+            fontWeight: "500",
+          },
+        ],
+        base: [
+          "1.125rem",
+          {
+            lineHeight: "1.8rem",
+            fontWeight: "400",
+          },
+        ],
+        caption: [
+          "1.125rem",
+          {
+            lineHeight: "1.375rem",
+            fontWeight: 500,
+          },
+        ],
+        badge: ["0.875rem", { fontWeight: 500 }],
       },
       fontFamily: {
         sans: ["var(--font-gilroy)"],

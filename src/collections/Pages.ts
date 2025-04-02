@@ -14,6 +14,10 @@ import pathField from "@/fields/path/path"
 import { SharedBlock } from "@/blocks/SharedBlock/SharedBlock"
 import beforeDuplicate from "@/hooks/beforeDuplicateSlugged"
 import { revalidateDelete, revalidatePage } from "@/hooks/revalidatePage"
+import { Hero } from "@/blocks/HeroBlock/Hero"
+import { Image } from "@/blocks/Image/Image"
+import { Paragraph } from "@/blocks/Paragraph/Paragraph"
+import { Cards } from "@/blocks/Cards/Cards"
 
 export const Pages: CollectionConfig<"pages"> = {
   slug: "pages",
@@ -93,10 +97,7 @@ export const Pages: CollectionConfig<"pages"> = {
             {
               name: "blocks",
               type: "blocks",
-              admin: {
-                initCollapsed: true,
-              },
-              blocks: [CtaBlock, SharedBlock],
+              blocks: [Hero, Image, Paragraph, Cards, CtaBlock, SharedBlock],
             },
           ],
         },

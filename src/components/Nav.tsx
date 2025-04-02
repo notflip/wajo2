@@ -36,13 +36,6 @@ export const Nav = async ({ settings }: Props) => {
               <AnimatedButton icon={<HiOutlineChat size="20" />} asChild>
                 <Link href="/afspraak-maken">Afspraak Maken</Link>
               </AnimatedButton>
-              <AnimatedButton
-                variant="light"
-                icon={<HiArrowRight size="16" />}
-                asChild
-              >
-                <Link href="/afspraak-maken">Afspraak Maken</Link>
-              </AnimatedButton>
             </div>
           </div>
 

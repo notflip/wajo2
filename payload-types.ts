@@ -68,6 +68,7 @@ export interface Config {
   blocks: {};
   collections: {
     pages: Page;
+    cases: Case;
     redirects: Redirect;
     users: User;
     posts: Post;
@@ -82,6 +83,7 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
+    cases: CasesSelect<false> | CasesSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
@@ -151,7 +153,7 @@ export interface Page {
    * Dit is de titel van de pagina
    */
   title: string;
-  blocks?: (CtaBlock | SharedBlock)[] | null;
+  blocks?: (Hero | Image | Paragraph | Cards | CtaBlock | SharedBlock)[] | null;
   seo?: {
     title?: string | null;
     description?: string | null;
@@ -175,29 +177,48 @@ export interface Page {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CtaBlock".
+ * via the `definition` "Hero".
  */
-export interface CtaBlock {
-  /**
-   * Indien dit ingevuld is, komt deze kleine titel boven de hoofd titel in een kader staan
-   */
-  subtitle?: string | null;
+export interface Hero {
   title: string;
-  text: string;
-  image?: (number | null) | Media;
-  link: {
-    type: 'reference' | 'custom';
-    newTab?: boolean | null;
-    reference?: {
-      relationTo: 'pages';
-      value: number | Page;
-    } | null;
-    url?: string | null;
-    label?: string | null;
+  content: string;
+  links?:
+    | {
+        link: {
+          type: 'reference' | 'custom';
+          newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: number | Page;
+          } | null;
+          url?: string | null;
+          label?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  textAlign?: ('left' | 'center') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'hero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Image".
+ */
+export interface Image {
+  /**
+   * Dit veld is een landschap afbeelding, de afbeelding die je hier upload moet in een landschap formaat zijn
+   */
+  image: number | Media;
+  callout?: {
+    content?: string | null;
+    link?: (number | null) | Case;
+    image?: (number | null) | Media;
   };
   id?: string | null;
   blockName?: string | null;
-  blockType: 'ctaBlock';
+  blockType: 'image';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -236,6 +257,75 @@ export interface Media {
       filename?: string | null;
     };
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "cases".
+ */
+export interface Case {
+  id: number;
+  /**
+   * ✋ Het wijzigen van de slug na publicatie kan bestaande links breken en zorgt ervoor dat bezoekers of zoekmachines de pagina niet meer kunnen vinden.
+   */
+  slug?: string | null;
+  title: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Paragraph".
+ */
+export interface Paragraph {
+  badge: string;
+  content: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'paragraph';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Cards".
+ */
+export interface Cards {
+  items?:
+    | {
+        icon?: string | null;
+        title: string;
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'cards';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CtaBlock".
+ */
+export interface CtaBlock {
+  /**
+   * Indien dit ingevuld is, komt deze kleine titel boven de hoofd titel in een kader staan
+   */
+  subtitle?: string | null;
+  title: string;
+  text: string;
+  image?: (number | null) | Media;
+  link: {
+    type: 'reference' | 'custom';
+    newTab?: boolean | null;
+    reference?: {
+      relationTo: 'pages';
+      value: number | Page;
+    } | null;
+    url?: string | null;
+    label?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ctaBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -374,6 +464,10 @@ export interface PayloadLockedDocument {
         value: number | Page;
       } | null)
     | ({
+        relationTo: 'cases';
+        value: number | Case;
+      } | null)
+    | ({
         relationTo: 'redirects';
         value: number | Redirect;
       } | null)
@@ -455,6 +549,10 @@ export interface PagesSelect<T extends boolean = true> {
   blocks?:
     | T
     | {
+        hero?: T | HeroSelect<T>;
+        image?: T | ImageSelect<T>;
+        paragraph?: T | ParagraphSelect<T>;
+        cards?: T | CardsSelect<T>;
         ctaBlock?: T | CtaBlockSelect<T>;
         shared?: T | SharedBlockSelect<T>;
       };
@@ -477,6 +575,73 @@ export interface PagesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Hero_select".
+ */
+export interface HeroSelect<T extends boolean = true> {
+  title?: T;
+  content?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
+  textAlign?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Image_select".
+ */
+export interface ImageSelect<T extends boolean = true> {
+  image?: T;
+  callout?:
+    | T
+    | {
+        content?: T;
+        link?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Paragraph_select".
+ */
+export interface ParagraphSelect<T extends boolean = true> {
+  badge?: T;
+  content?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Cards_select".
+ */
+export interface CardsSelect<T extends boolean = true> {
+  items?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        text?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -507,6 +672,17 @@ export interface SharedBlockSelect<T extends boolean = true> {
   block?: T;
   id?: T;
   blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "cases_select".
+ */
+export interface CasesSelect<T extends boolean = true> {
+  slug?: T;
+  title?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

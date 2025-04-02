@@ -18,13 +18,15 @@
   --primary: var(--blue-500);
   --primary-foreground: var(--background);
 
+  --muted-foreground: var(--slate-950);
+
   /* Other */
   --card: 11 50% 90%;
   --card-foreground: 11 5% 10%;
   --popover: 11 100% 95%;
   --popover-foreground: 11 100% 0%;
   --muted: -27 30% 85%;
-  --muted-foreground: var(--slate-950);
+
   --accent: -27 30% 80%;
   --accent-foreground: 11 5% 10%;
   --destructive: 0 100% 30%;
@@ -48,5 +50,17 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  h1 {
+    @apply text-heading-3 md:text-heading-2 xl:text-heading-1;
+  }
+  h2 {
+    @apply text-heading-4 md:text-heading-3 xl:text-heading-2;
+  }
+  h3 {
+    @apply text-heading-5 md:text-heading-4 xl:text-heading-3;
+  }
+  p {
+    @apply text-base;
   }
 }

@@ -1,6 +1,7 @@
 import { SlugComponent as SlugComponent_92cc057d0a2abb4f6cf0307edf59f986 } from '@/fields/slug/SlugComponent'
 import { MessageComponent as MessageComponent_6839791537c1735ab9119e2e064c85f2 } from '@/fields/message/MessageComponent'
 import { Cell as Cell_f26938383f898856a88e264af0a346cc } from '@/fields/title/Cell'
+import { default as default_063a8ccfed7b38b52b64385b7dbbd333 } from '@/fields/icon/IconFieldSelect'
 import { MetaTitleComponent as MetaTitleComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { MetaDescriptionComponent as MetaDescriptionComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { MetaImageComponent as MetaImageComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
@@ -18,6 +19,7 @@ export const importMap = {
   "@/fields/slug/SlugComponent#SlugComponent": SlugComponent_92cc057d0a2abb4f6cf0307edf59f986,
   "@/fields/message/MessageComponent#MessageComponent": MessageComponent_6839791537c1735ab9119e2e064c85f2,
   "@/fields/title/Cell#Cell": Cell_f26938383f898856a88e264af0a346cc,
+  "@/fields/icon/IconFieldSelect#default": default_063a8ccfed7b38b52b64385b7dbbd333,
   "@payloadcms/plugin-seo/client#MetaTitleComponent": MetaTitleComponent_a8a977ebc872c5d5ea7ee689724c0860,
   "@payloadcms/plugin-seo/client#MetaDescriptionComponent": MetaDescriptionComponent_a8a977ebc872c5d5ea7ee689724c0860,
   "@payloadcms/plugin-seo/client#MetaImageComponent": MetaImageComponent_a8a977ebc872c5d5ea7ee689724c0860,

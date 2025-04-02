@@ -1,6 +1,9 @@
 import React from "react"
 import { CtaBlockComponent } from "@/blocks/CtaBlock/CtaBlockComponent"
 import { SharedBlockComponent } from "@/blocks/SharedBlock/SharedBlockComponent"
+import { HeroComponent } from "@/blocks/HeroBlock/HeroComponent"
+import { ImageComponent } from "@/blocks/Image/ImageComponent"
+import { ParagraphComponent } from "@/blocks/Paragraph/ParagraphComponent"
 
 export type BlockType = keyof Partial<typeof blockComponents>
 
@@ -15,6 +18,9 @@ export interface BlockProps {
 }
 
 export const blockComponents = {
+  hero: HeroComponent,
+  image: ImageComponent,
+  paragraph: ParagraphComponent,
   cta: CtaBlockComponent,
   shared: SharedBlockComponent,
 }
