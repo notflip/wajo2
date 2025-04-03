@@ -20,22 +20,21 @@ export const FeatureListComponent: React.FC<FeatureList> = async (props) => {
         </div>
         <div className="mt-24">
           {(items || []).map((item, index) => (
-            <Link
-              href="#"
+            <CmsLink
+              {...item.link}
               key={index}
-              className="group flex items-center mb-4 justify-between bg-slate-50 transition hover:bg-primary p-8 rounded-[16px]"
+              className="group flex items-center mb-4 justify-between bg-blue-50 transition hover:bg-primary p-8 rounded-[16px]"
             >
-              {JSON.stringify(link)}
-              <h4 className="text-foreground group-hover:text-white">
+              <h4 key={index} className="text-foreground group-hover:text-white">
                 {item.title}
               </h4>
               <p className="text-foreground group-hover:text-white">
                 {item.text}
               </p>
               <div className="text-foreground group-hover:text-white">
-                <HiOutlineArrowUpRight size="24" />
+                <HiOutlineArrowUpRight size="24" className="group-hover:rotate-45 transition" />
               </div>
-            </Link>
+            </CmsLink>
           ))}
         </div>
       </div>

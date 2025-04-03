@@ -13,7 +13,7 @@ export type CmsLinkType = {
   onClick?: () => void
 }
 
-export const CmsLink: React.FC<CmsLinkType> = (props) => {
+export const CmsLink: React.FC<React.PropsWithChildren<CmsLinkType>> = (props) => {
   const { type, reference, url, newTab, label, className, onClick } = props
 
   // Return null if it's a reference and the reference is a draft
@@ -45,7 +45,8 @@ export const CmsLink: React.FC<CmsLinkType> = (props) => {
       {...newTabProps}
       className={className}
     >
-      {label ||
+      {props.children || 
+        label ||
         (reference?.value &&
           typeof reference.value === "object" &&
           reference.value.title) ||
