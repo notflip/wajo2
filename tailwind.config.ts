@@ -59,6 +59,10 @@ export default {
       backgroundImage: {
         "fade-to-secondary":
           "linear-gradient(180deg, white 60%, hsl(var(--secondary)) 60%)",
+        "fade-to-gray":
+          "linear-gradient(180deg, white 60%, hsl(var(--slate-50)) 60%)",
+        "fade-to-gray-reverse":
+          "linear-gradient(180deg, hsl(var(--slate-50)) 60%, white 60%)",
       },
       fontSize: {
         "heading-1": [
@@ -69,16 +73,16 @@ export default {
           },
         ],
         "heading-2": [
-          "3rem",
+          "3rem", // 28.48px
           {
             lineHeight: "3.5rem",
             fontWeight: "700",
           },
         ],
         "heading-3": [
-          "2.375rem",
+          "2.375rem", // 38px
           {
-            lineHeight: "3rem",
+            lineHeight: "3rem", // 48px
             fontWeight: "700",
           },
         ],

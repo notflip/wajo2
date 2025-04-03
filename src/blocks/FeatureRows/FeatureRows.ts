@@ -10,6 +10,16 @@ export const FeatureRows: Block = {
   },
   fields: [
     {
+      name: "badge",
+      type: "text",
+      required: true,
+    },
+    {
+      name: "title",
+      type: "text",
+      required: true,
+    },
+    {
       name: "items",
       type: "array",
       fields: [
@@ -40,9 +50,9 @@ export const FeatureRows: Block = {
           value: "beige",
         },
         {
-            label: "Gray",
-            value: "gray",
-          },
+          label: "Gray",
+          value: "gray",
+        },
       ],
     },
   ],

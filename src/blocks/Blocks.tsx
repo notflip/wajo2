@@ -6,6 +6,7 @@ import { ParagraphComponent } from "@/blocks/Paragraph/ParagraphComponent"
 import { CardsComponent } from "@/blocks/Cards/CardsComponent"
 import { CasesComponent } from "@/blocks/Cases/CasesComponent"
 import { FeatureRowsComponent } from "@/blocks/FeatureRows/FeatureRowsComponent"
+import { FeatureListComponent } from "@/blocks/FeatureList/FeatureListComponent"
 
 export type BlockType = keyof Partial<typeof blockComponents>
 
@@ -26,6 +27,11 @@ export const bgColorMap: Record<string, string> = {
 
 export const bgGradientMap: Record<string, string> = {
   beige: "bg-fade-to-secondary",
+  gray: "bg-fade-to-gray",
+}
+
+export const bgGradientMapAfter: Record<string, string> = {
+  gray: "bg-fade-to-gray-reverse",
 }
 
 export const blockComponents = {
@@ -35,6 +41,7 @@ export const blockComponents = {
   cards: CardsComponent,
   cases: CasesComponent,
   featureRows: FeatureRowsComponent,
+  featureList: FeatureListComponent,
   cta: CtaBlockComponent,
   shared: SharedBlockComponent,
 }
@@ -52,6 +59,7 @@ const Blocks: React.FC<BlockProps> = (props) => {
 
           if (blockType && blockType in blockComponents) {
             const Block = blockComponents[blockType as BlockType]
+            const prevBlock = blocks[index - 1]
             const nextBlock = blocks[index + 1]
 
             if (Block) {
@@ -61,6 +69,7 @@ const Blocks: React.FC<BlockProps> = (props) => {
                   <Block
                     {...block}
                     index={index}
+                    prevBgColor={prevBlock?.bgColor}
                     nextBgColor={nextBlock?.bgColor}
                   />
                 </div>

@@ -4,7 +4,7 @@ type BadgeProps = {
 
 export default function Badge({ text }: BadgeProps) {
   return (
-    <div className="inline-flex gap-2 items-center px-2 py-1 rounded-full text-badge uppercase border border-foreground/20">
+    <div className="inline-flex gap-2 items-center px-3 rounded-full text-badge uppercase border border-foreground/20">
       <svg
         width="14"
         height="14"

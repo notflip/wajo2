@@ -153,7 +153,7 @@ export interface Page {
    * Dit is de titel van de pagina
    */
   title: string;
-  blocks?: (Hero | Image | Paragraph | Cards | Cases | FeatureRows | CtaBlock | SharedBlock)[] | null;
+  blocks?: (Hero | Image | Paragraph | Cards | Cases | FeatureRows | FeatureList | CtaBlock | SharedBlock)[] | null;
   seo?: {
     title?: string | null;
     description?: string | null;
@@ -335,6 +335,8 @@ export interface Cases {
  * via the `definition` "FeatureRows".
  */
 export interface FeatureRows {
+  badge: string;
+  title: string;
   items?:
     | {
         icon: string;
@@ -347,6 +349,44 @@ export interface FeatureRows {
   id?: string | null;
   blockName?: string | null;
   blockType: 'featureRows';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeatureList".
+ */
+export interface FeatureList {
+  badge: string;
+  title: string;
+  link: {
+    type: 'reference' | 'custom';
+    newTab?: boolean | null;
+    reference?: {
+      relationTo: 'pages';
+      value: number | Page;
+    } | null;
+    url?: string | null;
+    label?: string | null;
+  };
+  items?:
+    | {
+        title: string;
+        text: string;
+        link: {
+          type: 'reference' | 'custom';
+          newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: number | Page;
+          } | null;
+          url?: string | null;
+          label?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'featureList';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -602,6 +642,7 @@ export interface PagesSelect<T extends boolean = true> {
         cards?: T | CardsSelect<T>;
         cases?: T | CasesSelect<T>;
         featureRows?: T | FeatureRowsSelect<T>;
+        featureList?: T | FeatureListSelect<T>;
         ctaBlock?: T | CtaBlockSelect<T>;
         shared?: T | SharedBlockSelect<T>;
       };
@@ -718,6 +759,8 @@ export interface CasesSelect<T extends boolean = true> {
  * via the `definition` "FeatureRows_select".
  */
 export interface FeatureRowsSelect<T extends boolean = true> {
+  badge?: T;
+  title?: T;
   items?:
     | T
     | {
@@ -727,6 +770,41 @@ export interface FeatureRowsSelect<T extends boolean = true> {
         id?: T;
       };
   bgColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeatureList_select".
+ */
+export interface FeatureListSelect<T extends boolean = true> {
+  badge?: T;
+  title?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+      };
+  items?:
+    | T
+    | {
+        title?: T;
+        text?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
