@@ -153,7 +153,9 @@ export interface Page {
    * Dit is de titel van de pagina
    */
   title: string;
-  blocks?: (Hero | Image | Paragraph | Cards | Cases | FeatureRows | FeatureList | CtaBlock | SharedBlock)[] | null;
+  blocks?:
+    | (Hero | Image | Paragraph | Cards | Cases | FeatureRows | FeatureList | Testimonials | CtaBlock | SharedBlock)[]
+    | null;
   seo?: {
     title?: string | null;
     description?: string | null;
@@ -387,6 +389,26 @@ export interface FeatureList {
   id?: string | null;
   blockName?: string | null;
   blockType: 'featureList';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Testimonials".
+ */
+export interface Testimonials {
+  badge: string;
+  title: string;
+  items?:
+    | {
+        name: string;
+        text: string;
+        image?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  bgColor?: ('transparent' | 'beige' | 'gray') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'testimonials';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -643,6 +665,7 @@ export interface PagesSelect<T extends boolean = true> {
         cases?: T | CasesSelect<T>;
         featureRows?: T | FeatureRowsSelect<T>;
         featureList?: T | FeatureListSelect<T>;
+        testimonials?: T | TestimonialsSelect<T>;
         ctaBlock?: T | CtaBlockSelect<T>;
         shared?: T | SharedBlockSelect<T>;
       };
@@ -805,6 +828,25 @@ export interface FeatureListSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Testimonials_select".
+ */
+export interface TestimonialsSelect<T extends boolean = true> {
+  badge?: T;
+  title?: T;
+  items?:
+    | T
+    | {
+        name?: T;
+        text?: T;
+        image?: T;
+        id?: T;
+      };
+  bgColor?: T;
   id?: T;
   blockName?: T;
 }

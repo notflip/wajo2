@@ -21,6 +21,7 @@ import { Cards } from "@/blocks/Cards/Cards"
 import { Cases } from "@/blocks/Cases/Cases"
 import { FeatureRows } from "@/blocks/FeatureRows/FeatureRows"
 import FeatureList from "@/blocks/FeatureList/FeatureList"
+import Testimonials from "@/blocks/Testimonials/Testimonials"
 
 export const Pages: CollectionConfig<"pages"> = {
   slug: "pages",
@@ -108,6 +109,7 @@ export const Pages: CollectionConfig<"pages"> = {
                 Cases,
                 FeatureRows,
                 FeatureList,
+                Testimonials,
                 CtaBlock,
                 SharedBlock,
               ],

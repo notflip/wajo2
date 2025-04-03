@@ -96,6 +96,7 @@ export default {
         "heading-5": [
           "1.33rem",
           {
+            lineHeight: "1.9rem",
             fontWeight: "500",
           },
         ],
