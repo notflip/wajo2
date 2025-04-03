@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: [
       "@radix-ui/*",
+      "react-icons/*",
       "@react-email",
       "@react-email/tailwind",
     ],

@@ -83,7 +83,7 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
-    cases: CasesSelect<false> | CasesSelect<true>;
+    cases: CasesSelect1<false> | CasesSelect1<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
@@ -153,7 +153,7 @@ export interface Page {
    * Dit is de titel van de pagina
    */
   title: string;
-  blocks?: (Hero | Image | Paragraph | Cards | CtaBlock | SharedBlock)[] | null;
+  blocks?: (Hero | Image | Paragraph | Cards | Cases | FeatureRows | CtaBlock | SharedBlock)[] | null;
   seo?: {
     title?: string | null;
     description?: string | null;
@@ -269,6 +269,12 @@ export interface Case {
    */
   slug?: string | null;
   title: string;
+  image: number | Media;
+  callout?: {
+    content?: string | null;
+    image?: (number | null) | Media;
+  };
+  tags?: ('copywriting' | 'webdevelopment' | 'webdesign' | 'marketing')[] | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -292,15 +298,55 @@ export interface Paragraph {
 export interface Cards {
   items?:
     | {
-        icon?: string | null;
+        icon: string;
         title: string;
         text: string;
         id?: string | null;
       }[]
     | null;
+  bgColor?: ('transparent' | 'beige') | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'cards';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Cases".
+ */
+export interface Cases {
+  badge: string;
+  title: string;
+  link: {
+    type: 'reference' | 'custom';
+    newTab?: boolean | null;
+    reference?: {
+      relationTo: 'pages';
+      value: number | Page;
+    } | null;
+    url?: string | null;
+    label?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'cases';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeatureRows".
+ */
+export interface FeatureRows {
+  items?:
+    | {
+        icon: string;
+        title: string;
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  bgColor?: ('transparent' | 'beige' | 'gray') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'featureRows';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -554,6 +600,8 @@ export interface PagesSelect<T extends boolean = true> {
         image?: T | ImageSelect<T>;
         paragraph?: T | ParagraphSelect<T>;
         cards?: T | CardsSelect<T>;
+        cases?: T | CasesSelect<T>;
+        featureRows?: T | FeatureRowsSelect<T>;
         ctaBlock?: T | CtaBlockSelect<T>;
         shared?: T | SharedBlockSelect<T>;
       };
@@ -642,6 +690,43 @@ export interface CardsSelect<T extends boolean = true> {
         text?: T;
         id?: T;
       };
+  bgColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Cases_select".
+ */
+export interface CasesSelect<T extends boolean = true> {
+  badge?: T;
+  title?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeatureRows_select".
+ */
+export interface FeatureRowsSelect<T extends boolean = true> {
+  items?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        text?: T;
+        id?: T;
+      };
+  bgColor?: T;
   id?: T;
   blockName?: T;
 }
@@ -679,9 +764,17 @@ export interface SharedBlockSelect<T extends boolean = true> {
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "cases_select".
  */
-export interface CasesSelect<T extends boolean = true> {
+export interface CasesSelect1<T extends boolean = true> {
   slug?: T;
   title?: T;
+  image?: T;
+  callout?:
+    | T
+    | {
+        content?: T;
+        image?: T;
+      };
+  tags?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;

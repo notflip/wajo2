@@ -1,12 +1,12 @@
 import IconField from "@/fields/icon/IconField"
 import type { Block } from "payload"
 
-export const Cards: Block = {
-  slug: "cards",
-  interfaceName: "Cards",
+export const FeatureRows: Block = {
+  slug: "featureRows",
+  interfaceName: "FeatureRows",
   labels: {
-    singular: "Cards",
-    plural: "Cards",
+    singular: "FeatureRows",
+    plural: "FeatureRows",
   },
   fields: [
     {
@@ -18,13 +18,11 @@ export const Cards: Block = {
           name: "title",
           type: "text",
           required: true,
-          maxLength: 70,
         },
         {
           name: "text",
           type: "textarea",
           required: true,
-          maxLength: 200,
         },
       ],
     },
@@ -41,6 +39,10 @@ export const Cards: Block = {
           label: "Beige",
           value: "beige",
         },
+        {
+            label: "Gray",
+            value: "gray",
+          },
       ],
     },
   ],

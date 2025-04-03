@@ -1,28 +1,17 @@
-"use client"
+import * as HiIcons from "react-icons/hi2"
+import type { IconType } from "react-icons"
 
-import { useEffect, useState } from "react"
-import { loadIcon } from "@/lib/load-icon"
-
-export function DynamicIcon({
-  iconName,
-  ...props
-}: {
+type DynamicIconProps = {
   iconName: string
+  size?: number | string
+  className?: string
   [key: string]: any
-}) {
-  const [IconComponent, setIconComponent] =
-    useState<React.ComponentType | null>(null)
+}
 
-  useEffect(() => {
-    let isMounted = true
-    loadIcon(iconName).then((icon) => {
-      if (isMounted) setIconComponent(() => icon)
-    })
-    return () => {
-      isMounted = false
-    }
-  }, [iconName])
+export function DynamicIcon({ iconName, ...props }: DynamicIconProps) {
+  const Icon = HiIcons[iconName as keyof typeof HiIcons] as IconType
 
-  if (!IconComponent) return null
-  return <IconComponent {...props} />
+  if (!Icon) return null
+
+  return <Icon {...props} />
 }

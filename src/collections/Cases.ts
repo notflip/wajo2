@@ -38,5 +38,54 @@ export const Cases: CollectionConfig = {
       name: "title",
       required: true,
     },
+    {
+      name: "image",
+      type: "upload",
+      relationTo: "media",
+      displayPreview: true,
+      required: true,
+    },
+    {
+      name: "callout",
+      type: "group",
+      fields: [
+        {
+          name: "content",
+          type: "text",
+        },
+        {
+          name: "image",
+          type: "upload",
+          relationTo: "media",
+        },
+      ],
+    },
+    {
+      name: "tags",
+      type: "select",
+      hasMany: true,
+      admin: {
+        isClearable: true,
+        isSortable: true,
+      },
+      options: [
+        {
+          label: "Copywriting",
+          value: "copywriting",
+        },
+        {
+          label: "Webdevelopment",
+          value: "webdevelopment",
+        },
+        {
+          label: "Webdesign",
+          value: "webdesign",
+        },
+        {
+          label: "Marketing",
+          value: "marketing",
+        },
+      ],
+    },
   ],
 }

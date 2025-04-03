@@ -9,8 +9,8 @@ export const ParagraphComponent: React.FC<Paragraph> = (props) => {
   return (
     <section
       className={cn(
-        "pt-[1rem] pb-[3rem] lg:pb-[3rem]",
-        bgColor ? `bg-${bgColorMap[bgColor]}` : "",
+        "pt-[3rem] pb-[3rem]",
+        bgColor ? `${bgColorMap[bgColor]}` : "",
       )}
     >
       <div className="mx-auto max-w-screen-2xl px-4 md:px-8 2xl:px-16">

@@ -4,6 +4,8 @@ import { HeroComponent } from "@/blocks/HeroBlock/HeroComponent"
 import { ImageComponent } from "@/blocks/Image/ImageComponent"
 import { ParagraphComponent } from "@/blocks/Paragraph/ParagraphComponent"
 import { CardsComponent } from "@/blocks/Cards/CardsComponent"
+import { CasesComponent } from "@/blocks/Cases/CasesComponent"
+import { FeatureRowsComponent } from "@/blocks/FeatureRows/FeatureRowsComponent"
 
 export type BlockType = keyof Partial<typeof blockComponents>
 
@@ -18,7 +20,8 @@ export interface BlockProps {
 }
 
 export const bgColorMap: Record<string, string> = {
-  beige: "secondary",
+  beige: "bg-beige-50",
+  gray: "bg-slate-50",
 }
 
 export const bgGradientMap: Record<string, string> = {
@@ -30,6 +33,8 @@ export const blockComponents = {
   image: ImageComponent,
   paragraph: ParagraphComponent,
   cards: CardsComponent,
+  cases: CasesComponent,
+  featureRows: FeatureRowsComponent,
   cta: CtaBlockComponent,
   shared: SharedBlockComponent,
 }

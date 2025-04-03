@@ -9,6 +9,22 @@ export const postsPerPage = 3
 export const nonDeletablePages = ["home", "privacy-policy", "blog"]
 export const nonEditablePages = ["blog"]
 
+// getLatestCases
+export async function getLatestCases() {
+  const payload = await getPayload({
+    config,
+  })
+
+  const result = await payload.find({
+    collection: "cases",
+    limit: 4,
+    pagination: false,
+    sort: "-publishedAt",
+  })
+
+  return result.docs
+}
+
 // getPostCategories
 export async function getPostCategories() {
   const payload = await getPayload({

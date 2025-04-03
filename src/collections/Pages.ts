@@ -18,6 +18,8 @@ import { Hero } from "@/blocks/HeroBlock/Hero"
 import { Image } from "@/blocks/Image/Image"
 import { Paragraph } from "@/blocks/Paragraph/Paragraph"
 import { Cards } from "@/blocks/Cards/Cards"
+import { Cases } from "@/blocks/Cases/Cases"
+import { FeatureRows } from "@/blocks/FeatureRows/FeatureRows"
 
 export const Pages: CollectionConfig<"pages"> = {
   slug: "pages",
@@ -97,7 +99,16 @@ export const Pages: CollectionConfig<"pages"> = {
             {
               name: "blocks",
               type: "blocks",
-              blocks: [Hero, Image, Paragraph, Cards, CtaBlock, SharedBlock],
+              blocks: [
+                Hero,
+                Image,
+                Paragraph,
+                Cards,
+                Cases,
+                FeatureRows,
+                CtaBlock,
+                SharedBlock,
+              ],
             },
           ],
         },

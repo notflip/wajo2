@@ -61,7 +61,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${gilroy.variable} font-sans text-foreground antialiased relative`}>
+      <body className={`${gilroy.variable} font-sans text-base text-foreground antialiased relative`}>
         {/* <TopNav settings={websiteSettings} /> */}
         <Nav settings={websiteSettings} />
         {children}

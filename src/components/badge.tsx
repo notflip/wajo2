@@ -20,7 +20,7 @@ export default function Badge({ text }: BadgeProps) {
           strokeLinejoin="round"
         />
       </svg>
-      <div>{text}</div>
+      <div className="whitespace-nowrap">{text}</div>
     </div>
   )
 }

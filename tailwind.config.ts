@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss"
+const colors = require("tailwindcss/colors")
 
 export default {
   content: [
@@ -9,6 +10,45 @@ export default {
   ],
   darkMode: ["class"],
   theme: {
+    colors: {
+      beige: {
+        50: "hsl(var(--beige-50))",
+      },
+      blue: {
+        50: "hsl(var(--blue-50))",
+        500: "hsl(var(--blue-500))",
+        950: "hsl(var(--blue-950))",
+      },
+      slate: {
+        50: "hsl(var(--slate-50))",
+        950: "hsl(var(--slate-950))",
+      },
+      white: colors.white,
+      border: "hsl(var(--border))",
+      input: "hsl(var(--input))",
+      ring: "hsl(var(--ring))",
+      background: "hsl(var(--background))",
+      foreground: "hsl(var(--foreground))",
+      primary: {
+        DEFAULT: "hsl(var(--primary))",
+        foreground: "hsl(var(--primary-foreground))",
+      },
+      secondary: {
+        DEFAULT: "hsl(var(--secondary))",
+      },
+      destructive: {
+        DEFAULT: "hsl(var(--destructive))",
+        foreground: "hsl(var(--destructive-foreground))",
+      },
+      muted: {
+        DEFAULT: "hsl(var(--muted))",
+        foreground: "hsl(var(--muted-foreground))",
+      },
+      accent: {
+        DEFAULT: "hsl(var(--accent))",
+        foreground: "hsl(var(--accent-foreground))",
+      },
+    },
     fontSize: {
       inherit: "inherit",
     },
@@ -108,32 +148,6 @@ export default {
       //       },
       //     },
       //   },
-      colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

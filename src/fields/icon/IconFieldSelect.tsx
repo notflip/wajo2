@@ -30,7 +30,7 @@ const ReactIconsSelect: React.FC<SelectFieldClientProps> = (props) => {
 
   return (
     <div>
-      {label && <FieldLabel label={label} />}
+      {label && <FieldLabel htmlFor={`field-${path}`} label={label} />}
       <SelectInput
         path={path}
         name={path}
