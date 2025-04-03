@@ -1,3 +1,4 @@
+import React from "react"
 import Badge from "@/components/badge"
 import { CmsLink } from "@/components/CmsLink"
 import AnimatedButton from "@/components/interface/AnimatedButton"
@@ -21,22 +22,24 @@ export const FeatureListComponent: React.FC<FeatureList> = async (props) => {
         <div className="mt-24">
           {(items || []).map((item, index) => (
             <CmsLink
-              {...item.link}
               key={index}
+              {...item.link}
               className="group flex flex-col md:grid md:grid-cols-[minmax(0,1fr)_1fr_auto] gap-4 md:items-center mb-4 bg-blue-50 transition hover:bg-primary p-8 rounded-[16px]"
             >
-              <h4 className="text-foreground group-hover:text-white md:mb-0 mb-2">
-                {item.title}
-              </h4>
-              <p className="max-w-md text-foreground group-hover:text-white md:mb-0 mb-4">
-                {item.text}
-              </p>
-              <div className="text-foreground group-hover:text-white md:ml-auto ml-0">
-                <HiOutlineArrowUpRight
-                  size="24"
-                  className="group-hover:rotate-45 transition"
-                />
-              </div>
+              <React.Fragment key={index}>
+                <h4 className="text-foreground group-hover:text-white md:mb-0 mb-2">
+                  {item.title}
+                </h4>
+                <p className="max-w-md text-foreground group-hover:text-white md:mb-0 mb-4">
+                  {item.text}
+                </p>
+                <div className="text-foreground group-hover:text-white md:ml-auto ml-0">
+                  <HiOutlineArrowUpRight
+                    size="24"
+                    className="group-hover:rotate-45 transition"
+                  />
+                </div>
+              </React.Fragment>
             </CmsLink>
           ))}
         </div>
