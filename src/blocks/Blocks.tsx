@@ -8,6 +8,7 @@ import { CasesComponent } from "@/blocks/Cases/CasesComponent"
 import { FeatureRowsComponent } from "@/blocks/FeatureRows/FeatureRowsComponent"
 import { FeatureListComponent } from "@/blocks/FeatureList/FeatureListComponent"
 import { TestimonialsComponent } from "@/blocks/Testimonials/TestimonialsComponent"
+import { TeamComponent } from "@/blocks/Team/TeamComponent"
 
 export type BlockType = keyof Partial<typeof blockComponents>
 
@@ -44,6 +45,7 @@ export const blockComponents = {
   featureRows: FeatureRowsComponent,
   featureList: FeatureListComponent,
   testimonials: TestimonialsComponent,
+  team: TeamComponent,
   cta: CtaBlockComponent,
   shared: SharedBlockComponent,
 }

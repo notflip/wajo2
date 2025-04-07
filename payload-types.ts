@@ -154,7 +154,19 @@ export interface Page {
    */
   title: string;
   blocks?:
-    | (Hero | Image | Paragraph | Cards | Cases | FeatureRows | FeatureList | Testimonials | CtaBlock | SharedBlock)[]
+    | (
+        | Hero
+        | Image
+        | Paragraph
+        | Cards
+        | Cases
+        | FeatureRows
+        | FeatureList
+        | Testimonials
+        | Team
+        | CtaBlock
+        | SharedBlock
+      )[]
     | null;
   seo?: {
     title?: string | null;
@@ -412,6 +424,40 @@ export interface Testimonials {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Team".
+ */
+export interface Team {
+  badge: string;
+  content: string;
+  links?:
+    | {
+        link: {
+          type: 'reference' | 'custom';
+          newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: number | Page;
+          } | null;
+          url?: string | null;
+          label?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  members?:
+    | {
+        image?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  showLine?: boolean | null;
+  bgColor?: ('transparent' | 'beige') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'team';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "CtaBlock".
  */
 export interface CtaBlock {
@@ -666,6 +712,7 @@ export interface PagesSelect<T extends boolean = true> {
         featureRows?: T | FeatureRowsSelect<T>;
         featureList?: T | FeatureListSelect<T>;
         testimonials?: T | TestimonialsSelect<T>;
+        team?: T | TeamSelect<T>;
         ctaBlock?: T | CtaBlockSelect<T>;
         shared?: T | SharedBlockSelect<T>;
       };
@@ -846,6 +893,38 @@ export interface TestimonialsSelect<T extends boolean = true> {
         image?: T;
         id?: T;
       };
+  bgColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Team_select".
+ */
+export interface TeamSelect<T extends boolean = true> {
+  badge?: T;
+  content?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
+  members?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  showLine?: T;
   bgColor?: T;
   id?: T;
   blockName?: T;

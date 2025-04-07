@@ -15,10 +15,10 @@ export const ParagraphComponent: React.FC<Paragraph> = (props) => {
     >
       <div className="mx-auto max-w-screen-2xl px-4 md:px-8 2xl:px-16">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-12">
-          <div className="col-span-2">
+          <div className="col-span-3">
             <Badge text={badge} />
           </div>
-          <h3 className="md:col-span-7 md:col-start-5">{content}</h3>
+          <h3 className="md:col-span-9 md:col-start-4">{content}</h3>
         </div>
       </div>
     </section>

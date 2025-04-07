@@ -87,10 +87,10 @@ export default {
           },
         ],
         "heading-4": [
-          "1.78rem",
+          "1.78rem", // 28px
           {
             fontWeight: "600",
-            lineHeight: "2.125rem",
+            lineHeight: "2.35rem",
           },
         ],
         "heading-5": [
