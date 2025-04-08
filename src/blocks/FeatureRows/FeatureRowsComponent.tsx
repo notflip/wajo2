@@ -18,7 +18,7 @@ export const FeatureRowsComponent: React.FC<FeatureRows> = (props) => {
     >
       <div className="mx-auto max-w-screen-2xl px-4 md:px-8 2xl:px-16">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-          <div className="md:col-span-5 sticky top-8 self-start">
+          <div className="md:col-span-5 md:sticky top-8 self-start">
             <Badge text={badge} />
             <h3 className="mt-8">{title}</h3>
           </div>

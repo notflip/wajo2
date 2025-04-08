@@ -34,6 +34,7 @@ export const Settings: GlobalConfig = {
               type: "array",
               name: "website_emails",
               label: "Website E-mails",
+              required: true,
               labels: {
                 singular: "E-mail",
                 plural: "E-mails",
@@ -62,6 +63,12 @@ export const Settings: GlobalConfig = {
               name: "logo",
               type: "upload",
               relationTo: "media",
+              required: true,
+            },
+            {
+              type: "textarea",
+              name: "company_info",
+              label: "Bedrijfsgegevens",
               required: true,
             },
           ],

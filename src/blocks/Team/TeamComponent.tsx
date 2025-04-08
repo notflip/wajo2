@@ -37,8 +37,8 @@ export const TeamComponent: React.FC<Team> = (props) => {
             </div>
           )}
           <div className="md:col-start-4 md:col-span-full grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {(members || []).map(({ image }, index) => (
-              <div className="relative h-[250px]">
+            {(members || []).map(({ image }, i) => (
+              <div key={i} className="relative h-[250px]">
                 <ImageBox
                   fill
                   className="rounded-[8px]"

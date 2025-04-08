@@ -17,6 +17,7 @@ export default {
       blue: {
         50: "hsl(var(--blue-50))",
         500: "hsl(var(--blue-500))",
+        600: "hsl(var(--blue-600))",
         950: "hsl(var(--blue-950))",
       },
       slate: {

@@ -3,8 +3,8 @@ import { link } from "@/fields/link/link"
 import { GlobalConfig } from "payload"
 import { revalidateGlobal } from "@/hooks/revalidateGlobal"
 
-const AMOUNT_OF_COLUMNS = 3
-const AMOUNT_OF_LINKS = 5
+const AMOUNT_OF_COLUMNS = 1
+const AMOUNT_OF_LINKS = 8
 
 export const Footer: GlobalConfig = {
   slug: "footer",

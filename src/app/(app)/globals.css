@@ -6,6 +6,7 @@
   /* Blue */
   --blue-50: 223 60% 94%;
   --blue-500: 223 88% 41%;
+  --blue-600: 223 88% 16%;
   --blue-950: 224 90% 4%;
 
   /* Slate */
@@ -57,22 +58,27 @@
   body {
     @apply bg-background text-foreground;
   }
-  h1 {
+  h1,
+  .h1 {
     @apply text-heading-3 md:text-heading-2 xl:text-heading-1;
   }
-  h2 {
-    @apply text-heading-4 md:text-heading-3 xl:text-heading-2; /* 48px */
+  h2,
+  .h2 {
+    @apply text-heading-3 xl:text-heading-2; /* 48px */
   }
-  h3 {
+  h3,
+  .h3 {
     @apply text-heading-4 xl:text-heading-3;
   }
-  h4 {
+  h4,
+  .h4 {
     @apply text-heading-5 md:text-heading-4;
   }
-  h5 {
+  h5,
+  .h5 {
     @apply text-heading-5;
   }
-  p {
+  p, .p {
     @apply text-base text-muted-foreground;
   }
 }

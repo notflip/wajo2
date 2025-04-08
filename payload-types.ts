@@ -466,18 +466,22 @@ export interface CtaBlock {
    */
   subtitle?: string | null;
   title: string;
-  text: string;
-  image?: (number | null) | Media;
-  link: {
-    type: 'reference' | 'custom';
-    newTab?: boolean | null;
-    reference?: {
-      relationTo: 'pages';
-      value: number | Page;
-    } | null;
-    url?: string | null;
-    label?: string | null;
-  };
+  text?: string | null;
+  links?:
+    | {
+        link: {
+          type: 'reference' | 'custom';
+          newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: number | Page;
+          } | null;
+          url?: string | null;
+          label?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'ctaBlock';
@@ -937,15 +941,19 @@ export interface CtaBlockSelect<T extends boolean = true> {
   subtitle?: T;
   title?: T;
   text?: T;
-  image?: T;
-  link?:
+  links?:
     | T
     | {
-        type?: T;
-        newTab?: T;
-        reference?: T;
-        url?: T;
-        label?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
       };
   id?: T;
   blockName?: T;
@@ -1144,14 +1152,13 @@ export interface Setting {
   /**
    * Naar deze e-mail adressen worden de contact- en afspraak aanvragen verzonden. Dit e-mail adres wordt ook getoond in de footer en doorheen de website. Het eerste e-mail adres is het primaire e-mail adres.
    */
-  website_emails?:
-    | {
-        email: string;
-        id?: string | null;
-      }[]
-    | null;
+  website_emails: {
+    email: string;
+    id?: string | null;
+  }[];
   website_phone: string;
   logo: number | Media;
+  company_info: string;
   /**
    * Voeg hier de URL van je sociale media platformen toe. Bijvoorbeeld: https://www.instagram.com/naam-van-je-account
    */
@@ -1283,6 +1290,7 @@ export interface SettingsSelect<T extends boolean = true> {
       };
   website_phone?: T;
   logo?: T;
+  company_info?: T;
   social_links?:
     | T
     | {

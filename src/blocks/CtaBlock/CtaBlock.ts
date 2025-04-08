@@ -4,7 +4,6 @@ import { link } from "@/fields/link/link"
 export const CtaBlock: Block = {
   slug: "ctaBlock",
   interfaceName: "CtaBlock",
-  imageURL: "/ctaBlock.jpg",
   fields: [
     {
       name: "subtitle",
@@ -22,14 +21,16 @@ export const CtaBlock: Block = {
     {
       name: "text",
       type: "textarea",
-      required: true,
     },
     {
-      name: "image",
-      type: "upload",
-      relationTo: "media",
+      name: "links",
+      type: "array",
+      admin: {
+        initCollapsed: true,
+      },
+      fields: [link()],
+      maxRows: 2,
     },
-    link({}),
   ],
 }
 export default CtaBlock

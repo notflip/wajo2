@@ -23,7 +23,6 @@ export const SharedBlocks: CollectionConfig = {
       type: "blocks",
       name: "blocks",
       label: "Content",
-      // TODO add shared blocks here
       blocks: [CtaBlock],
       minRows: 1,
       maxRows: 1,

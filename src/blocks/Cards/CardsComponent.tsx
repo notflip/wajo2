@@ -14,7 +14,7 @@ export const CardsComponent: React.FC<Cards> = (props) => {
       )}
     >
       <div className="mx-auto max-w-screen-2xl px-4 md:px-8 2xl:px-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {(items || []).map((item, index) => (
             <div key={index} className="bg-white p-8 rounded-[16px]">
               {item.icon && (

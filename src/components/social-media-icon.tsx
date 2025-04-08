@@ -25,28 +25,25 @@ const iconMap: IconMapping[] = [
   { domain: "tiktok.com", Icon: FaTiktok },
 ]
 
-const getSocialIcon = (url: string, className: string) => {
+const getSocialIcon = (url: string, size: number) => {
   const mapping = iconMap.find(({ domain }) => url.includes(domain))
   const IconComponent = mapping ? mapping.Icon : FaGlobe
-  return <IconComponent className={className} />
+  return <IconComponent size={size} />
 }
 
 interface SocialMediaIconProps {
-  className: string
+  size: number
   url: string
 }
 
-const SocialMediaIcon: React.FC<SocialMediaIconProps> = ({
-  url,
-  className,
-}) => (
+const SocialMediaIcon: React.FC<SocialMediaIconProps> = ({ url, size }) => (
   <Link
     aria-label="Social link"
     href={url}
     target="_blank"
     rel="noopener noreferrer"
   >
-    {getSocialIcon(url, className)}
+    {getSocialIcon(url, size)}
   </Link>
 )
 
