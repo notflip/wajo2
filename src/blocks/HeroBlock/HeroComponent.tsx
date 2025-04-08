@@ -1,10 +1,9 @@
-import { Hero, Media } from "@payload-types"
+import { Hero } from "@payload-types"
 import { CmsLink } from "@/components/CmsLink"
-import { ImageBox } from "@/components/ImageBox"
-import { Badge } from "@/components/ui/badge"
 import AnimatedButton from "@/components/interface/AnimatedButton"
 import { cn } from "@/lib/utils"
 import { HiOutlineChat } from "react-icons/hi"
+import Avatars from "@/components/avatars"
 
 export const HeroComponent: React.FC<Hero> = (props) => {
   const { title, content, links, textAlign } = props
@@ -20,7 +19,7 @@ export const HeroComponent: React.FC<Hero> = (props) => {
           >
             <h1 className="mb-8">{title}</h1>
             <p className="max-w-prose text-base text-muted-foreground mb-8">{content}</p>
-            <div className="inline-flex flex-wrap gap-4">
+            <div className="inline-flex flex-wrap gap-2">
               {(links || []).map(({ link }, i) => {
                 if (i === 0) {
                   return (
@@ -30,7 +29,7 @@ export const HeroComponent: React.FC<Hero> = (props) => {
                   )
                 } else {
                   return (
-                    <AnimatedButton key={i} variant="avatars" asChild>
+                    <AnimatedButton key={i} variant="avatars" avatars={<Avatars />} asChild>
                       <CmsLink {...link} />
                     </AnimatedButton>
                   )

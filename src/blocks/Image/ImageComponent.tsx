@@ -47,6 +47,8 @@ export const ImageComponent: React.FC<ImageComponentWithBlock> = (props) => {
 }
 
 export const Callout: React.FC<{ callout: any }> = ({ callout }: any) => {
+  console.log(callout)
+
   return (
     <div className="flex gap-4">
       {callout?.image && (
@@ -60,9 +62,12 @@ export const Callout: React.FC<{ callout: any }> = ({ callout }: any) => {
         <div className="flex flex-col gap-3 items-end">
           <p className="text-caption">{callout?.content}</p>
           {callout?.link && (
-            <div className="block px-4 py-1.5 rounded-full bg-primary text-primary-foreground">
+            <Link
+              href={`/cases/${callout?.link.slug}`}
+              className="block px-4 py-1.5 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground"
+            >
               <HiOutlineArrowUpRight size="18" />
-            </div>
+            </Link>
           )}
         </div>
       )}

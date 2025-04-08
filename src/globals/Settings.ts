@@ -71,6 +71,20 @@ export const Settings: GlobalConfig = {
               label: "Bedrijfsgegevens",
               required: true,
             },
+            {
+              type: "array",
+              name: "avatars",
+              label: "Avatars",
+              required: true,
+              minRows: 2,
+              fields: [
+                {
+                  name: "image",
+                  type: "upload",
+                  relationTo: "media",
+                },
+              ],
+            },
           ],
         },
         {

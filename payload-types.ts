@@ -1159,6 +1159,10 @@ export interface Setting {
   website_phone: string;
   logo: number | Media;
   company_info: string;
+  avatars: {
+    image?: (number | null) | Media;
+    id?: string | null;
+  }[];
   /**
    * Voeg hier de URL van je sociale media platformen toe. Bijvoorbeeld: https://www.instagram.com/naam-van-je-account
    */
@@ -1291,6 +1295,12 @@ export interface SettingsSelect<T extends boolean = true> {
   website_phone?: T;
   logo?: T;
   company_info?: T;
+  avatars?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
   social_links?:
     | T
     | {

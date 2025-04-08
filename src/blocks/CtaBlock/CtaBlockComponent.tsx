@@ -1,6 +1,7 @@
+import Avatars from "@/components/avatars"
 import { CmsLink } from "@/components/CmsLink"
 import AnimatedButton from "@/components/interface/AnimatedButton"
-import { CtaBlock } from "@payload-types"
+import { CtaBlock, Media } from "@payload-types"
 import { HiOutlineChat } from "react-icons/hi"
 
 export const CtaBlockComponent: React.FC<CtaBlock> = (props) => {
@@ -29,7 +30,12 @@ export const CtaBlockComponent: React.FC<CtaBlock> = (props) => {
                 )
               } else {
                 return (
-                  <AnimatedButton key={i} variant="avatars" asChild>
+                  <AnimatedButton
+                    key={i}
+                    variant="avatars"
+                    avatars={<Avatars />}
+                    asChild
+                  >
                     <CmsLink {...link} />
                   </AnimatedButton>
                 )
