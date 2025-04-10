@@ -9,14 +9,12 @@ import {
 import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical"
 import { cn } from "@/lib/utils"
 
-import type { InlineListBlock, MediaBlock } from "@payload-types"
-import { MediaBlockComponent } from "@/blocks/MediaBlock/MediaBlockComponent"
-import { InlineListBlockComponent } from "@/blocks/InlineListBlockComponent"
+// import type { InlineListBlock, MediaBlock } from "@payload-types"
+// import { MediaBlockComponent } from "@/blocks/MediaBlock/MediaBlockComponent"
+// import { InlineListBlockComponent } from "@/blocks/InlineListBlockComponent"
 import { JsonObject } from "payload"
 
-type NodeTypes =
-  | DefaultNodeTypes
-  | SerializedEditorState<SerializedBlockNode<MediaBlock>>
+type NodeTypes = DefaultNodeTypes | SerializedEditorState<SerializedBlockNode>
 
 type BlockNodeProps<TBlock extends JsonObject> = {
   node: SerializedBlockNode<TBlock>
@@ -26,12 +24,12 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
 }) => ({
   ...defaultConverters,
   blocks: {
-    mediaBlock: ({ node }: BlockNodeProps<MediaBlock>) => (
-      <MediaBlockComponent {...node.fields} />
-    ),
-    inlineListBlock: ({ node }: BlockNodeProps<InlineListBlock>) => (
-      <InlineListBlockComponent {...node.fields} />
-    ),
+    // mediaBlock: ({ node }: BlockNodeProps<MediaBlock>) => (
+    //   <MediaBlockComponent {...node.fields} />
+    // ),
+    // inlineListBlock: ({ node }: BlockNodeProps<InlineListBlock>) => (
+    //   <InlineListBlockComponent {...node.fields} />
+    // ),
   },
 })
 type RichTextProps = {

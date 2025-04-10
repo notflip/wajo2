@@ -20,7 +20,7 @@ export const ImageComponent: React.FC<ImageComponentWithBlock> = (props) => {
       className={cn(
         bgGradientMap[nextBgColor],
         bgGradientMapAfter[prevBgColor],
-        "relative pt-[3rem] pb-[3rem]",
+        "relative py-[3rem]",
         prevBgColor && "-mt-[3rem]",
       )}
     >

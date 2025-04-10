@@ -5,16 +5,26 @@ import { cn } from "@/lib/utils"
 import { HiOutlineChat } from "react-icons/hi"
 import Avatars from "@/components/avatars"
 import { bgColorMap } from "@/blocks/Blocks"
+import Breadcrumbs from "@/components/breadcrumbs"
 
 export const HeroComponent: React.FC<Hero> = (props) => {
   const { title, content, links, textAlign, bgColor } = props
 
   return (
-    <section className={cn(bgColor ? `${bgColorMap[bgColor]}` : "")}>
+    <section
+      className={cn(
+        bgColor ? `${bgColorMap[bgColor]}` : "",
+        bgColor && bgColor === "black" ? `text-white` : "",
+      )}
+    >
       <div className="mx-auto max-w-screen-2xl px-4 md:px-8 2xl:px-16">
+        <div className="pt-8">
+          <Breadcrumbs />
+        </div>
+
         <div className="flex items-center py-12 md:py-16 lg:py-25">
           <div
-            className={cn("max-w-3xl", {
+            className={cn("max-w-4xl", {
               "mx-auto text-center": textAlign === "center",
             })}
           >
@@ -34,11 +44,12 @@ export const HeroComponent: React.FC<Hero> = (props) => {
                 bgColor && bgColor === "black"
                   ? `text-white`
                   : "text-muted-foreground",
+                links?.length === 0 ? "mb-12" : "",
               )}
             >
               {content}
             </p>
-            {links?.length && (
+            {links?.length ? (
               <div className="mt-8 inline-flex flex-wrap gap-2">
                 {(links || []).map(({ link }, i) => {
                   if (i === 0) {
@@ -65,7 +76,7 @@ export const HeroComponent: React.FC<Hero> = (props) => {
                   }
                 })}
               </div>
-            )}
+            ) : null}
           </div>
         </div>
       </div>

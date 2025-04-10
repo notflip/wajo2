@@ -164,6 +164,7 @@ export interface Page {
         | FeatureList
         | Testimonials
         | Team
+        | Feature
         | CtaBlock
         | SharedBlock
       )[]
@@ -459,6 +460,37 @@ export interface Team {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Feature".
+ */
+export interface Feature {
+  /**
+   * Indien dit ingevuld is, komt deze kleine titel boven de hoofd titel in een kader staan
+   */
+  subtitle?: string | null;
+  title: string;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  image: number | Media;
+  variant?: ('imageLeft' | 'imageRight') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'feature';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "CtaBlock".
  */
 export interface CtaBlock {
@@ -718,6 +750,7 @@ export interface PagesSelect<T extends boolean = true> {
         featureList?: T | FeatureListSelect<T>;
         testimonials?: T | TestimonialsSelect<T>;
         team?: T | TeamSelect<T>;
+        feature?: T | FeatureSelect<T>;
         ctaBlock?: T | CtaBlockSelect<T>;
         shared?: T | SharedBlockSelect<T>;
       };
@@ -932,6 +965,19 @@ export interface TeamSelect<T extends boolean = true> {
       };
   showLine?: T;
   bgColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Feature_select".
+ */
+export interface FeatureSelect<T extends boolean = true> {
+  subtitle?: T;
+  title?: T;
+  content?: T;
+  image?: T;
+  variant?: T;
   id?: T;
   blockName?: T;
 }

@@ -9,7 +9,7 @@ export const ParagraphComponent: React.FC<Paragraph> = (props) => {
   return (
     <section
       className={cn(
-        "pt-[3rem] pb-[3rem]",
+        "py-[3rem] lg:py-[6rem]",
         bgColor ? `${bgColorMap[bgColor]}` : "",
       )}
     >
@@ -18,7 +18,7 @@ export const ParagraphComponent: React.FC<Paragraph> = (props) => {
           <div className="col-span-3">
             <Badge text={badge} />
           </div>
-          <h3 className="md:col-span-9 md:col-start-4">{content}</h3>
+          <h2 className="h3 md:col-span-9 md:col-start-4">{content}</h2>
         </div>
       </div>
     </section>
