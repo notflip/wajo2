@@ -10,6 +10,7 @@ import { FeatureListComponent } from "@/blocks/FeatureList/FeatureListComponent"
 import { TestimonialsComponent } from "@/blocks/Testimonials/TestimonialsComponent"
 import { TeamComponent } from "@/blocks/Team/TeamComponent"
 import { FeatureComponent } from "@/blocks/Feature/FeatureComponent"
+import { SliderComponent } from "@/blocks/Slider/SliderComponent"
 
 export type BlockType = keyof Partial<typeof blockComponents>
 
@@ -50,6 +51,7 @@ export const blockComponents = {
   testimonials: TestimonialsComponent,
   team: TeamComponent,
   feature: FeatureComponent,
+  slider: SliderComponent,
   cta: CtaBlockComponent,
   shared: SharedBlockComponent,
 }

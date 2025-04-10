@@ -165,6 +165,7 @@ export interface Page {
         | Testimonials
         | Team
         | Feature
+        | Slider
         | CtaBlock
         | SharedBlock
       )[]
@@ -491,6 +492,40 @@ export interface Feature {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Slider".
+ */
+export interface Slider {
+  subtitle: string;
+  title: string;
+  links?:
+    | {
+        link: {
+          type: 'reference' | 'custom';
+          newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: number | Page;
+          } | null;
+          url?: string | null;
+          label?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  items?:
+    | {
+        icon: string;
+        title: string;
+        content: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'slider';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "CtaBlock".
  */
 export interface CtaBlock {
@@ -751,6 +786,7 @@ export interface PagesSelect<T extends boolean = true> {
         testimonials?: T | TestimonialsSelect<T>;
         team?: T | TeamSelect<T>;
         feature?: T | FeatureSelect<T>;
+        slider?: T | SliderSelect<T>;
         ctaBlock?: T | CtaBlockSelect<T>;
         shared?: T | SharedBlockSelect<T>;
       };
@@ -978,6 +1014,38 @@ export interface FeatureSelect<T extends boolean = true> {
   content?: T;
   image?: T;
   variant?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Slider_select".
+ */
+export interface SliderSelect<T extends boolean = true> {
+  subtitle?: T;
+  title?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
+  items?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        content?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
