@@ -25,6 +25,7 @@ export interface BlockProps {
 export const bgColorMap: Record<string, string> = {
   beige: "bg-beige-50",
   gray: "bg-slate-50",
+  black: "bg-blue-950",
 }
 
 export const bgGradientMap: Record<string, string> = {
@@ -34,6 +35,7 @@ export const bgGradientMap: Record<string, string> = {
 
 export const bgGradientMapAfter: Record<string, string> = {
   gray: "bg-fade-to-gray-reverse",
+  black: "bg-fade-to-black-reverse",
 }
 
 export const blockComponents = {

@@ -64,6 +64,8 @@ export default {
           "linear-gradient(180deg, white 60%, hsl(var(--slate-50)) 60%)",
         "fade-to-gray-reverse":
           "linear-gradient(180deg, hsl(var(--slate-50)) 60%, white 60%)",
+        "fade-to-black-reverse":
+          "linear-gradient(180deg, hsl(var(--blue-950)) 60%, white 60%)",
       },
       fontSize: {
         "heading-1": [

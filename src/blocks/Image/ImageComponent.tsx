@@ -47,8 +47,6 @@ export const ImageComponent: React.FC<ImageComponentWithBlock> = (props) => {
 }
 
 export const Callout: React.FC<{ callout: any }> = ({ callout }: any) => {
-  console.log(callout)
-
   return (
     <div className="flex gap-4">
       {callout?.image && (

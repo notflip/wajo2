@@ -22,7 +22,6 @@ const ReactIconsSelect: React.FC<SelectFieldClientProps> = (props) => {
   const { value, setValue } = useField<string>({ path })
 
   const handleChange = (selectedOption: any) => {
-    console.log(selectedOption)
     setValue(selectedOption.value)
   }
 

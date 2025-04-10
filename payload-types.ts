@@ -212,6 +212,7 @@ export interface Hero {
       }[]
     | null;
   textAlign?: ('left' | 'center') | null;
+  bgColor?: ('transparent' | 'beige' | 'black') | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'hero';
@@ -762,6 +763,7 @@ export interface HeroSelect<T extends boolean = true> {
         id?: T;
       };
   textAlign?: T;
+  bgColor?: T;
   id?: T;
   blockName?: T;
 }

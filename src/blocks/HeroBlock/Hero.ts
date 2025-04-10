@@ -40,5 +40,24 @@ export const Hero: Block = {
             },
           ],
         },
+        {
+            name: "bgColor",
+            type: "select",
+            defaultValue: "transparent",
+            options: [
+              {
+                label: "Transparent",
+                value: "transparent",
+              },
+              {
+                label: "Beige",
+                value: "beige",
+              },
+              {
+                label: "Black",
+                value: "black",
+              },
+            ],
+          },
       ],
 }
