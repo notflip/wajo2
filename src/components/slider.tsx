@@ -5,16 +5,15 @@ import { Navigation, Pagination } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"
-import Image from "next/image"
 
 import { ArrowLeft, ArrowRight } from "lucide-react"
 
-import { Media } from "@payload-types"
 import { useRef } from "react"
 import { NavigationOptions } from "swiper/types"
+import { DynamicIcon } from "@/components/dynamic-icon"
 
 type SliderProps = {
-  items: Array<{ title: string; content: string }>
+  items: Array<{ title: string; content: string; icon: any }>
 }
 
 export const Slider: React.FC<SliderProps> = (props) => {
@@ -35,12 +34,22 @@ export const Slider: React.FC<SliderProps> = (props) => {
           clickable: true,
           el: ".swiper-pagination",
         }}
+        wrapperClass="items-stretch"
         navigation={{
           prevEl: prevRef.current,
           nextEl: nextRef.current,
         }}
-        slidesPerView={3.2}
-        spaceBetween={32}
+        slidesPerView={1}
+        spaceBetween={16}
+        breakpoints={{
+          768: {
+            slidesPerView: 2.1,
+          },
+          1024: {
+            slidesPerView: 3.1,
+            spaceBetween: 32,
+          },
+        }}
         style={{
           overflow: "visible",
           cursor: "grab",
@@ -58,8 +67,17 @@ export const Slider: React.FC<SliderProps> = (props) => {
         {items &&
           items.map((item, index) => {
             return (
-              <SwiperSlide className="bg-white" key={index}>
-                hello
+              <SwiperSlide
+                className="bg-white p-8 rounded-[16px] !h-auto"
+                key={index}
+              >
+                {item.icon && (
+                  <div className="inline-flex rounded-full mb-8 p-4 bg-secondary">
+                    <DynamicIcon iconName={item.icon} size={32} className="" />
+                  </div>
+                )}
+                <h4 className="mb-8">{item.title}</h4>
+                <p>{item.content}</p>
               </SwiperSlide>
             )
           })}
