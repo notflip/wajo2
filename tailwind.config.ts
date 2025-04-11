@@ -50,9 +50,6 @@ export default {
         foreground: "hsl(var(--accent-foreground))",
       },
     },
-    fontSize: {
-      inherit: "inherit",
-    },
     extend: {
       spacing: {
         sm: "3rem",

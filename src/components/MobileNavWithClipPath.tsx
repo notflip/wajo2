@@ -7,6 +7,7 @@ import { NavigationMain } from "@payload-types"
 import { MenuLink } from "@/components/MenuLink"
 import { HiBars3, HiChevronDown, HiXMark } from "react-icons/hi2"
 import { cn } from "@/lib/utils"
+import Link from "next/link"
 
 /**
  * Renders a collapsible list of links or columns.
@@ -83,7 +84,7 @@ export default function MobileNavWithClipPath({
     <>
       <button
         className={cn(
-          "lg:hidden z-[999] relative text-2xl",
+          "lg:hidden z-[999] relative",
           isOpen ? "text-white" : "text-black",
         )}
         onClick={toggleDrawer}
@@ -103,7 +104,16 @@ export default function MobileNavWithClipPath({
         }}
       >
         <div className="p-3 mb-8">Navigatie</div>
-        <ul className="text-lg">
+        <ul className="text-xl">
+          <li>
+            <Link
+              onClick={toggleDrawer}
+              className="flex items-center justify-between p-2 hover:bg-white/10 rounded-md cursor-pointer"
+              href="/"
+            >
+              Home
+            </Link>
+          </li>
           {items &&
             items.map((item, itemIndex) => {
               const isClicked = clicked === itemIndex
@@ -112,23 +122,35 @@ export default function MobileNavWithClipPath({
 
               return (
                 <li key={item.id}>
-                  <span
-                    className="flex items-center justify-between p-2 hover:bg-white/10 rounded-md cursor-pointer"
-                    onClick={() =>
-                      setClicked(clicked === itemIndex ? null : itemIndex)
-                    }
-                  >
-                    {item.label}
-                    {hasLinksOrColumns && <HiChevronDown size={28} />}
-                  </span>
+                  {/* Normal Type */}
+                  {item.type === "single" && (
+                    <MenuLink
+                      reference={item.reference}
+                      className="flex items-center justify-between p-2 hover:bg-white/10 rounded-md cursor-pointer"
+                      onClick={toggleDrawer}
+                    >
+                      {item.label}
+                    </MenuLink>
+                  )}
 
                   {/*List Type*/}
                   {item.type === "list" && (item.links || []).length > 0 && (
-                    <CollapsibleList
-                      items={item.links || []}
-                      isOpen={isClicked}
-                      toggle={() => setIsOpen(false)}
-                    />
+                    <>
+                      <span
+                        className="flex items-center justify-between p-2 hover:bg-white/10 rounded-md cursor-pointer"
+                        onClick={() =>
+                          setClicked(clicked === itemIndex ? null : itemIndex)
+                        }
+                      >
+                        {item.label}
+                        {hasLinksOrColumns && <HiChevronDown size={28} />}
+                      </span>
+                      <CollapsibleList
+                        items={item.links || []}
+                        isOpen={isClicked}
+                        toggle={() => setIsOpen(false)}
+                      />
+                    </>
                   )}
 
                   {/*Megamenu Type*/}
