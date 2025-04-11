@@ -16,7 +16,7 @@ export const CtaBlockComponent: React.FC<CtaBlock> = (props) => {
             <h2 className="mb-6">{title}</h2>
             <p className="md:text-md">{text}</p>
           </div>
-          <div className="mt-6 inline-flex flex-wrap gap-4">
+          <div className="mt-6 lg:inline-flex lg:flex-wrap lg:gap-4 space-y-2 lg:space-y-0">
             {(links || []).map(({ link }, i) => {
               if (i === 0) {
                 return (

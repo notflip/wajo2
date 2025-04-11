@@ -44,7 +44,7 @@ export const HeroComponent: React.FC<Hero> = (props) => {
                   bgColor && bgColor === "black"
                     ? `text-white`
                     : "text-muted-foreground",
-                  links?.length === 0 ? "mb-12" : "",
+                  links?.length === 0 ? "mb-6 lg:mb-12" : "",
                 )}
               >
                 {content}
