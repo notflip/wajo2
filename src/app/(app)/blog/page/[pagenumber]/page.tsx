@@ -4,12 +4,13 @@ import { Suspense } from "react"
 import { BlogCategories } from "@/components/blog-categories"
 import BlogPostCard from "@/components/BlogPostCard"
 import { Pagination } from "@/components/Pagination"
-import { getPageByPath, getPaginatedPosts, postsPerPage } from "@/lib/payload"
+import { getPageByPath, getPaginatedPosts } from "@/lib/payload"
 import { getPayload } from "payload"
 import config from "@payload-config"
 import { Badge } from "@/components/ui/badge"
 import { getDescription, getOgImage } from "@/utils/seo"
 import { mergeOpenGraph } from "@/utils/mergeOpenGraph"
+import { postsPerPage } from "@/config"
 
 type Args = {
   params: Promise<{

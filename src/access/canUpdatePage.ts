@@ -1,5 +1,5 @@
 import type { Access } from "payload"
-import { nonEditablePages } from "@/lib/payload"
+import { nonEditablePages } from "@/config"
 
 export const canUpdatePage: Access = ({ req }) => {
   const { user, data } = req

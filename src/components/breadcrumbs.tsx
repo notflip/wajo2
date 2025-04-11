@@ -12,9 +12,7 @@ import { usePathname } from "next/navigation"
 
 import { HiArrowLeft } from "react-icons/hi"
 
-type BreadcrumbProps = {}
-
-export default function Breadcrumbs(props: BreadcrumbProps) {
+export default function Breadcrumbs() {
   const paths = usePathname()
   const pathNames = paths.split("/").filter((path) => path)
 
@@ -35,7 +33,7 @@ export default function Breadcrumbs(props: BreadcrumbProps) {
         </BreadcrumbItem>
         {pathNames.length > 0 && <BreadcrumbSeparator>/</BreadcrumbSeparator>}
         {pathNames.map((link, index) => {
-          let href = `/${pathNames.slice(0, index + 1).join("/")}`
+          const href = `/${pathNames.slice(0, index + 1).join("/")}`
           return (
             <BreadcrumbItem key={index}>
               <BreadcrumbLink asChild>
