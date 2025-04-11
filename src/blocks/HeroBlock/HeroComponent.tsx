@@ -4,11 +4,11 @@ import AnimatedButton from "@/components/interface/AnimatedButton"
 import { cn } from "@/lib/utils"
 import { HiOutlineChat } from "react-icons/hi"
 import Avatars from "@/components/avatars"
-import { bgColorMap } from "@/blocks/Blocks"
+import { bgColorMap, SharedBlockProps } from "@/blocks/Blocks"
 import Breadcrumbs from "@/components/breadcrumbs"
 
-export const HeroComponent: React.FC<Hero> = (props) => {
-  const { title, content, links, textAlign, bgColor } = props
+export const HeroComponent: React.FC<Hero & SharedBlockProps> = (props) => {
+  const { title, content, links, textAlign, bgColor, classOverride } = props
 
   return (
     <section
@@ -19,7 +19,12 @@ export const HeroComponent: React.FC<Hero> = (props) => {
     >
       <div className="mx-auto max-w-screen-2xl px-4 md:px-8 2xl:px-16">
         <div className="pt-16">
-          <div className="flex items-center py-12 md:py-16 lg:py-24">
+          <div
+            className={cn(
+              "flex items-center py-12 md:py-16 lg:py-24",
+              classOverride,
+            )}
+          >
             <div
               className={cn("max-w-4xl", {
                 "mx-auto text-center": textAlign === "center",

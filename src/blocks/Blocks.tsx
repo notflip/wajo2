@@ -45,6 +45,7 @@ export interface SharedBlockProps {
   index: number
   prevBgColor?: string
   nextBgColor?: string
+  classOverride?: string
 }
 
 type BlockComponentType = React.ComponentType<any & SharedBlockProps>
@@ -75,11 +76,20 @@ const Blocks: React.FC<BlockProps> = (props) => {
       <>
         {blocks.map((block, index) => {
           const { blockType } = block
+          let classOverride = ""
 
           if (blockType && blockType in blockComponents) {
             const Block = blockComponents[blockType as BlockType]
             const prevBlock = blocks[index - 1]
             const nextBlock = blocks[index + 1]
+
+            // Fix padding when cards follow a hero section
+            if (block.blockType === "hero" && nextBlock?.blockType === "cards") {
+              classOverride = "pb-0 lg:pb-0"
+            }
+            if (block.blockType === "paragraph" && nextBlock?.blockType === "cards") {
+                classOverride = "pb-0 lg:pb-0"
+              }
 
             if (Block) {
               return (
@@ -89,6 +99,7 @@ const Blocks: React.FC<BlockProps> = (props) => {
                     index={index}
                     prevBgColor={prevBlock?.bgColor}
                     nextBgColor={nextBlock?.bgColor}
+                    classOverride={classOverride}
                   />
                 </React.Fragment>
               )

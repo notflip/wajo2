@@ -8,7 +8,7 @@ export const CtaBlockComponent: React.FC<CtaBlock> = (props) => {
   const { subtitle, title, text, links } = props
 
   return (
-    <section className="mt-[3rem] pt-[3rem] pb-[3rem] bg-blue-600">
+    <section className="py-[3rem] bg-blue-600">
       <div className="mx-auto max-w-screen-2xl px-4 md:px-8 2xl:px-16">
         <div className="py-32 text-center text-white">
           <div className="max-w-2xl mx-auto">

@@ -1,3 +1,4 @@
+import { Divide } from "lucide-react"
 import NextLink from "next/link"
 
 export type CmsLinkType = {
@@ -13,7 +14,9 @@ export type CmsLinkType = {
   onClick?: () => void
 }
 
-export const CmsLink: React.FC<React.PropsWithChildren<CmsLinkType>> = (props) => {
+export const CmsLink: React.FC<React.PropsWithChildren<CmsLinkType>> = (
+  props,
+) => {
   const { type, reference, url, newTab, label, className, onClick } = props
 
   // Return null if it's a reference and the reference is a draft
@@ -31,7 +34,7 @@ export const CmsLink: React.FC<React.PropsWithChildren<CmsLinkType>> = (props) =
       : url || null
 
   if (!href) {
-    return null
+    return <div className={className}>{props.children}</div>
   }
 
   const newTabProps = newTab
@@ -45,7 +48,7 @@ export const CmsLink: React.FC<React.PropsWithChildren<CmsLinkType>> = (props) =
       {...newTabProps}
       className={className}
     >
-      {props.children || 
+      {props.children ||
         label ||
         (reference?.value &&
           typeof reference.value === "object" &&

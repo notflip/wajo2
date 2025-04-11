@@ -1,4 +1,5 @@
 import IconField from "@/fields/icon/IconField"
+import { link } from "@/fields/link/link"
 import type { Block } from "payload"
 
 export const Cards: Block = {
@@ -26,17 +27,21 @@ export const Cards: Block = {
           required: true,
           maxLength: 200,
         },
+        {
+          name: "reference",
+          type: "relationship",
+          label: "Document to link to",
+          relationTo: ["pages"],
+        },
       ],
     },
     {
       name: "bgColor",
       type: "select",
-      defaultValue: "transparent",
+      admin: {
+        isClearable: true,
+      },
       options: [
-        {
-          label: "Transparent",
-          value: "transparent",
-        },
         {
           label: "Beige",
           value: "beige",

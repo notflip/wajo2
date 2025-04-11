@@ -303,7 +303,7 @@ export interface Case {
 export interface Paragraph {
   badge: string;
   content: string;
-  bgColor?: ('transparent' | 'beige') | null;
+  bgColor?: 'beige' | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'paragraph';
@@ -318,10 +318,14 @@ export interface Cards {
         icon: string;
         title: string;
         text: string;
+        reference?: {
+          relationTo: 'pages';
+          value: number | Page;
+        } | null;
         id?: string | null;
       }[]
     | null;
-  bgColor?: ('transparent' | 'beige') | null;
+  bgColor?: 'beige' | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'cards';
@@ -875,6 +879,7 @@ export interface CardsSelect<T extends boolean = true> {
         icon?: T;
         title?: T;
         text?: T;
+        reference?: T;
         id?: T;
       };
   bgColor?: T;

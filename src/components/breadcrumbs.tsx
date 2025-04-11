@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/breadcrumb"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { Fragment } from "react"
 
 import { HiArrowLeft } from "react-icons/hi"
 
@@ -35,13 +36,24 @@ export default function Breadcrumbs() {
         {pathNames.map((link, index) => {
           const href = `/${pathNames.slice(0, index + 1).join("/")}`
           return (
-            <BreadcrumbItem key={index}>
-              <BreadcrumbLink asChild>
-                <Link href={href} className="capitalize">
-                  {link}
-                </Link>
-              </BreadcrumbLink>
-            </BreadcrumbItem>
+            <Fragment key={index}>
+              <BreadcrumbItem>
+                {index === pathNames.length - 1 ? (
+                  <div className="capitalize">{link}</div>
+                ) : (
+                  <BreadcrumbLink asChild>
+                    <Link href={href} className="capitalize">
+                      {link}
+                    </Link>
+                  </BreadcrumbLink>
+                )}
+              </BreadcrumbItem>
+              {index !== pathNames.length - 1 ? (
+                <BreadcrumbSeparator>/</BreadcrumbSeparator>
+              ) : (
+                ""
+              )}
+            </Fragment>
           )
         })}
       </BreadcrumbList>
