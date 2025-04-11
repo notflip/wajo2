@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from "react"
 import { motion } from "motion/react"
-import { LuChevronDown, LuMenu, LuX } from "react-icons/lu"
 import { useScrollLock } from "usehooks-ts"
 import { NavigationMain } from "@payload-types"
 import { MenuLink } from "@/components/MenuLink"
+import { HiBars3, HiChevronDown, HiXMark } from "react-icons/hi2"
+import { cn } from "@/lib/utils"
 
 /**
  * Renders a collapsible list of links or columns.
@@ -81,14 +82,17 @@ export default function MobileNavWithClipPath({
   return (
     <>
       <button
-        className="lg:hidden z-[999] relative text-2xl"
+        className={cn(
+          "lg:hidden z-[999] relative text-2xl",
+          isOpen ? "text-white" : "text-black",
+        )}
         onClick={toggleDrawer}
       >
-        {isOpen ? <LuX className="text-black" /> : <LuMenu />}
+        {isOpen ? <HiXMark size={28} /> : <HiBars3 size={28} />}
       </button>
 
       <motion.div
-        className="z-[998] fixed inset-0 bg-primary overflow-y-auto h-full text-black py-4 px-6 will-change-auto"
+        className="z-[998] fixed inset-0 bg-blue-950 text-white overflow-y-auto h-full py-4 px-6 will-change-auto"
         initial={{
           clipPath: "polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)",
         }}
@@ -115,7 +119,7 @@ export default function MobileNavWithClipPath({
                     }
                   >
                     {item.label}
-                    {hasLinksOrColumns && <LuChevronDown />}
+                    {hasLinksOrColumns && <HiChevronDown size={28} />}
                   </span>
 
                   {/*List Type*/}
@@ -158,7 +162,7 @@ export default function MobileNavWithClipPath({
                               }
                             >
                               {column.label}
-                              <LuChevronDown />
+                              <HiChevronDown size={28} />
                             </span>
                             <CollapsibleList
                               items={column.links || []}

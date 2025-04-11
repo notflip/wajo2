@@ -23,9 +23,12 @@ export default function DesktopNav({
               <CmsLink
                 type="reference"
                 reference={item.reference}
-                label={item.label}
-                className="flex items-center gap-1 py-1.5 px-3 rounded-lg hover:bg-black/5 whitespace-nowrap"
-              />
+                className="flex items-center gap-1 font-medium whitespace-nowrap"
+              >
+                <div className="hover:bg-slate-50 py-1.5 px-3 rounded-lg">
+                  {item.label}
+                </div>
+              </CmsLink>
             </li>
           )
         } else if (item.type === "list" && item.links) {
