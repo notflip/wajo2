@@ -40,7 +40,7 @@ export default function TopNav(props: Props) {
           <div className="flex space-x-4">
             {(social_links || []).map((link, index) => (
               <div key={index}>
-                <SocialMediaIcon url={link.url} className="text-xl" />
+                <SocialMediaIcon url={link.url} size={20} />
               </div>
             ))}
           </div>

@@ -64,7 +64,7 @@ export const Callout: React.FC<{ callout: any }> = ({ callout }: any) => {
               href={`/cases/${callout?.link.slug}`}
               className="block px-4 py-1.5 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground"
             >
-              <HiOutlineArrowUpRight size="18" />
+              <HiOutlineArrowUpRight size={18} />
             </Link>
           )}
         </div>

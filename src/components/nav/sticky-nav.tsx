@@ -50,7 +50,7 @@ export default function StickyNavbar(props: StickyNavbarProps) {
           </div>
           {/*Button*/}
           <div className="hidden lg:block">
-            <AnimatedButton icon={<HiOutlineChat size="20" />} asChild>
+            <AnimatedButton icon={<HiOutlineChat size={20} />} asChild>
               <Link href="/afspraak-maken">Afspraak Maken</Link>
             </AnimatedButton>
           </div>

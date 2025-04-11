@@ -102,7 +102,7 @@ export async function Footer() {
             <div className="flex space-x-4">
               {(siteSettings.social_links || []).map((link, index) => (
                 <div className="bg-beige-50 p-4 rounded-full" key={index}>
-                  <SocialMediaIcon url={link.url} size="24" />
+                  <SocialMediaIcon url={link.url} size={24} />
                 </div>
               ))}
             </div>

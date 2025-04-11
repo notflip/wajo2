@@ -11,7 +11,7 @@ import { TestimonialsComponent } from "@/blocks/Testimonials/TestimonialsCompone
 import { TeamComponent } from "@/blocks/Team/TeamComponent"
 import { FeatureComponent } from "@/blocks/Feature/FeatureComponent"
 import { SliderComponent } from "@/blocks/Slider/SliderComponent"
-import React from "react"
+import React, { ComponentProps } from "react"
 
 export type BlockType = keyof Partial<typeof blockComponents>
 
@@ -41,7 +41,15 @@ export const bgGradientMapAfter: Record<string, string> = {
   black: "bg-fade-to-black-reverse",
 }
 
-export const blockComponents = {
+export interface SharedBlockProps {
+  index: number
+  prevBgColor?: string
+  nextBgColor?: string
+}
+
+type BlockComponentType = React.ComponentType<any & SharedBlockProps>
+
+export const blockComponents: Record<string, BlockComponentType> = {
   hero: HeroComponent,
   image: ImageComponent,
   paragraph: ParagraphComponent,
@@ -76,7 +84,6 @@ const Blocks: React.FC<BlockProps> = (props) => {
             if (Block) {
               return (
                 <React.Fragment key={index}>
-                  {/*@ts-ignore*/}
                   <Block
                     {...block}
                     index={index}

@@ -12,7 +12,7 @@
     "build": "next build",
     "build:analyse": "ANALYZE=true pnpm build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "npx tsc --watch",
     "format": "prettier --write .",
     "types": "pnpm payload generate:types",
     "seed": "payload run ./src/seed.ts"

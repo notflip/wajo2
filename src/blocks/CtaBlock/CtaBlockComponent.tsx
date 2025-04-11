@@ -22,7 +22,7 @@ export const CtaBlockComponent: React.FC<CtaBlock> = (props) => {
                 return (
                   <AnimatedButton
                     key={i}
-                    icon={<HiOutlineChat size="20" />}
+                    icon={<HiOutlineChat size={20} />}
                     asChild
                   >
                     <CmsLink {...link} />

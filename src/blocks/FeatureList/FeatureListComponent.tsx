@@ -35,7 +35,7 @@ export const FeatureListComponent: React.FC<FeatureList> = async (props) => {
                 </p>
                 <div className="text-foreground group-hover:text-white md:ml-auto ml-0">
                   <HiOutlineArrowUpRight
-                    size="24"
+                    size={24}
                     className="group-hover:rotate-45 transition"
                   />
                 </div>
