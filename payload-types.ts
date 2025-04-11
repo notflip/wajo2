@@ -541,6 +541,7 @@ export interface Logos {
         id?: string | null;
       }[]
     | null;
+  bgColor?: 'beige' | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'logos';
@@ -592,7 +593,7 @@ export interface SharedBlock {
 export interface SharedBlock1 {
   id: number;
   title?: string | null;
-  blocks: CtaBlock[];
+  blocks: (CtaBlock | Logos)[];
   updatedAt: string;
   createdAt: string;
 }
@@ -1084,6 +1085,7 @@ export interface LogosSelect<T extends boolean = true> {
         image?: T;
         id?: T;
       };
+  bgColor?: T;
   id?: T;
   blockName?: T;
 }
@@ -1250,6 +1252,7 @@ export interface SharedBlocksSelect<T extends boolean = true> {
     | T
     | {
         ctaBlock?: T | CtaBlockSelect<T>;
+        logos?: T | LogosSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;

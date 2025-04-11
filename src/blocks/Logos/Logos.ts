@@ -16,5 +16,18 @@ export const Logos: Block = {
         },
       ],
     },
+    {
+      name: "bgColor",
+      type: "select",
+      admin: {
+        isClearable: true,
+      },
+      options: [
+        {
+          label: "Beige",
+          value: "beige",
+        },
+      ],
+    },
   ],
 }

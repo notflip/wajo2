@@ -1,5 +1,6 @@
 import { CollectionConfig } from "payload"
 import CtaBlock from "@/blocks/CtaBlock/CtaBlock"
+import { Logos } from "@/blocks/Logos/Logos"
 
 export const SharedBlocks: CollectionConfig = {
   slug: "sharedBlocks",
@@ -23,7 +24,7 @@ export const SharedBlocks: CollectionConfig = {
       type: "blocks",
       name: "blocks",
       label: "Content",
-      blocks: [CtaBlock],
+      blocks: [CtaBlock, Logos],
       minRows: 1,
       maxRows: 1,
       required: true,
