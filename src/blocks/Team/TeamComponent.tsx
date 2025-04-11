@@ -7,25 +7,29 @@ import { cn } from "@/lib/utils"
 import { Media, Team } from "@payload-types"
 
 export const TeamComponent: React.FC<Team> = (props) => {
-  const { badge, content, links, members, showLine, bgColor } = props
+  const { badge, title, content, links, members, showLine, bgColor } = props
 
   return (
     <section
       className={cn(
-        "pt-[3rem] pb-[3rem]",
-        bgColor ? `${bgColorMap[bgColor]}` : "",
+        "py-sm lg:py-lg",
+        bgColor ? `${bgColorMap[bgColor]} my-sm lg:my-lg` : "",
+        showLine ? `pt-0 mt-0 lg:pt-0 lg:mt-0` : "",
       )}
     >
       <div className="mx-auto max-w-screen-2xl px-4 md:px-8 2xl:px-16">
         {showLine && (
-          <hr className="h-px mb-[6rem] bg-foreground/10 border-0" />
+          <div className="pb-sm lg:pb-lg">
+            <hr className="h-px bg-foreground/10 border-0" />
+          </div>
         )}
         <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:gap-y-16 md:grid-cols-12">
           <div className="md:col-span-2">
             <Badge text={badge} />
           </div>
           <div className="md:col-span-6 md:col-start-4">
-            <h4>{content}</h4>
+            <h4 className="mb-6">{title}</h4>
+            <p>{content}</p>
           </div>
           {(links || []).length > 0 && (
             <div className="md:col-span-3 md:text-right">

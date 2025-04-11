@@ -11,9 +11,13 @@ export const Team: Block = {
       required: true,
     },
     {
+      name: "title",
+      type: "text",
+      required: true,
+    },
+    {
       name: "content",
       type: "textarea",
-      required: true,
     },
     {
       name: "links",
@@ -45,7 +49,9 @@ export const Team: Block = {
     {
       name: "bgColor",
       type: "select",
-      defaultValue: "transparent",
+      admin: {
+        isClearable: true,
+      },
       options: [
         {
           label: "Transparent",

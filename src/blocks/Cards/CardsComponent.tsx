@@ -9,8 +9,8 @@ export const CardsComponent: React.FC<Cards> = (props) => {
   return (
     <section
       className={cn(
-        "relative pt-[3rem] pb-[3rem]",
-        bgColor ? `${bgColorMap[bgColor]} pb-[6rem] mb-[3rem]` : "",
+        "relative py-sm",
+        bgColor ? `${bgColorMap[bgColor]} pb-lg mb-sm` : "",
       )}
     >
       <div className="mx-auto max-w-screen-2xl px-4 md:px-8 2xl:px-16">

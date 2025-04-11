@@ -16,7 +16,7 @@ export const FeatureComponent: React.FC<FeatureWithIndex> = (props) => {
   const { subtitle, title, content, image, variant, index: blockIndex } = props
 
   return (
-    <section className="pt-[3rem] pb-[3rem] lg:pb-[3rem]">
+    <section className="py-[3rem] lg:py-[6rem]">
       <div className="mx-auto max-w-screen-2xl px-4 md:px-8 2xl:px-16">
         <div
           className={cn(

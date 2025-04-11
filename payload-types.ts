@@ -431,7 +431,8 @@ export interface Testimonials {
  */
 export interface Team {
   badge: string;
-  content: string;
+  title: string;
+  content?: string | null;
   links?:
     | {
         link: {
@@ -978,6 +979,7 @@ export interface TestimonialsSelect<T extends boolean = true> {
  */
 export interface TeamSelect<T extends boolean = true> {
   badge?: T;
+  title?: T;
   content?: T;
   links?:
     | T

@@ -1,6 +1,6 @@
 import { getPayload } from "payload"
 import config from "@payload-config"
-import { nonDeletablePages } from "@/lib/payload"
+import { nonDeletablePages } from "@/config"
 
 // We can expand the nonDeletablePages later to become an object that includes (addToFooter),
 // So we can later quickly scaffold the main en footer navigations.

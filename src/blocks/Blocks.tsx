@@ -11,6 +11,7 @@ import { TestimonialsComponent } from "@/blocks/Testimonials/TestimonialsCompone
 import { TeamComponent } from "@/blocks/Team/TeamComponent"
 import { FeatureComponent } from "@/blocks/Feature/FeatureComponent"
 import { SliderComponent } from "@/blocks/Slider/SliderComponent"
+import React from "react"
 
 export type BlockType = keyof Partial<typeof blockComponents>
 
@@ -74,7 +75,7 @@ const Blocks: React.FC<BlockProps> = (props) => {
 
             if (Block) {
               return (
-                <div key={index}>
+                <React.Fragment key={index}>
                   {/*@ts-ignore*/}
                   <Block
                     {...block}
@@ -82,7 +83,7 @@ const Blocks: React.FC<BlockProps> = (props) => {
                     prevBgColor={prevBlock?.bgColor}
                     nextBgColor={nextBlock?.bgColor}
                   />
-                </div>
+                </React.Fragment>
               )
             }
           }

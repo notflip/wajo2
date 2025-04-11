@@ -3,11 +3,7 @@ import type { Config, Post } from "@payload-types"
 import config from "@payload-config"
 import { draftMode } from "next/headers"
 import { cache } from "react"
-
-export const postsPerPage = 3
-
-export const nonDeletablePages = ["home", "privacy-policy", "blog"]
-export const nonEditablePages = ["blog"]
+import { postsPerPage } from "@/config"
 
 // getLatestCases
 export async function getLatestCases() {

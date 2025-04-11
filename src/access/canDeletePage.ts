@@ -1,5 +1,5 @@
 import type { Access } from "payload"
-import { nonDeletablePages } from "@/lib/payload"
+import { nonDeletablePages } from "@/config"
 
 export const canDeletePage: Access = ({ req }) => {
   const { user, data } = req

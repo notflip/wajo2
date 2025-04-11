@@ -3,13 +3,22 @@ import { Slider as SliderEl } from "@/components/slider"
 import Badge from "@/components/badge"
 import AnimatedButton from "@/components/interface/AnimatedButton"
 import { CmsLink } from "@/components/CmsLink"
+import { cn } from "@/lib/utils"
+import { bgColorMap } from "@/blocks/Blocks"
 
 export const SliderComponent: React.FC<Slider> = (props) => {
   const { title, subtitle, items, links } = props
 
+  const bgColor = "beige"
+
   return (
-    <section className="bg-secondary overflow-x-hidden mt-[3rem]">
-      <div className="py-[3rem] lg:py-[6rem] mx-auto max-w-screen-2xl px-4 md:px-8 2xl:px-16">
+    <section
+      className={cn(
+        "overflow-x-hidden py-sm lg:py-lg",
+        bgColor ? `${bgColorMap[bgColor]} my-sm lg:my-lg` : "",
+      )}
+    >
+      <div className="mx-auto max-w-screen-2xl px-4 md:px-8 2xl:px-16">
         <div className="lg:flex lg:justify-between lg:items-center">
           <div className="max-w-4xl">
             {subtitle && (
@@ -23,7 +32,7 @@ export const SliderComponent: React.FC<Slider> = (props) => {
             {links?.length ? (
               <div className="mt-8 inline-flex flex-wrap gap-2">
                 {(links || []).map(({ link }, i) => (
-                  <AnimatedButton  variant="light" key={i} asChild>
+                  <AnimatedButton variant="light" key={i} asChild>
                     <CmsLink {...link} />
                   </AnimatedButton>
                 ))}

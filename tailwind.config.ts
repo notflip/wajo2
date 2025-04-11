@@ -54,6 +54,10 @@ export default {
       inherit: "inherit",
     },
     extend: {
+      spacing: {
+        sm: "3rem",
+        lg: "5rem",
+      },
       container: {
         center: true,
       },

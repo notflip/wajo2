@@ -1,6 +1,6 @@
 import React from "react"
 import { Banner } from "@payloadcms/ui/elements/Banner"
-import { nonDeletablePages, nonEditablePages } from "@/lib/payload"
+import { nonDeletablePages, nonEditablePages } from "@/config"
 
 const slugToMessage: Record<string, string> = {}
 

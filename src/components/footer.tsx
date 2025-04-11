@@ -50,18 +50,22 @@ export async function Footer() {
           <div className="lg:text-right">
             <h2 className="p text-foreground font-bold mb-3">Contact</h2>
             <ul className="space-y-3">
-              <li>
-                <Link href={`mailto:${siteSettings.website_emails[0].email}`}>
-                  {siteSettings.website_emails[0].email}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={`tel:${siteSettings.website_phone.replace(/[^+\d]/g, "")}`}
-                >
-                  {siteSettings.website_phone}
-                </Link>
-              </li>
+              {siteSettings.website_emails?.length > 0 && (
+                <li>
+                  <Link href={`mailto:${siteSettings.website_emails[0].email}`}>
+                    {siteSettings.website_emails[0].email}
+                  </Link>
+                </li>
+              )}
+              {siteSettings.website_phone && (
+                <li>
+                  <Link
+                    href={`tel:${siteSettings.website_phone.replace(/[^+\d]/g, "")}`}
+                  >
+                    {siteSettings.website_phone}
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
         </div>
