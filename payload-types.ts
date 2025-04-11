@@ -166,6 +166,7 @@ export interface Page {
         | Team
         | Feature
         | Slider
+        | Logos
         | CtaBlock
         | SharedBlock
       )[]
@@ -531,6 +532,21 @@ export interface Slider {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Logos".
+ */
+export interface Logos {
+  items?:
+    | {
+        image: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'logos';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "CtaBlock".
  */
 export interface CtaBlock {
@@ -792,6 +808,7 @@ export interface PagesSelect<T extends boolean = true> {
         team?: T | TeamSelect<T>;
         feature?: T | FeatureSelect<T>;
         slider?: T | SliderSelect<T>;
+        logos?: T | LogosSelect<T>;
         ctaBlock?: T | CtaBlockSelect<T>;
         shared?: T | SharedBlockSelect<T>;
       };
@@ -1051,6 +1068,20 @@ export interface SliderSelect<T extends boolean = true> {
         icon?: T;
         title?: T;
         content?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Logos_select".
+ */
+export interface LogosSelect<T extends boolean = true> {
+  items?:
+    | T
+    | {
+        image?: T;
         id?: T;
       };
   id?: T;

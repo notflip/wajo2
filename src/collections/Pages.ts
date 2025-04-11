@@ -25,6 +25,7 @@ import Testimonials from "@/blocks/Testimonials/Testimonials"
 import { Team } from "@/blocks/Team/Team"
 import { Feature } from "@/blocks/Feature/Feature"
 import { Slider } from "@/blocks/Slider/Slider"
+import { Logos } from "@/blocks/Logos/Logos"
 
 export const Pages: CollectionConfig<"pages"> = {
   slug: "pages",
@@ -116,6 +117,7 @@ export const Pages: CollectionConfig<"pages"> = {
                 Team,
                 Feature,
                 Slider,
+                Logos,
                 CtaBlock,
                 SharedBlock,
               ],

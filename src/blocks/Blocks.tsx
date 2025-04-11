@@ -12,6 +12,7 @@ import { TeamComponent } from "@/blocks/Team/TeamComponent"
 import { FeatureComponent } from "@/blocks/Feature/FeatureComponent"
 import { SliderComponent } from "@/blocks/Slider/SliderComponent"
 import React, { ComponentProps } from "react"
+import { LogosComponent } from "@/blocks/Logos/LogosComponent"
 
 export type BlockType = keyof Partial<typeof blockComponents>
 
@@ -62,6 +63,7 @@ export const blockComponents: Record<string, BlockComponentType> = {
   team: TeamComponent,
   feature: FeatureComponent,
   slider: SliderComponent,
+  logos: LogosComponent,
   cta: CtaBlockComponent,
   shared: SharedBlockComponent,
 }
@@ -84,12 +86,18 @@ const Blocks: React.FC<BlockProps> = (props) => {
             const nextBlock = blocks[index + 1]
 
             // Fix padding when cards follow a hero section
-            if (block.blockType === "hero" && nextBlock?.blockType === "cards") {
+            if (
+              block.blockType === "hero" &&
+              nextBlock?.blockType === "cards"
+            ) {
               classOverride = "pb-0 lg:pb-0"
             }
-            if (block.blockType === "paragraph" && nextBlock?.blockType === "cards") {
-                classOverride = "pb-0 lg:pb-0"
-              }
+            if (
+              block.blockType === "paragraph" &&
+              nextBlock?.blockType === "cards"
+            ) {
+              classOverride = "pb-0 lg:pb-0"
+            }
 
             if (Block) {
               return (

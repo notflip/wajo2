@@ -49,6 +49,13 @@
   --swiper-pagination-bullet-opacity: 1;
   --swiper-pagination-bullet-inactive-opacity: 1;
   --swiper-pagination-bullet-size: 10px;
+
+  /* Marquee */
+  --marquee-size: clamp(2.5rem, 0.25rem + 10vmin, 7.5rem);
+  --marquee-gap: calc(var(--marquee-size) / 2);
+  --marquee-duration: 60s;
+  --marquee-scroll-start: 0;
+  --marquee-scroll-end: calc(-100% - var(--marquee-gap));
 }
 
 @layer base {
@@ -78,7 +85,8 @@
   .h5 {
     @apply text-heading-5;
   }
-  p, .p {
+  p,
+  .p {
     @apply text-base text-muted-foreground;
   }
 }
