@@ -9,8 +9,8 @@ export const CtaBlockComponent: React.FC<CtaBlock> = (props) => {
   const { subtitle, title, text, bgColor, links } = props
 
   return (
-    <BlockContainer bgColor={bgColor} className="py-24 lg:py-32">
-      <div className="text-center text-white">
+    <BlockContainer bgColor={bgColor} {...props}>
+      <div className="py-24 text-center text-white">
         <div className="max-w-2xl mx-auto">
           {subtitle && <p className="mb-4 text-white/40">{subtitle}</p>}
           <h2 className="mb-6">{title}</h2>

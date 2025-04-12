@@ -54,10 +54,6 @@ export const Team: Block = {
       },
       options: [
         {
-          label: "Transparent",
-          value: "transparent",
-        },
-        {
           label: "Beige",
           value: "beige",
         },

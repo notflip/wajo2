@@ -32,14 +32,17 @@ export const BlockContainer: React.FC<BlockContainerProps> = (props) => {
     <section
       className={cn(
         "relative py-sm lg:py-lg",
-        bgColor && prevBlock?.blockType !== "image" && !prevBlock?.bgColor
+        bgColor &&
+          blockType !== "hero" &&
+          prevBlock?.blockType !== "image" &&
+          !prevBlock?.bgColor
           ? "mt-sm lg:mt-lg py-lg lg:py-xl"
-          : "",
-        !bgColor && blockType !== "image" && prevBlock?.bgColor
-          ? "mt-sm lg:mt-lg"
           : "",
         bgColor ? bgColorMap[bgColor] : "",
         bgColor && bgColor === "black" ? "text-white" : "",
+        !bgColor && blockType !== "image" && prevBlock?.bgColor
+          ? "mt-sm lg:mt-lg"
+          : "",
         blockType === "image" && prevBlock?.blockType === "hero"
           ? "pt-0 lg:pt-0"
           : "",
@@ -47,10 +50,10 @@ export const BlockContainer: React.FC<BlockContainerProps> = (props) => {
       )}
     >
       {/* <div>
-        <pre>bg: {JSON.stringify(bgColor)}</pre>
+        <pre>block: {JSON.stringify(blockType)}</pre>
+        <pre>currColor: {JSON.stringify(bgColor)}</pre>
         <pre>prevtype: {JSON.stringify(prevBlock?.blockType)}</pre>
-        <pre>prev: {JSON.stringify(prevBlock?.bgColor)}</pre>
-        <pre>next: {JSON.stringify(nextBlock?.blockType)}</pre>
+        <pre>prevcolor {JSON.stringify(prevBlock?.bgColor)}</pre>
       </div> */}
       <div
         className={`${!fullWidth ? "mx-auto max-w-screen-2xl px-4 md:px-8 2xl:px-16" : ""}`}

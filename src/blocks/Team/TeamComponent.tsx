@@ -11,8 +11,8 @@ export const TeamComponent: React.FC<Team> = (props) => {
   return (
     <BlockContainer
       bgColor={bgColor}
-      {...props}
       className={showLine ? "pt-0 mt-0 lg:pt-0 lg:mt-0" : ""}
+      {...props}
     >
       {showLine && (
         <div className="pb-sm lg:pb-lg">

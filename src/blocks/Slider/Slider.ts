@@ -25,20 +25,35 @@ export const Slider: Block = {
     {
       name: "items",
       type: "array",
-      fields: [IconField,
+      fields: [
+        IconField,
         {
-            type: "text",
-            name: "title",
-            required: true
+          type: "text",
+          name: "title",
+          required: true,
         },
         {
-            type: "textarea",
-            name: "content",
-            required: true,
-            maxLength: 250
-        }
+          type: "textarea",
+          name: "content",
+          required: true,
+          maxLength: 250,
+        },
       ],
       maxRows: 8,
+    },
+    {
+      name: "bgColor",
+      type: "select",
+      defaultValue: "beige",
+      admin: {
+        readOnly: true,
+      },
+      options: [
+        {
+          label: "Beige",
+          value: "beige",
+        },
+      ],
     },
   ],
 }

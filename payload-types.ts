@@ -460,7 +460,7 @@ export interface Team {
       }[]
     | null;
   showLine?: boolean | null;
-  bgColor?: ('transparent' | 'beige') | null;
+  bgColor?: 'beige' | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'team';
@@ -526,6 +526,7 @@ export interface Slider {
         id?: string | null;
       }[]
     | null;
+  bgColor?: 'beige' | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'slider';
@@ -1072,6 +1073,7 @@ export interface SliderSelect<T extends boolean = true> {
         content?: T;
         id?: T;
       };
+  bgColor?: T;
   id?: T;
   blockName?: T;
 }

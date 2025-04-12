@@ -47,7 +47,6 @@ export interface SharedBlockProps {
   index: number
   prevBlock?: any
   nextBlock?: any
-  classOverride?: string
 }
 
 type BlockComponentType = React.ComponentType<any & SharedBlockProps>
