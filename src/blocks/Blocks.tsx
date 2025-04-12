@@ -16,7 +16,7 @@ import { LogosComponent } from "@/blocks/Logos/LogosComponent"
 
 export type BlockType = keyof Partial<typeof blockComponents>
 
-interface BlockItem {
+export interface BlockItem {
   blockType?: BlockType
 
   [key: string]: any
@@ -29,6 +29,7 @@ export interface BlockProps {
 export const bgColorMap: Record<string, string> = {
   beige: "bg-beige-50",
   gray: "bg-slate-50",
+  blue: "bg-blue-600",
   black: "bg-blue-950",
 }
 
@@ -44,8 +45,8 @@ export const bgGradientMapAfter: Record<string, string> = {
 
 export interface SharedBlockProps {
   index: number
-  prevBgColor?: string
-  nextBgColor?: string
+  prevBlock?: any
+  nextBlock?: any
   classOverride?: string
 }
 
@@ -78,38 +79,19 @@ const Blocks: React.FC<BlockProps> = (props) => {
       <>
         {blocks.map((block, index) => {
           const { blockType } = block
-          let classOverride = ""
 
           if (blockType && blockType in blockComponents) {
             const Block = blockComponents[blockType as BlockType]
-            const prevBlock = blocks[index - 1]
-            const nextBlock = blocks[index + 1]
-
-            // Fix padding when cards follow a hero section
-            if (
-              block.blockType === "hero" &&
-              nextBlock?.blockType === "cards"
-            ) {
-              classOverride = "pb-0 lg:pb-0"
-            }
-            if (
-              block.blockType === "paragraph" &&
-              nextBlock?.blockType === "cards"
-            ) {
-              classOverride = "pb-0 lg:pb-0"
-            }
 
             if (Block) {
               return (
-                <React.Fragment key={index}>
-                  <Block
-                    {...block}
-                    index={index}
-                    prevBgColor={prevBlock?.bgColor}
-                    nextBgColor={nextBlock?.bgColor}
-                    classOverride={classOverride}
-                  />
-                </React.Fragment>
+                <Block
+                  key={index}
+                  index={index}
+                  {...block}
+                  prevBlock={blocks[index - 1]}
+                  nextBlock={blocks[index + 1]}
+                />
               )
             }
           }

@@ -1,13 +1,17 @@
-import { bgColorMap } from "@/blocks/Blocks"
+import { BlockContainer } from "@/blocks/BlockContainer"
 import { ImageBox } from "@/components/ImageBox"
-import { cn } from "@/lib/utils"
 import { Logos, Media } from "@payload-types"
 
 export const LogosComponent: React.FC<Logos> = (props) => {
   const { items, bgColor } = props
 
   return (
-    <section className={cn("py-sm", bgColor ? `${bgColorMap[bgColor]}` : "")}>
+    <BlockContainer
+      fullWidth
+      className="py-xs lg:py-sm"
+      bgColor={bgColor}
+      {...props}
+    >
       <div className="flex gap-[var(--marquee-gap)] overflow-hidden">
         <div className="flex shrink-0 items-center justify-around gap-[var(--marquee-gap)] min-w-full animate-scroll-x">
           {(items || []).map(({ image }, index) => (
@@ -34,6 +38,6 @@ export const LogosComponent: React.FC<Logos> = (props) => {
           ))}
         </div>
       </div>
-    </section>
+    </BlockContainer>
   )
 }

@@ -31,6 +31,20 @@ export const CtaBlock: Block = {
       fields: [link()],
       maxRows: 2,
     },
+    {
+      name: "bgColor",
+      type: "select",
+      defaultValue: "blue",
+      admin: {
+        readOnly: true,
+      },
+      options: [
+        {
+          label: "Blue",
+          value: "blue",
+        },
+      ],
+    },
   ],
 }
 export default CtaBlock

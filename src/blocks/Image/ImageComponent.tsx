@@ -3,8 +3,14 @@ import { ImageBox } from "@/components/ImageBox"
 import Link from "next/link"
 import { HiOutlineArrowUpRight } from "react-icons/hi2"
 import { cn } from "@/lib/utils"
-import { bgColorMap, bgGradientMap, bgGradientMapAfter } from "@/blocks/Blocks"
+import {
+  bgColorMap,
+  bgGradientMap,
+  bgGradientMapAfter,
+  SharedBlockProps,
+} from "@/blocks/Blocks"
 import React from "react"
+import { BlockContainer } from "@/blocks/BlockContainer"
 
 export type ImageComponentWithBlock = PayloadImage & {
   nextBgColor: string
@@ -12,37 +18,37 @@ export type ImageComponentWithBlock = PayloadImage & {
   index: number
 }
 
-export const ImageComponent: React.FC<ImageComponentWithBlock> = (props) => {
-  const { image, callout, nextBgColor, prevBgColor } = props
+export const ImageComponent: React.FC<PayloadImage & SharedBlockProps> = (
+  props,
+) => {
+  const { image, callout, prevBlock, nextBlock } = props
 
   return (
-    <section
+    <BlockContainer
+      {...props}
       className={cn(
-        bgGradientMap[nextBgColor],
-        bgGradientMapAfter[prevBgColor],
-        "relative py-[3rem]",
-        prevBgColor && "-mt-[3rem]",
+        bgGradientMap[nextBlock?.bgColor],
+        bgGradientMapAfter[prevBlock?.bgColor],
+        // prevBgColor && "-mt-[3rem]",
       )}
     >
-      <div className="mx-auto max-w-screen-2xl px-4 md:px-8 2xl:px-16">
-        <div className="relative h-[350px] md:h-[500px]">
-          {image && (
-            <ImageBox
-              sizes="(max-width: 639px) 375px, (max-width: 767px) 500px, (max-width: 1023px) 768px, 1920px"
-              fill
-              className="rounded-[16px]"
-              media={image as Media}
-            />
-          )}
+      <div className="relative h-[350px] md:h-[500px]">
+        {image && (
+          <ImageBox
+            sizes="(max-width: 639px) 375px, (max-width: 767px) 500px, (max-width: 1023px) 768px, 1920px"
+            fill
+            className="rounded-[16px]"
+            media={image as Media}
+          />
+        )}
 
-          {callout?.content && (
-            <div className="absolute max-w-[300px] right-8 bottom-8 bg-white p-4 rounded-[12px]">
-              <Callout callout={callout} />
-            </div>
-          )}
-        </div>
+        {callout?.content && (
+          <div className="absolute max-w-[300px] right-8 bottom-8 bg-white p-4 rounded-[12px]">
+            <Callout callout={callout} />
+          </div>
+        )}
       </div>
-    </section>
+    </BlockContainer>
   )
 }
 

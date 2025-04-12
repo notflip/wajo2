@@ -52,8 +52,10 @@ export default {
     },
     extend: {
       spacing: {
+        xs: "1.5rem",
         sm: "3rem",
         lg: "5rem",
+        xl: "10rem",
       },
       container: {
         center: true,

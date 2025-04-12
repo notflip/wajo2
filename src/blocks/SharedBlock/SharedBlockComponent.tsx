@@ -7,8 +7,8 @@ const sharedBlockComponents = {
   logos: LogosComponent,
 }
 
-export const SharedBlockComponent: React.FC<SharedBlock> = (props) => {
-  const { block } = props
+export const SharedBlockComponent: React.FC<any> = (props) => {
+  const { block, prevBlock, nextBlock } = props
 
   if (!block) {
     return null
@@ -29,7 +29,7 @@ export const SharedBlockComponent: React.FC<SharedBlock> = (props) => {
       return (
         <div>
           {/*@ts-ignore*/}
-          <Block {...rest} />
+          <Block {...rest} prevBlock={prevBlock} nextBlock={nextBlock} />
         </div>
       )
     }

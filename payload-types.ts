@@ -572,6 +572,7 @@ export interface CtaBlock {
         id?: string | null;
       }[]
     | null;
+  bgColor?: 'blue' | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'ctaBlock';
@@ -1111,6 +1112,7 @@ export interface CtaBlockSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  bgColor?: T;
   id?: T;
   blockName?: T;
 }
