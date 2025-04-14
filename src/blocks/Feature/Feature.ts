@@ -16,8 +16,7 @@ export const Feature: Block = {
       name: "subtitle",
       type: "text",
       admin: {
-        description:
-          "Indien dit ingevuld is, komt deze kleine titel boven de hoofd titel in een kader staan",
+        description: "Indien dit ingevuld is, komt deze kleine titel boven de hoofd titel in een kader staan",
       },
     },
     {
@@ -41,17 +40,6 @@ export const Feature: Block = {
       relationTo: "media",
       required: true,
     },
-
-    // Links  Field
-    // {
-    //   name: "links",
-    //   type: "array",
-    //   admin: {
-    //     initCollapsed: true,
-    //   },
-    //   fields: [link()],
-    //   maxRows: 2,
-    // },
     {
       name: "variant",
       type: "select",
@@ -67,21 +55,6 @@ export const Feature: Block = {
         },
       ],
     },
-    // {
-    //   name: "bgColor",
-    //   type: "select",
-    //   defaultValue: "transparent",
-    //   options: [
-    //     {
-    //       label: "Transparent",
-    //       value: "transparent",
-    //     },
-    //     {
-    //       label: "Pink Secondary",
-    //       value: "secondary",
-    //     },
-    //   ],
-    // },
   ],
 }
 export default Feature

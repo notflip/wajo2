@@ -11,7 +11,8 @@
 
   /* Slate */
   --slate-50: 210 40% 96%;
-  --slate-950: 224 6% 45%;
+  --slate-600: 224 6% 45%; 
+  --slate-950: 224 20% 23%;
 
   /* Beige */
   --beige-50: 33 52% 96%;
@@ -25,7 +26,7 @@
 
   --secondary: var(--beige-50);
 
-  --muted-foreground: var(--slate-950);
+  --muted-foreground: var(--slate-600);
 
   /* Other */
   --card: 11 50% 90%;

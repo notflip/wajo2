@@ -43,7 +43,7 @@ export const CasesComponent: React.FC<Cases> = async (props) => {
             </div>
             <div className="mt-5 md:flex md:justify-between md:items-center">
               <div className="font-medium">{item.title}</div>
-              <div className="font-medium text-slate-950 capitalize">
+              <div className="font-medium text-slate-600 capitalize">
                 {item.tags?.slice(0, 3).join(", ")}
               </div>
             </div>

@@ -162,6 +162,7 @@ export interface Page {
         | Cases
         | FeatureRows
         | FeatureList
+        | FeatureTestimonials
         | Testimonials
         | Team
         | Feature
@@ -215,7 +216,7 @@ export interface Hero {
       }[]
     | null;
   textAlign?: ('left' | 'center') | null;
-  bgColor?: ('transparent' | 'beige' | 'black') | null;
+  bgColor?: ('beige' | 'black') | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'hero';
@@ -367,7 +368,7 @@ export interface FeatureRows {
         id?: string | null;
       }[]
     | null;
-  bgColor?: ('transparent' | 'beige' | 'gray') | null;
+  bgColor?: ('beige' | 'gray') | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'featureRows';
@@ -412,6 +413,28 @@ export interface FeatureList {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeatureTestimonials".
+ */
+export interface FeatureTestimonials {
+  badge: string;
+  title: string;
+  items?:
+    | {
+        text: string;
+        author_name: string;
+        author_company: string;
+        author_avatar: number | Media;
+        link?: (number | null) | Case;
+        id?: string | null;
+      }[]
+    | null;
+  bgColor?: 'black' | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'featureTestimonials';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "Testimonials".
  */
 export interface Testimonials {
@@ -425,7 +448,7 @@ export interface Testimonials {
         id?: string | null;
       }[]
     | null;
-  bgColor?: ('transparent' | 'beige' | 'gray') | null;
+  bgColor?: ('beige' | 'gray') | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'testimonials';
@@ -807,6 +830,7 @@ export interface PagesSelect<T extends boolean = true> {
         cases?: T | CasesSelect<T>;
         featureRows?: T | FeatureRowsSelect<T>;
         featureList?: T | FeatureListSelect<T>;
+        featureTestimonials?: T | FeatureTestimonialsSelect<T>;
         testimonials?: T | TestimonialsSelect<T>;
         team?: T | TeamSelect<T>;
         feature?: T | FeatureSelect<T>;
@@ -976,6 +1000,27 @@ export interface FeatureListSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeatureTestimonials_select".
+ */
+export interface FeatureTestimonialsSelect<T extends boolean = true> {
+  badge?: T;
+  title?: T;
+  items?:
+    | T
+    | {
+        text?: T;
+        author_name?: T;
+        author_company?: T;
+        author_avatar?: T;
+        link?: T;
+        id?: T;
+      };
+  bgColor?: T;
   id?: T;
   blockName?: T;
 }

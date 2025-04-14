@@ -22,6 +22,7 @@ export default {
       },
       slate: {
         50: "hsl(var(--slate-50))",
+        600: "hsl(var(--slate-600))",
         950: "hsl(var(--slate-950))",
       },
       white: colors.white,
@@ -100,7 +101,7 @@ export default {
           },
         ],
         "heading-5": [
-          "1.33rem",
+          "1.5rem",
           {
             lineHeight: "1.9rem",
             fontWeight: "500",

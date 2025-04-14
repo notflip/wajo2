@@ -39,12 +39,10 @@ export const FeatureRows: Block = {
     {
       name: "bgColor",
       type: "select",
-      defaultValue: "transparent",
+      admin: {
+        isClearable: true,
+      },
       options: [
-        {
-          label: "Transparent",
-          value: "transparent",
-        },
         {
           label: "Beige",
           value: "beige",

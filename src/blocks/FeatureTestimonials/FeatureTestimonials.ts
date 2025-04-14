@@ -1,13 +1,8 @@
 import type { Block } from "payload"
-import { link } from "@/fields/link/link"
 
-export const Testimonials: Block = {
-  slug: "testimonials",
-  interfaceName: "Testimonials",
-  labels: {
-    singular: "Testimonials",
-    plural: "Testimonials",
-  },
+export const FeatureTestimonials: Block = {
+  slug: "featureTestimonials",
+  interfaceName: "FeatureTestimonials",
   fields: [
     {
       name: "badge",
@@ -24,20 +19,32 @@ export const Testimonials: Block = {
       type: "array",
       fields: [
         {
-          name: "name",
+          name: "text",
+          type: "textarea",
+          required: true,
+          maxLength: 150,
+        },
+        {
+          name: "author_name",
           type: "text",
           required: true,
         },
         {
-          name: "text",
-          type: "textarea",
+          name: "author_company",
+          type: "text",
           required: true,
         },
         {
-          name: "image",
+          name: "author_avatar",
           type: "upload",
           relationTo: "media",
-          displayPreview: true,
+          required: true,
+        },
+        {
+          name: "link",
+          label: "Case",
+          type: "relationship",
+          relationTo: "cases",
         },
       ],
     },
@@ -49,15 +56,10 @@ export const Testimonials: Block = {
       },
       options: [
         {
-          label: "Beige",
-          value: "beige",
-        },
-        {
-          label: "Gray",
-          value: "gray",
+          label: "Black",
+          value: "black",
         },
       ],
     },
   ],
 }
-export default Testimonials
