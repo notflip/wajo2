@@ -13,11 +13,13 @@ import { NavigationOptions } from "swiper/types"
 import { DynamicIcon } from "@/components/dynamic-icon"
 
 type SliderProps = {
-  items: Array<{ title: string; content: string; icon: any }>
+  cardClassname: string
+  slidesPerView: number
+  items: Array<{ title: string; content: string; icon?: any }>
 }
 
 export const Slider: React.FC<SliderProps> = (props) => {
-  const { items } = props
+  const { items, slidesPerView = 3.1, cardClassname = "bg-white" } = props
 
   const prevRef = useRef(null)
   const nextRef = useRef(null)
@@ -46,7 +48,7 @@ export const Slider: React.FC<SliderProps> = (props) => {
             slidesPerView: 2.1,
           },
           1024: {
-            slidesPerView: 3.1,
+            slidesPerView: slidesPerView,
             spaceBetween: 32,
           },
         }}
@@ -56,10 +58,8 @@ export const Slider: React.FC<SliderProps> = (props) => {
           userSelect: "none",
         }}
         onInit={(swiper) => {
-          ;(swiper.params.navigation as NavigationOptions).prevEl =
-            prevRef.current
-          ;(swiper.params.navigation as NavigationOptions).nextEl =
-            nextRef.current
+          ;(swiper.params.navigation as NavigationOptions).prevEl = prevRef.current
+          ;(swiper.params.navigation as NavigationOptions).nextEl = nextRef.current
           swiper.navigation.init()
           swiper.navigation.update()
         }}
@@ -67,13 +67,15 @@ export const Slider: React.FC<SliderProps> = (props) => {
         {items &&
           items.map((item, index) => {
             return (
-              <SwiperSlide
-                className="bg-white p-8 rounded-[16px] !h-auto"
-                key={index}
-              >
+              <SwiperSlide className={`p-8 rounded-[16px] !h-auto ${cardClassname}`} key={index}>
                 {item.icon && (
                   <div className="inline-flex rounded-full mb-8 p-4 bg-secondary">
                     <DynamicIcon iconName={item.icon} size={32} className="" />
+                  </div>
+                )}
+                {!item.icon && (
+                  <div className="text-[1.3rem] font-medium flex items-center justify-center w-16 h-16 bg-beige-100 rounded-full mb-8">
+                    {(index + 1).toString().padStart(2, "0")}
                   </div>
                 )}
                 <h4 className="mb-8">{item.title}</h4>

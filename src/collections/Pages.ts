@@ -21,6 +21,7 @@ import Testimonials from "@/blocks/Testimonials/Testimonials"
 import { Team } from "@/blocks/Team/Team"
 import { Feature } from "@/blocks/Feature/Feature"
 import { Slider } from "@/blocks/Slider/Slider"
+import { ProcessSlider } from "@/blocks/ProcessSlider/ProcessSlider"
 import { Logos } from "@/blocks/Logos/Logos"
 import { FeatureTestimonials } from "@/blocks/FeatureTestimonials/FeatureTestimonials"
 
@@ -116,6 +117,7 @@ export const Pages: CollectionConfig<"pages"> = {
                 Feature,
                 Slider,
                 Logos,
+                ProcessSlider,
                 CtaBlock,
                 SharedBlock,
               ],

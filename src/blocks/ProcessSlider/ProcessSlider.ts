@@ -19,7 +19,6 @@ export const ProcessSlider: Block = {
       name: "items",
       type: "array",
       fields: [
-        IconField,
         {
           type: "text",
           name: "title",
@@ -29,7 +28,7 @@ export const ProcessSlider: Block = {
           type: "textarea",
           name: "content",
           required: true,
-          maxLength: 250,
+          maxLength: 350,
         },
       ],
       maxRows: 8,

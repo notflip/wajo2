@@ -14,6 +14,7 @@ import { SliderComponent } from "@/blocks/Slider/SliderComponent"
 import React from "react"
 import { LogosComponent } from "@/blocks/Logos/LogosComponent"
 import { FeatureTestimonialsComponent } from "@/blocks/FeatureTestimonials/FeatureTestimonialsComponent"
+import { ProcessSliderComponent } from "@/blocks/ProcessSlider/ProcessSliderComponent"
 
 export type BlockType = keyof Partial<typeof blockComponents>
 
@@ -66,6 +67,7 @@ export const blockComponents: Record<string, BlockComponentType> = {
   slider: SliderComponent,
   logos: LogosComponent,
   featureTestimonials: FeatureTestimonialsComponent,
+  processSlider: ProcessSliderComponent,
   cta: CtaBlockComponent,
   shared: SharedBlockComponent,
 }

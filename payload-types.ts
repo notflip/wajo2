@@ -168,6 +168,7 @@ export interface Page {
         | Feature
         | Slider
         | Logos
+        | ProcessSlider
         | CtaBlock
         | SharedBlock
       )[]
@@ -572,6 +573,24 @@ export interface Logos {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProcessSlider".
+ */
+export interface ProcessSlider {
+  subtitle: string;
+  title: string;
+  items?:
+    | {
+        title: string;
+        content: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'processSlider';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "CtaBlock".
  */
 export interface CtaBlock {
@@ -836,6 +855,7 @@ export interface PagesSelect<T extends boolean = true> {
         feature?: T | FeatureSelect<T>;
         slider?: T | SliderSelect<T>;
         logos?: T | LogosSelect<T>;
+        processSlider?: T | ProcessSliderSelect<T>;
         ctaBlock?: T | CtaBlockSelect<T>;
         shared?: T | SharedBlockSelect<T>;
       };
@@ -1134,6 +1154,23 @@ export interface LogosSelect<T extends boolean = true> {
         id?: T;
       };
   bgColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProcessSlider_select".
+ */
+export interface ProcessSliderSelect<T extends boolean = true> {
+  subtitle?: T;
+  title?: T;
+  items?:
+    | T
+    | {
+        title?: T;
+        content?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }

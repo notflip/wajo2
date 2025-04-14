@@ -13,6 +13,7 @@ export default {
     colors: {
       beige: {
         50: "hsl(var(--beige-50))",
+        100: "hsl(var(--beige-100))",
       },
       blue: {
         50: "hsl(var(--blue-50))",
