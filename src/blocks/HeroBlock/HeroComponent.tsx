@@ -4,9 +4,9 @@ import AnimatedButton from "@/components/interface/AnimatedButton"
 import { cn } from "@/lib/utils"
 import { HiOutlineChat } from "react-icons/hi"
 import Avatars from "@/components/avatars"
-import { bgColorMap, SharedBlockProps } from "@/blocks/Blocks"
 import Breadcrumbs from "@/components/breadcrumbs"
 import { BlockContainer } from "@/blocks/BlockContainer"
+import { SharedBlockProps } from "@/blocks/types"
 
 export const HeroComponent: React.FC<Hero & SharedBlockProps> = (props) => {
   const { title, content, links, textAlign, bgColor } = props
@@ -33,9 +33,7 @@ export const HeroComponent: React.FC<Hero & SharedBlockProps> = (props) => {
           <p
             className={cn(
               "max-w-prose text-base",
-              bgColor && bgColor === "black"
-                ? `text-white`
-                : "text-muted-foreground",
+              bgColor && bgColor === "black" ? `text-white` : "text-muted-foreground",
             )}
           >
             {content}
@@ -45,22 +43,13 @@ export const HeroComponent: React.FC<Hero & SharedBlockProps> = (props) => {
               {(links || []).map(({ link }, i) => {
                 if (i === 0) {
                   return (
-                    <AnimatedButton
-                      key={i}
-                      icon={<HiOutlineChat size={20} />}
-                      asChild
-                    >
+                    <AnimatedButton key={i} icon={<HiOutlineChat size={20} />} asChild>
                       <CmsLink {...link} />
                     </AnimatedButton>
                   )
                 } else {
                   return (
-                    <AnimatedButton
-                      key={i}
-                      variant="avatars"
-                      avatars={<Avatars />}
-                      asChild
-                    >
+                    <AnimatedButton key={i} variant="avatars" avatars={<Avatars />} asChild>
                       <CmsLink {...link} />
                     </AnimatedButton>
                   )

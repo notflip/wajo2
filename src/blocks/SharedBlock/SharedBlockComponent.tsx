@@ -1,4 +1,4 @@
-import { SharedBlock, SharedBlock1 } from "@payload-types"
+import { SharedBlock1 } from "@payload-types"
 import { CtaBlockComponent } from "@/blocks/CtaBlock/CtaBlockComponent"
 import { LogosComponent } from "@/blocks/Logos/LogosComponent"
 

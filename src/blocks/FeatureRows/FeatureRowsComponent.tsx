@@ -1,8 +1,6 @@
 import { BlockContainer } from "@/blocks/BlockContainer"
-import { bgColorMap } from "@/blocks/Blocks"
 import Badge from "@/components/badge"
 import { DynamicIcon } from "@/components/dynamic-icon"
-import { cn } from "@/lib/utils"
 import { FeatureRows } from "@payload-types"
 
 export const FeatureRowsComponent: React.FC<FeatureRows> = (props) => {

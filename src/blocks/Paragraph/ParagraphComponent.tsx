@@ -1,12 +1,9 @@
 import { BlockContainer } from "@/blocks/BlockContainer"
-import { bgColorMap, SharedBlockProps } from "@/blocks/Blocks"
+import { SharedBlockProps } from "@/blocks/types"
 import Badge from "@/components/badge"
-import { cn } from "@/lib/utils"
 import { Paragraph } from "@payload-types"
 
-export const ParagraphComponent: React.FC<Paragraph & SharedBlockProps> = (
-  props,
-) => {
+export const ParagraphComponent: React.FC<Paragraph & SharedBlockProps> = (props) => {
   const { badge, content, bgColor } = props
 
   return (

@@ -13,8 +13,8 @@ import { NavigationOptions } from "swiper/types"
 import { DynamicIcon } from "@/components/dynamic-icon"
 
 type SliderProps = {
-  cardClassname: string
-  slidesPerView: number
+  cardClassname?: string
+  slidesPerView?: number
   items: Array<{ title: string; content: string; icon?: any }>
 }
 

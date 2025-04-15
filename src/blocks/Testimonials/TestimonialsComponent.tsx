@@ -1,5 +1,4 @@
 import { BlockContainer } from "@/blocks/BlockContainer"
-import { bgColorMap } from "@/blocks/Blocks"
 import Badge from "@/components/badge"
 import { ImageBox } from "@/components/ImageBox"
 import { cn } from "@/lib/utils"
@@ -18,8 +17,7 @@ export const TestimonialsComponent: React.FC<Testimonials> = (props) => {
         {(items || []).map((item, index) => {
           const isFirstInPair = index % 2 === 0
           const isEvenRow = Math.floor(index / 2) % 2 === 0
-          const shouldSpan2 =
-            (isFirstInPair && isEvenRow) || (!isFirstInPair && !isEvenRow)
+          const shouldSpan2 = (isFirstInPair && isEvenRow) || (!isFirstInPair && !isEvenRow)
           return (
             <div
               key={index}

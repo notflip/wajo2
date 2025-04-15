@@ -16,16 +16,20 @@ export const CasesComponent: React.FC<Cases> = async (props) => {
 
   return (
     <BlockContainer {...props}>
-      <Badge text={badge} />
-      <div className="mt-8 md:flex md:items-center md:justify-between space-y-8 md:space-y-0">
-        <h2 className="max-w-3xl">{title}</h2>
-        <AnimatedButton variant="light" asChild>
-          <CmsLink {...link} />
-        </AnimatedButton>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 mt-20 gap-8">
+      {badge && <Badge text={badge} />}
+      {(title || link?.type !== "none") && (
+        <div className="mt-8 mb-20 md:flex md:items-center md:justify-between space-y-8 md:space-y-0">
+          {title && <h2 className="max-w-3xl">{title}</h2>}
+          {link?.type !== "none" && (
+            <AnimatedButton variant="light" asChild>
+              <CmsLink {...link} />
+            </AnimatedButton>
+          )}
+        </div>
+      )}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {(latestCases || []).map((item, index) => (
-          <Link href="#" key={index} className="relative group">
+          <Link href={`/cases/${item.slug}`} key={index} className="relative group">
             <div className="relative h-[400px] rounded-[16px] overflow-hidden">
               {item.image && (
                 <ImageBox

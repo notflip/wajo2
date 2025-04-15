@@ -6,7 +6,7 @@ export type CmsLinkType = {
   label?: string | null
   newTab?: boolean | null
   url?: string | null
-  type: string | null
+  type?: string | null
   reference?: {
     relationTo: string
     value: any

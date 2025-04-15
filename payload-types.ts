@@ -338,10 +338,10 @@ export interface Cards {
  * via the `definition` "Cases".
  */
 export interface Cases {
-  badge: string;
-  title: string;
-  link: {
-    type: 'reference' | 'custom';
+  badge?: string | null;
+  title?: string | null;
+  link?: {
+    type?: ('none' | 'reference' | 'custom') | null;
     newTab?: boolean | null;
     reference?: {
       relationTo: 'pages';

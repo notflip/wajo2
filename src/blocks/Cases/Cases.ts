@@ -1,5 +1,5 @@
 import type { Block } from "payload"
-import { link } from "@/fields/link/link"
+import { link2 } from "@/fields/link2/link2"
 
 export const Cases: Block = {
   slug: "cases",
@@ -12,14 +12,12 @@ export const Cases: Block = {
     {
       name: "badge",
       type: "text",
-      required: true,
     },
     {
       name: "title",
       type: "text",
-      required: true,
     },
-    link({}),
+    link2(),
   ],
 }
 export default Cases

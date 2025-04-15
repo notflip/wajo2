@@ -3,14 +3,9 @@ import { ImageBox } from "@/components/ImageBox"
 import Link from "next/link"
 import { HiOutlineArrowUpRight } from "react-icons/hi2"
 import { cn } from "@/lib/utils"
-import {
-  bgColorMap,
-  bgGradientMap,
-  bgGradientMapAfter,
-  SharedBlockProps,
-} from "@/blocks/Blocks"
 import React from "react"
 import { BlockContainer } from "@/blocks/BlockContainer"
+import { bgGradientMap, bgGradientMapAfter, SharedBlockProps } from "@/blocks/types"
 
 export type ImageComponentWithBlock = PayloadImage & {
   nextBgColor: string
@@ -18,9 +13,7 @@ export type ImageComponentWithBlock = PayloadImage & {
   index: number
 }
 
-export const ImageComponent: React.FC<PayloadImage & SharedBlockProps> = (
-  props,
-) => {
+export const ImageComponent: React.FC<PayloadImage & SharedBlockProps> = (props) => {
   const { image, callout, prevBlock, nextBlock } = props
 
   return (
