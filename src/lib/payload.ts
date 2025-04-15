@@ -1,9 +1,31 @@
 import { getPayload, PaginatedDocs } from "payload"
-import type { Config, Post } from "@payload-types"
+import type { Case, Config, Post } from "@payload-types"
 import config from "@payload-config"
 import { draftMode } from "next/headers"
 import { cache } from "react"
 import { postsPerPage } from "@/config"
+
+// getCase
+export async function getCase(slug: string): Promise<Case> {
+  const { isEnabled: draft } = await draftMode()
+
+  const payload = await getPayload({
+    config,
+  })
+
+  const result = await payload.find({
+    collection: "cases",
+    draft,
+    overrideAccess: draft,
+    limit: 1,
+    pagination: false,
+    where: {
+      slug: { equals: slug },
+    },
+  })
+
+  return result.docs?.[0] || null
+}
 
 // getLatestCases
 export async function getLatestCases() {

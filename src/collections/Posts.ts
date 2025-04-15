@@ -7,6 +7,7 @@ import {
   HeadingFeature,
   lexicalEditor,
   UnorderedListFeature,
+  UploadFeature,
 } from "@payloadcms/richtext-lexical"
 import { generateReadingTime } from "@/hooks/generateReadingTime"
 import { slugField } from "@/fields/slug"
@@ -97,13 +98,13 @@ export const Posts: CollectionConfig = {
       },
       relationTo: "users",
       required: true,
-      defaultValue: ({ user }) =>
-        user?.role !== "admin" ? user?.id : undefined,
-      filterOptions: () => {
-        return {
-          role: { not_equals: "admin" },
-        }
-      },
+      //   defaultValue: ({ user }) =>
+      // user?.role !== "admin" ? user?.id : undefined,
+      //   filterOptions: () => {
+      // return {
+      //   role: { not_equals: "admin" },
+      // }
+      //   },
     },
     {
       name: "publishedAt",
@@ -143,17 +144,19 @@ export const Posts: CollectionConfig = {
             {
               type: "richText",
               name: "content",
-              editor: lexicalEditor({
-                features: () => {
-                  return [
-                    HeadingFeature({
-                      enabledHeadingSizes: ["h2", "h3", "h4"],
-                    }),
-                    BlocksFeature({ blocks: [] }),
-                    UnorderedListFeature(),
-                  ]
-                },
-              }),
+              editor: lexicalEditor(),
+              //     {
+              //     features: () => {
+              //       return [
+              //         HeadingFeature({
+              //           enabledHeadingSizes: ["h2", "h3", "h4"],
+              //         }),
+              //         BlocksFeature({ blocks: [] }),
+              //         UnorderedListFeature(),
+              //         UploadFeature(),
+              //       ]
+              //     },
+              //   }
             },
           ],
         },

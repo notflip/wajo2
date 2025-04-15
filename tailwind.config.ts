@@ -116,10 +116,10 @@ export default {
           },
         ],
         caption: [
-          "1.125rem",
+          "1rem",
           {
-            lineHeight: "1.375rem",
-            fontWeight: 500,
+            lineHeight: "1.5rem",
+            fontWeight: 400,
           },
         ],
         badge: ["0.875rem", { fontWeight: 500 }],
