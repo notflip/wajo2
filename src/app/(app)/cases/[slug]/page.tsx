@@ -20,8 +20,8 @@ export default async function Page({ params }: PageProps) {
   return (
     <>
       <section className="relative py-sm lg:py-lg">
-        <div className="mx-auto max-w-screen-2xl px-4 md:px-8 2xl:px-16">
-          <div className="flex items-center pt-16 lg:pt-20">
+        <div className="mx-auto max-w-screen-2xl px-4 md:px-12 2xl:px-16">
+          <div className="flex items-center pt-16 lg:pt-24">
             <div className="max-w-5xl">
               <div className="mb-8">
                 <Breadcrumbs />
@@ -33,7 +33,7 @@ export default async function Page({ params }: PageProps) {
       </section>
 
       <section className="relative py-sm lg:py-lg">
-        <div className="mx-auto max-w-screen-2xl px-4 md:px-8 2xl:px-16">
+        <div className="mx-auto max-w-screen-2xl px-4 md:px-12 2xl:px-16">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-12">
             <div className="col-span-3">
               <Badge text="introductie" />

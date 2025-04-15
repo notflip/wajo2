@@ -25,6 +25,8 @@ import { mergeOpenGraph } from "@/utils/mergeOpenGraph"
 import { getOgImage } from "@/utils/seo"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
+import Breadcrumbs from "@/components/breadcrumbs"
+import AnimatedButton from "@/components/interface/AnimatedButton"
 
 interface PageProps {
   params: Promise<{
@@ -36,21 +38,17 @@ interface PageProps {
  * BlogRelatedPosts
  * @constructor
  */
-async function BlogRelatedPosts({
-  currentPostSlug,
-}: {
-  currentPostSlug: string
-}) {
+async function BlogRelatedPosts({ currentPostSlug }: { currentPostSlug: string }) {
   const latestPosts = await getLatestPosts(currentPostSlug)
 
   return (
-    <div className="my-16">
+    <div>
       <div>
         <div className="mb-4 flex items-center gap-4">
           <h2>Overige berichten</h2>
-          <Button asChild variant="secondary">
+          <AnimatedButton asChild variant="light">
             <Link href={`/blog`}>Bekijke alle</Link>
-          </Button>
+          </AnimatedButton>
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
@@ -77,102 +75,93 @@ export default async function Blog({ params }: PageProps) {
     notFound()
   }
 
+  console.log(post)
+
   return (
     <div>
       {draft && <LivePreviewListener />}
 
-      {/*Header*/}
-      <section
-        className={cn(
-          "bg-[linear-gradient(180deg,_rgba(247,227,220,1)_85%,_rgba(253,246,245,1)_85%)]",
-          "pt-[3rem] lg:pt-[6rem]",
-        )}
-      >
-        <div className="mx-auto max-w-screen-2xl px-4 md:px-8 2xl:px-16">
-          <div className="mb-12">
-            <div className="mb-6">
-              <Breadcrumb>
-                <BreadcrumbList>
-                  <BreadcrumbItem>
-                    <BreadcrumbLink asChild>
-                      <Link href="/blog">Blog</Link>
-                    </BreadcrumbLink>
-                  </BreadcrumbItem>
-                  <BreadcrumbSeparator />
-                  <BreadcrumbItem>
-                    <BreadcrumbPage>{post?.title}</BreadcrumbPage>
-                  </BreadcrumbItem>
-                </BreadcrumbList>
-              </Breadcrumb>
+      <section className="relative my-sm lg:my-lg">
+        <div className="mx-auto max-w-screen-2xl px-4 md:px-12 2xl:px-16">
+          <div className="pt-16 lg:pt-24">
+            <div className="max-w-4xl">
+              <div className="mb-8">
+                <Breadcrumbs />
+              </div>
+              <h1 className="text-foreground">{post.title}</h1>
             </div>
-            <h1>{post?.title}</h1>
-          </div>
-          <div className="mb-[5rem]">
-            <div className="flex items-center">
-              {post.author && (post.author as User).avatar ? (
-                <div className="mr-4 shrink-0">
-                  <ImageBox
-                    className="w-12 h-12 rounded-full border"
-                    media={(post.author as User).avatar as Media}
-                    sizes="96px"
-                  />
-                </div>
-              ) : (
-                <div className="mr-4 shrink-0">
-                  <div className="w-12 h-12 bg-tertiary rounded-full border" />
-                </div>
-              )}
-              <div className="flex w-full items-center justify-between">
-                <div>
-                  {post.author && (
-                    <p className="leading-none">{(post.author as User).name}</p>
-                  )}
-                  <div className="flex items-center">
-                    <p>{format(new Date(post.publishedAt!), "dd/MM/yyyy")}</p>
-                    {post.readingTime && (
-                      <>
-                        <span className="mx-2">•</span>
-                        <p className="text-sm">
-                          {post.readingTime} minuten leestijd
-                        </p>
-                      </>
-                    )}
+            <div className="mt-sm">
+              <div className="flex items-center">
+                {post.author && (post.author as User).avatar ? (
+                  <div className="mr-4 shrink-0">
+                    <ImageBox
+                      className="w-10 h-10 rounded-full"
+                      media={(post.author as User).avatar as Media}
+                      sizes="96px"
+                    />
                   </div>
-                </div>
-                <div>
-                  <BlogShareButtons
-                    url={`${process.env.NEXT_PUBLIC_SITE_URL}/blog/${post.slug}`}
-                  />
+                ) : (
+                  <div className="mr-4 shrink-0">
+                    <div className="w-10 h-10 bg-tertiary rounded-full" />
+                  </div>
+                )}
+                <div className="flex w-full items-center justify-between">
+                  <div>
+                    {post.author && (
+                      <p className="leading-none">{(post.author as User).name}</p>
+                    )}
+                    <div className="flex items-center">
+                      <p>{format(new Date(post.publishedAt!), "dd/MM/yyyy")}</p>
+                      {post.readingTime && (
+                        <>
+                          <span className="mx-2">•</span>
+                          <p>{post.readingTime} minuten leestijd</p>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                  <div>
+                    <BlogShareButtons
+                      url={`${process.env.NEXT_PUBLIC_SITE_URL}/blog/${post.slug}`}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Content */}
+      <section className="my-sm lg:my-lg">
+        <div className="mx-auto max-w-screen-2xl px-4 md:px-12 2xl:px-16">
           <div>
             {post.heroImage && (
-              <ImageBox
-                className="aspect-[5/2] rounded-[20px]"
-                media={post.heroImage as Media}
-                sizes="(max-width: 1024px) 100vw, 60vw"
-              />
+              <div className="relative h-[500px]">
+                <ImageBox
+                  fill
+                  className="rounded-[20px]"
+                  media={post.heroImage as Media}
+                  sizes="(max-width: 639px) 375px, (max-width: 767px) 500px, (max-width: 1023px) 768px, 1920px"
+                />
+              </div>
             )}
           </div>
         </div>
       </section>
 
-      <section className="pt-[6rem] pb-[6rem]">
-        <div className="mx-auto max-w-screen-lg px-4 md:px-8 lg:px-16">
+      <section className="my-sm lg:my-lg">
+        <div className="mx-auto max-w-screen-2xl px-4 md:px-12 2xl:px-16">
           {post.content && <RichText data={post.content} />}
         </div>
       </section>
 
       <hr />
 
-      <section>
-        <div className="mx-auto max-w-screen-2xl px-4 md:px-8 2xl:px-16">
+      <section className="my-sm lg:my-lg">
+        <div className="mx-auto max-w-screen-2xl px-4 md:px-12 2xl:px-16">
           <Suspense fallback={null}>
-            <div className="container mt-24">
-              <BlogRelatedPosts currentPostSlug={slug} />
-            </div>
+            <BlogRelatedPosts currentPostSlug={slug} />
           </Suspense>
         </div>
       </section>
@@ -180,9 +169,7 @@ export default async function Blog({ params }: PageProps) {
   )
 }
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const slug = (await params).slug ?? ""
   const post = await getPostBySlug(slug)
 

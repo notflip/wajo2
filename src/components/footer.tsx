@@ -12,7 +12,7 @@ export async function Footer() {
 
   return (
     <footer className="pt-[6rem] pb-[3rem]">
-      <div className="mx-auto max-w-screen-2xl px-4 md:px-8 2xl:px-16">
+      <div className="mx-auto max-w-screen-2xl px-4 md:px-12 2xl:px-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-16">
           <div className="lg:col-span-3">
             <ImageBox

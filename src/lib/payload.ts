@@ -109,7 +109,7 @@ export async function getPostBySlug(slug: string): Promise<Post> {
   const result = await payload.find({
     collection: "posts",
     draft,
-    overrideAccess: draft,
+    overrideAccess: true,
     limit: 1,
     pagination: false,
     where: {

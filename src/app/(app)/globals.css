@@ -11,7 +11,7 @@
 
   /* Slate */
   --slate-50: 210 40% 96%;
-  --slate-600: 224 6% 45%; 
+  --slate-600: 224 6% 45%;
   --slate-950: 224 20% 23%;
 
   /* Beige */
@@ -40,7 +40,7 @@
   --accent-foreground: 11 5% 10%;
   --destructive: 0 100% 30%;
   --destructive-foreground: 11 5% 90%;
-  --border: 11 30% 50%;
+  --border: var(--beige-100);
   --input: 11 30% 17%;
   --ring: 11 81.8% 89.2%;
   --radius: 0.5rem;
