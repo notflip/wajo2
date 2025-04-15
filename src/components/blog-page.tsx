@@ -1,5 +1,3 @@
-import { Badge } from "@/components/ui/badge"
-import { BlogCategories } from "@/components/blog-categories"
 import BlogPostCard from "@/components/BlogPostCard"
 import { Pagination } from "@/components/Pagination"
 import { Suspense } from "react"
@@ -14,7 +12,7 @@ type BlogPageProps = {
 }
 
 export async function BlogPage(props: BlogPageProps) {
-  const { title, description, posts, category } = props
+  const { posts, category } = props
 
   return (
     <>

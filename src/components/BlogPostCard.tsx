@@ -1,6 +1,5 @@
-import Badge from "@/components/badge"
 import { ImageBox } from "@/components/ImageBox"
-import { Media, Post, PostCategory, User } from "@payload-types"
+import { Media, Post, User } from "@payload-types"
 import { format } from "date-fns"
 import Link from "next/link"
 
