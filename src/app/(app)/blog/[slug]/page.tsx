@@ -75,8 +75,6 @@ export default async function Blog({ params }: PageProps) {
     notFound()
   }
 
-  console.log(post)
-
   return (
     <div>
       {draft && <LivePreviewListener />}

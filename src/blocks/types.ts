@@ -21,7 +21,7 @@ export type BlockType =
   | "logos"
   | "featureTestimonials"
   | "processSlider"
-  | "cta"
+  | "ctaBlock"
   | "shared"
 
 export interface BlockItem {
