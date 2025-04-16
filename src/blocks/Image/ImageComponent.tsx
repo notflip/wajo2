@@ -31,7 +31,7 @@ export const ImageComponent: React.FC<PayloadImage & SharedBlockProps> = (props)
             sizes="(max-width: 639px) 375px, (max-width: 767px) 500px, (max-width: 1023px) 768px, 1920px"
             fill
             className="rounded-[16px]"
-            media={image as Media}
+            media={image}
           />
         )}
 
@@ -52,7 +52,7 @@ export const Callout: React.FC<{ callout: any }> = ({ callout }: any) => {
         <ImageBox
           sizes="60px"
           className="w-[60px] h-[60px] rounded-[12px]"
-          media={callout?.image as Media}
+          media={callout?.image}
         />
       )}
       {callout?.content && (

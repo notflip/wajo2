@@ -3,6 +3,7 @@ import { isAnyone } from "@/access/isAnyone"
 import { CollectionConfig } from "payload"
 import { slugField } from "@/fields/slug"
 import beforeDuplicate from "@/hooks/beforeDuplicateSlugged"
+import IconField from "@/fields/icon/IconField"
 
 export const Cases: CollectionConfig = {
   slug: "cases",
@@ -57,6 +58,33 @@ export const Cases: CollectionConfig = {
           name: "image",
           type: "upload",
           relationTo: "media",
+        },
+      ],
+    },
+    {
+      name: "stats",
+      type: "group",
+      fields: [
+        {
+          name: "statistics",
+          type: "array",
+          maxRows: 2,
+          label: false,
+          fields: [
+            IconField,
+            {
+              name: "amount",
+              type: "text",
+              required: true,
+              maxLength: 6,
+            },
+            {
+              name: "text",
+              type: "textarea",
+              required: true,
+              maxLength: 200,
+            },
+          ],
         },
       ],
     },

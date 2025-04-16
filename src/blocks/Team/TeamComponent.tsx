@@ -42,7 +42,7 @@ export const TeamComponent: React.FC<Team> = (props) => {
               <ImageBox
                 fill
                 className="rounded-[8px]"
-                media={image as Media}
+                media={image}
                 sizes="(max-width: 1024px) 100vw, 30vw"
               />
             </div>

@@ -20,7 +20,7 @@ export const Card: React.FC<CardProps> = (props) => {
         <div className="relative h-[24rem]">
           <ImageBox
             fill
-            media={image as Media}
+            media={image}
             sizes="(max-width: 1024px) 100vw, 30vw"
           />
         </div>

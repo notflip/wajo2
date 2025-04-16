@@ -36,7 +36,7 @@ export const CasesComponent: React.FC<Cases> = async (props) => {
                   className="group-hover:scale-105 transition"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  media={item.image as Media}
+                  media={item.image}
                 />
               )}
               {item.callout?.content && (

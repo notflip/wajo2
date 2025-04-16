@@ -18,7 +18,7 @@ export const LogosComponent: React.FC<Logos> = (props) => {
             <div className="p-[calc(var(--marquee-size)_/_10)]" key={index}>
               <ImageBox
                 className="w-[var(--marquee-size)]"
-                media={image as Media}
+                media={image}
                 sizes="200px"
                 disableBlurhash
               />
@@ -30,7 +30,7 @@ export const LogosComponent: React.FC<Logos> = (props) => {
             <div className="p-[calc(var(--marquee-size)_/_10)]" key={index}>
               <ImageBox
                 className="w-[var(--marquee-size)]"
-                media={image as Media}
+                media={image}
                 sizes="200px"
                 disableBlurhash
               />

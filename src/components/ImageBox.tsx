@@ -5,7 +5,7 @@ import React from "react"
 interface ImageBoxProps extends React.HTMLAttributes<HTMLDivElement> {
   fill?: boolean
   lazyload?: boolean
-  media?: Media
+  media?: Media | number
   quality?: number
   sizes?: string
   disableBlurhash?: boolean

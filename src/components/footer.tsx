@@ -17,7 +17,7 @@ export async function Footer() {
           <div className="lg:col-span-3">
             <ImageBox
               disableBlurhash
-              media={siteSettings.logo as Media}
+              media={siteSettings.logo}
               className="w-[120px] mb-6"
               sizes="120px"
             />

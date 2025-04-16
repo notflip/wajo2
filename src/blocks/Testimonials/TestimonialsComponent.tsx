@@ -31,7 +31,7 @@ export const TestimonialsComponent: React.FC<Testimonials> = (props) => {
                 {item.image && (
                   <ImageBox
                     className="w-12 h-12 rounded-full"
-                    media={item.image as Media}
+                    media={item.image}
                     sizes="96px"
                   />
                 )}

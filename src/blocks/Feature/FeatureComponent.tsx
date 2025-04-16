@@ -20,7 +20,7 @@ export const FeatureComponent: React.FC<Feature> = (props) => {
           {image && (
             <ImageBox
               fill
-              media={image as Media}
+              media={image}
               sizes="(max-width: 1024px) 100vw, 40vw"
               className="rounded-[16px]"
             />

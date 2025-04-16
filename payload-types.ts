@@ -294,6 +294,16 @@ export interface Case {
     content?: string | null;
     image?: (number | null) | Media;
   };
+  stats?: {
+    statistics?:
+      | {
+          icon: string;
+          amount: string;
+          text: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
   tags?: ('copywriting' | 'webdevelopment' | 'webdesign' | 'marketing')[] | null;
   updatedAt: string;
   createdAt: string;
@@ -1222,6 +1232,18 @@ export interface CasesSelect1<T extends boolean = true> {
     | {
         content?: T;
         image?: T;
+      };
+  stats?:
+    | T
+    | {
+        statistics?:
+          | T
+          | {
+              icon?: T;
+              amount?: T;
+              text?: T;
+              id?: T;
+            };
       };
   tags?: T;
   updatedAt?: T;

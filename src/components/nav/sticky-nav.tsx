@@ -39,7 +39,7 @@ export default function StickyNavbar(props: StickyNavbarProps) {
           <Link href="/" className="flex-none">
             <ImageBox
               disableBlurhash
-              media={settings.logo as Media}
+              media={settings.logo}
               className="w-[100px] lg:w-[120px]"
               sizes="120px"
             />

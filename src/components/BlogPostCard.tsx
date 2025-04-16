@@ -11,7 +11,7 @@ export default function BlogPostCard({ post }: { post: Post }) {
           {post.heroImage && (
             <ImageBox
               className="aspect-[3/2] size-full"
-              media={post.heroImage as Media}
+              media={post.heroImage}
               sizes="600px"
             />
           )}
@@ -30,7 +30,7 @@ export default function BlogPostCard({ post }: { post: Post }) {
               <div className="mr-4 shrink-0">
                 <ImageBox
                   className="w-10 h-10 rounded-full"
-                  media={(post.author as User).avatar as Media}
+                  media={(post.author as User).avatar}
                   sizes="96px"
                 />
               </div>

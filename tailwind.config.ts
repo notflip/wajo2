@@ -23,6 +23,7 @@ export default {
       },
       slate: {
         50: "hsl(var(--slate-50))",
+        100: "hsl(var(--slate-100))",
         600: "hsl(var(--slate-600))",
         950: "hsl(var(--slate-950))",
       },

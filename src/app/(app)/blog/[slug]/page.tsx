@@ -94,7 +94,7 @@ export default async function Blog({ params }: PageProps) {
                   <div className="mr-4 shrink-0">
                     <ImageBox
                       className="w-10 h-10 rounded-full"
-                      media={(post.author as User).avatar as Media}
+                      media={(post.author as User).avatar}
                       sizes="96px"
                     />
                   </div>
@@ -139,7 +139,7 @@ export default async function Blog({ params }: PageProps) {
                 <ImageBox
                   fill
                   className="rounded-[20px]"
-                  media={post.heroImage as Media}
+                  media={post.heroImage}
                   sizes="(max-width: 639px) 375px, (max-width: 767px) 500px, (max-width: 1023px) 768px, 1920px"
                 />
               </div>

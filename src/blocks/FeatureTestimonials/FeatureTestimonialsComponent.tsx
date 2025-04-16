@@ -23,7 +23,7 @@ export const FeatureTestimonialsComponent: React.FC<FeatureTestimonials> = (prop
                 <div className="flex justify-between items-end mt-24 ">
                   <div className="flex gap-4">
                     <div className="relative overflow-hidden rounded-full w-12 h-12">
-                      <ImageBox fill disableBlurhash sizes="100px" media={item.author_avatar as Media} />
+                      <ImageBox fill disableBlurhash sizes="100px" media={item.author_avatar} />
                     </div>
                     <div>
                       <div>{item.author_name}</div>
