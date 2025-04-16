@@ -4,6 +4,7 @@ import { isAuthenticatedOrPublished } from "@/access/isAuthenticatedOrPublished"
 import { generatePreviewPath } from "@/utils/generatePreviewPath"
 import {
   BlocksFeature,
+  EXPERIMENTAL_TableFeature,
   HeadingFeature,
   lexicalEditor,
   UnorderedListFeature,
@@ -144,7 +145,12 @@ export const Posts: CollectionConfig = {
             {
               type: "richText",
               name: "content",
-              editor: lexicalEditor(),
+              editor: lexicalEditor({
+                features: ({ defaultFeatures }) => [
+                  ...defaultFeatures,
+                  EXPERIMENTAL_TableFeature(),
+                ],
+              }),
               //     {
               //     features: () => {
               //       return [

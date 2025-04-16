@@ -58,6 +58,21 @@
   --marquee-duration: 60s;
   --marquee-scroll-start: 0;
   --marquee-scroll-end: calc(-100% - var(--marquee-gap));
+
+  /* Lexical */
+  .lexical-table-cell {
+    border-color: var(--blue-950) !important;
+  }
+  .lexical-table-container th {
+    @apply bg-slate-50;
+  }
+  .lexical-table-container th > p {
+    @apply font-medium;
+  }
+  .lexical-table-container p {
+    color: var(--blue-950) !important;
+    @apply my-1;
+  }
 }
 
 @layer base {

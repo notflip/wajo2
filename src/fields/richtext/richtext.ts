@@ -1,5 +1,6 @@
 import {
   BlocksFeature,
+  EXPERIMENTAL_TableFeature,
   HeadingFeature,
   lexicalEditor,
   UnorderedListFeature,
@@ -27,6 +28,7 @@ export const richTextField = ({ name, label, admin = {} }: Props): Field => ({
         HeadingFeature({ enabledHeadingSizes: ["h2", "h3", "h4"] }),
         // BlocksFeature({ blocks: [MediaBlock, InlineListBlock] }),
         UnorderedListFeature(),
+        EXPERIMENTAL_TableFeature(),
       ]
     },
   }),

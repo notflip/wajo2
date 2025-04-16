@@ -65,8 +65,7 @@ export default {
       backgroundImage: {
         "fade-to-secondary":
           "linear-gradient(180deg, white 60%, hsl(var(--secondary)) 60%)",
-        "fade-to-gray":
-          "linear-gradient(180deg, white 60%, hsl(var(--slate-50)) 60%)",
+        "fade-to-gray": "linear-gradient(180deg, white 60%, hsl(var(--slate-50)) 60%)",
         "fade-to-gray-reverse":
           "linear-gradient(180deg, hsl(var(--slate-50)) 60%, white 60%)",
         "fade-to-black-reverse":
@@ -127,40 +126,6 @@ export default {
       fontFamily: {
         sans: ["var(--font-gilroy)"],
       },
-      //   typography: {
-      //     DEFAULT: {
-      //       css: {
-      //         "--tw-prose-body": "hsl(var(--foreground))",
-      //         maxWidth: "90ch",
-      //         "h2,h3,h4,h5": {
-      //           fontWeight: "400",
-      //           lineHeight: "1.1",
-      //         },
-      //         h2: {
-      //           fontSize: "2.25rem",
-      //         },
-      //         h3: {
-      //           fontSize: "1.75rem",
-      //         },
-      //         h4: {
-      //           fontSize: "1.5rem",
-      //         },
-      //       },
-      //     },
-      //     lg: {
-      //       css: {
-      //         h2: {
-      //           fontSize: "3rem",
-      //         },
-      //         h3: {
-      //           fontSize: "2.25rem",
-      //         },
-      //         h4: {
-      //           fontSize: "1.75rem",
-      //         },
-      //       },
-      //     },
-      //   },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
