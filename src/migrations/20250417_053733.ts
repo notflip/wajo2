@@ -758,36 +758,6 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"pages_id" integer
   );
   
-  CREATE TABLE IF NOT EXISTS "cases_problems_problem_sentences" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" varchar PRIMARY KEY NOT NULL,
-  	"text" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "cases_results_result_sentences" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" varchar PRIMARY KEY NOT NULL,
-  	"text" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "cases_images_group_images" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" varchar PRIMARY KEY NOT NULL,
-  	"image_id" integer
-  );
-  
-  CREATE TABLE IF NOT EXISTS "cases_stats_statistics" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" varchar PRIMARY KEY NOT NULL,
-  	"icon" varchar,
-  	"amount" varchar,
-  	"text" varchar
-  );
-  
   CREATE TABLE IF NOT EXISTS "cases_tags" (
   	"order" integer NOT NULL,
   	"parent_id" integer NOT NULL,
@@ -802,51 +772,9 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"image_id" integer,
   	"callout_content" varchar,
   	"callout_image_id" integer,
-  	"problems_title" varchar,
-  	"problems_content" varchar,
-  	"results_title" varchar,
-  	"results_content" varchar,
-  	"testimonial_group_image_id" integer,
-  	"testimonial_group_text" varchar,
-  	"testimonial_group_author_name" varchar,
-  	"testimonial_group_author_company" varchar,
   	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
   	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
   	"_status" "enum_cases_status" DEFAULT 'draft'
-  );
-  
-  CREATE TABLE IF NOT EXISTS "_cases_v_version_problems_problem_sentences" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"text" varchar,
-  	"_uuid" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "_cases_v_version_results_result_sentences" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"text" varchar,
-  	"_uuid" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "_cases_v_version_images_group_images" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"image_id" integer,
-  	"_uuid" varchar
-  );
-  
-  CREATE TABLE IF NOT EXISTS "_cases_v_version_stats_statistics" (
-  	"_order" integer NOT NULL,
-  	"_parent_id" integer NOT NULL,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"icon" varchar,
-  	"amount" varchar,
-  	"text" varchar,
-  	"_uuid" varchar
   );
   
   CREATE TABLE IF NOT EXISTS "_cases_v_version_tags" (
@@ -864,14 +792,6 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"version_image_id" integer,
   	"version_callout_content" varchar,
   	"version_callout_image_id" integer,
-  	"version_problems_title" varchar,
-  	"version_problems_content" varchar,
-  	"version_results_title" varchar,
-  	"version_results_content" varchar,
-  	"version_testimonial_group_image_id" integer,
-  	"version_testimonial_group_text" varchar,
-  	"version_testimonial_group_author_name" varchar,
-  	"version_testimonial_group_author_company" varchar,
   	"version_updated_at" timestamp(3) with time zone,
   	"version_created_at" timestamp(3) with time zone,
   	"version__status" "enum__cases_v_version_status" DEFAULT 'draft',
@@ -1751,36 +1671,6 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "cases_problems_problem_sentences" ADD CONSTRAINT "cases_problems_problem_sentences_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."cases"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "cases_results_result_sentences" ADD CONSTRAINT "cases_results_result_sentences_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."cases"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "cases_images_group_images" ADD CONSTRAINT "cases_images_group_images_image_id_media_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "cases_images_group_images" ADD CONSTRAINT "cases_images_group_images_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."cases"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "cases_stats_statistics" ADD CONSTRAINT "cases_stats_statistics_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."cases"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
    ALTER TABLE "cases_tags" ADD CONSTRAINT "cases_tags_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "public"."cases"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -1794,42 +1684,6 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   
   DO $$ BEGIN
    ALTER TABLE "cases" ADD CONSTRAINT "cases_callout_image_id_media_id_fk" FOREIGN KEY ("callout_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "cases" ADD CONSTRAINT "cases_testimonial_group_image_id_media_id_fk" FOREIGN KEY ("testimonial_group_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "_cases_v_version_problems_problem_sentences" ADD CONSTRAINT "_cases_v_version_problems_problem_sentences_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_cases_v"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "_cases_v_version_results_result_sentences" ADD CONSTRAINT "_cases_v_version_results_result_sentences_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_cases_v"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "_cases_v_version_images_group_images" ADD CONSTRAINT "_cases_v_version_images_group_images_image_id_media_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "_cases_v_version_images_group_images" ADD CONSTRAINT "_cases_v_version_images_group_images_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_cases_v"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "_cases_v_version_stats_statistics" ADD CONSTRAINT "_cases_v_version_stats_statistics_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_cases_v"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -1854,12 +1708,6 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   
   DO $$ BEGIN
    ALTER TABLE "_cases_v" ADD CONSTRAINT "_cases_v_version_callout_image_id_media_id_fk" FOREIGN KEY ("version_callout_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   ALTER TABLE "_cases_v" ADD CONSTRAINT "_cases_v_version_testimonial_group_image_id_media_id_fk" FOREIGN KEY ("version_testimonial_group_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -2323,40 +2171,20 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "_pages_v_rels_parent_idx" ON "_pages_v_rels" USING btree ("parent_id");
   CREATE INDEX IF NOT EXISTS "_pages_v_rels_path_idx" ON "_pages_v_rels" USING btree ("path");
   CREATE INDEX IF NOT EXISTS "_pages_v_rels_pages_id_idx" ON "_pages_v_rels" USING btree ("pages_id");
-  CREATE INDEX IF NOT EXISTS "cases_problems_problem_sentences_order_idx" ON "cases_problems_problem_sentences" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "cases_problems_problem_sentences_parent_id_idx" ON "cases_problems_problem_sentences" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "cases_results_result_sentences_order_idx" ON "cases_results_result_sentences" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "cases_results_result_sentences_parent_id_idx" ON "cases_results_result_sentences" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "cases_images_group_images_order_idx" ON "cases_images_group_images" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "cases_images_group_images_parent_id_idx" ON "cases_images_group_images" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "cases_images_group_images_image_idx" ON "cases_images_group_images" USING btree ("image_id");
-  CREATE INDEX IF NOT EXISTS "cases_stats_statistics_order_idx" ON "cases_stats_statistics" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "cases_stats_statistics_parent_id_idx" ON "cases_stats_statistics" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "cases_tags_order_idx" ON "cases_tags" USING btree ("order");
   CREATE INDEX IF NOT EXISTS "cases_tags_parent_idx" ON "cases_tags" USING btree ("parent_id");
   CREATE INDEX IF NOT EXISTS "cases_slug_idx" ON "cases" USING btree ("slug");
   CREATE INDEX IF NOT EXISTS "cases_image_idx" ON "cases" USING btree ("image_id");
   CREATE INDEX IF NOT EXISTS "cases_callout_callout_image_idx" ON "cases" USING btree ("callout_image_id");
-  CREATE INDEX IF NOT EXISTS "cases_testimonial_group_testimonial_group_image_idx" ON "cases" USING btree ("testimonial_group_image_id");
   CREATE INDEX IF NOT EXISTS "cases_updated_at_idx" ON "cases" USING btree ("updated_at");
   CREATE INDEX IF NOT EXISTS "cases_created_at_idx" ON "cases" USING btree ("created_at");
   CREATE INDEX IF NOT EXISTS "cases__status_idx" ON "cases" USING btree ("_status");
-  CREATE INDEX IF NOT EXISTS "_cases_v_version_problems_problem_sentences_order_idx" ON "_cases_v_version_problems_problem_sentences" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_cases_v_version_problems_problem_sentences_parent_id_idx" ON "_cases_v_version_problems_problem_sentences" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_cases_v_version_results_result_sentences_order_idx" ON "_cases_v_version_results_result_sentences" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_cases_v_version_results_result_sentences_parent_id_idx" ON "_cases_v_version_results_result_sentences" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_cases_v_version_images_group_images_order_idx" ON "_cases_v_version_images_group_images" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_cases_v_version_images_group_images_parent_id_idx" ON "_cases_v_version_images_group_images" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_cases_v_version_images_group_images_image_idx" ON "_cases_v_version_images_group_images" USING btree ("image_id");
-  CREATE INDEX IF NOT EXISTS "_cases_v_version_stats_statistics_order_idx" ON "_cases_v_version_stats_statistics" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_cases_v_version_stats_statistics_parent_id_idx" ON "_cases_v_version_stats_statistics" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_cases_v_version_tags_order_idx" ON "_cases_v_version_tags" USING btree ("order");
   CREATE INDEX IF NOT EXISTS "_cases_v_version_tags_parent_idx" ON "_cases_v_version_tags" USING btree ("parent_id");
   CREATE INDEX IF NOT EXISTS "_cases_v_parent_idx" ON "_cases_v" USING btree ("parent_id");
   CREATE INDEX IF NOT EXISTS "_cases_v_version_version_slug_idx" ON "_cases_v" USING btree ("version_slug");
   CREATE INDEX IF NOT EXISTS "_cases_v_version_version_image_idx" ON "_cases_v" USING btree ("version_image_id");
   CREATE INDEX IF NOT EXISTS "_cases_v_version_callout_version_callout_image_idx" ON "_cases_v" USING btree ("version_callout_image_id");
-  CREATE INDEX IF NOT EXISTS "_cases_v_version_testimonial_group_version_testimonial_group_image_idx" ON "_cases_v" USING btree ("version_testimonial_group_image_id");
   CREATE INDEX IF NOT EXISTS "_cases_v_version_version_updated_at_idx" ON "_cases_v" USING btree ("version_updated_at");
   CREATE INDEX IF NOT EXISTS "_cases_v_version_version_created_at_idx" ON "_cases_v" USING btree ("version_created_at");
   CREATE INDEX IF NOT EXISTS "_cases_v_version_version__status_idx" ON "_cases_v" USING btree ("version__status");
@@ -2539,16 +2367,8 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "_pages_v_version_breadcrumbs" CASCADE;
   DROP TABLE "_pages_v" CASCADE;
   DROP TABLE "_pages_v_rels" CASCADE;
-  DROP TABLE "cases_problems_problem_sentences" CASCADE;
-  DROP TABLE "cases_results_result_sentences" CASCADE;
-  DROP TABLE "cases_images_group_images" CASCADE;
-  DROP TABLE "cases_stats_statistics" CASCADE;
   DROP TABLE "cases_tags" CASCADE;
   DROP TABLE "cases" CASCADE;
-  DROP TABLE "_cases_v_version_problems_problem_sentences" CASCADE;
-  DROP TABLE "_cases_v_version_results_result_sentences" CASCADE;
-  DROP TABLE "_cases_v_version_images_group_images" CASCADE;
-  DROP TABLE "_cases_v_version_stats_statistics" CASCADE;
   DROP TABLE "_cases_v_version_tags" CASCADE;
   DROP TABLE "_cases_v" CASCADE;
   DROP TABLE "redirects" CASCADE;
