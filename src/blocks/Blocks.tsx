@@ -19,6 +19,7 @@ import { ProcessSliderComponent } from "@/blocks/ProcessSlider/ProcessSliderComp
 import { CtaBlockComponent } from "@/blocks/CtaBlock/CtaBlockComponent"
 import { SharedBlockComponent } from "@/blocks/SharedBlock/SharedBlockComponent"
 import { ContactFormComponent } from "@/blocks/ContactForm/ContactFormComponent"
+import { EmbedBlockComponent } from "@/blocks/EmbedBlock/EmbedBlockComponent"
 
 export const blockComponents: Record<string, BlockComponentType> = {
   hero: HeroComponent,
@@ -36,6 +37,7 @@ export const blockComponents: Record<string, BlockComponentType> = {
   featureTestimonials: FeatureTestimonialsComponent,
   processSlider: ProcessSliderComponent,
   contactForm: ContactFormComponent,
+  embedBlock: EmbedBlockComponent,
   cta: CtaBlockComponent,
   shared: SharedBlockComponent,
 }

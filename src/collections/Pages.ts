@@ -1,6 +1,10 @@
 import { CollectionConfig } from "payload"
 import { generatePreviewPath } from "@/utils/generatePreviewPath"
-import { MetaDescriptionField, MetaImageField, MetaTitleField } from "@payloadcms/plugin-seo/fields"
+import {
+  MetaDescriptionField,
+  MetaImageField,
+  MetaTitleField,
+} from "@payloadcms/plugin-seo/fields"
 import { isAuthenticated } from "@/access/isAuthenticated"
 import { slugField } from "@/fields/slug"
 import { isAuthenticatedOrPublished } from "@/access/isAuthenticatedOrPublished"
@@ -25,6 +29,7 @@ import { ProcessSlider } from "@/blocks/ProcessSlider/ProcessSlider"
 import { Logos } from "@/blocks/Logos/Logos"
 import { FeatureTestimonials } from "@/blocks/FeatureTestimonials/FeatureTestimonials"
 import ContactForm from "@/blocks/ContactForm/ContactForm"
+import EmbedBlock from "@/blocks/EmbedBlock/EmbedBlock"
 
 export const Pages: CollectionConfig<"pages"> = {
   slug: "pages",
@@ -121,6 +126,7 @@ export const Pages: CollectionConfig<"pages"> = {
                 ProcessSlider,
                 ContactForm,
                 CtaBlock,
+                EmbedBlock,
                 SharedBlock,
               ],
             },

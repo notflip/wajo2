@@ -3,13 +3,30 @@ import { ContactForm } from "@/components/contact-form"
 import { getCachedGlobal } from "@/utils/getGlobals"
 import { ContactForm as ContactFormType } from "@payload-types"
 import Link from "next/link"
+import Script from "next/script"
 
 export const ContactFormComponent: React.FC<ContactFormType> = async (props) => {
+  const { script, html } = props
+
   const siteSettings = await getCachedGlobal("settings")()
+  const inlineScript = script
+    .replace(/^<script[^>]*>/i, "")
+    .replace(/<\/script>$/i, "")
+    .trim()
 
   return (
     <BlockContainer {...props}>
       <div className="lg:flex lg:justify-between gap-32">
+        <div className="mt-8 lg:mt-0 lg:w-3/5 order-1 lg:order-2">
+          {/* <ContactForm /> */}
+          <div dangerouslySetInnerHTML={{ __html: html }} />
+          <Script
+            id="sender-init"
+            dangerouslySetInnerHTML={{
+              __html: inlineScript,
+            }}
+          ></Script>
+        </div>
         <div className="lg:w-2/5">
           <div className="bg-beige-50 rounded-[16px] p-8">
             <ul className="space-y-8">
@@ -43,9 +60,6 @@ export const ContactFormComponent: React.FC<ContactFormType> = async (props) => 
               )}
             </ul>
           </div>
-        </div>
-        <div className="mt-8 lg:mt-0 lg:w-3/5">
-          <ContactForm />
         </div>
       </div>
     </BlockContainer>

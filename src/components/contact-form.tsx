@@ -105,7 +105,7 @@ export function ContactForm() {
                   <a
                     target="_blank"
                     href="/privacy-policy"
-                    className="underline underline-offset-4 hover:opacity-80"
+                    className="underline hover:opacity-80"
                   >
                     privacy policy
                   </a>

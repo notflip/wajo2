@@ -171,6 +171,7 @@ export interface Page {
         | ProcessSlider
         | ContactForm
         | CtaBlock
+        | EmbedBlock
         | SharedBlock
       )[]
     | null;
@@ -639,6 +640,14 @@ export interface ProcessSlider {
  * via the `definition` "ContactForm".
  */
 export interface ContactForm {
+  /**
+   * Plak hier je <script>...</script> fragment (inclusief de tags).
+   */
+  script: string;
+  /**
+   * Plak het HTML-fragment (bijvoorbeeld een <div> voor de widget).
+   */
+  html: string;
   id?: string | null;
   blockName?: string | null;
   blockType: 'contactForm';
@@ -673,6 +682,27 @@ export interface CtaBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'ctaBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "EmbedBlock".
+ */
+export interface EmbedBlock {
+  /**
+   * Plak hier je <script>...</script> fragment (inclusief de tags).
+   */
+  script: string;
+  /**
+   * Plak het HTML-fragment (bijvoorbeeld een <div> voor de widget).
+   */
+  html: string;
+  /**
+   * Deze afbeelding wordt rechts van het embedded formulier getoond, indien gekozen
+   */
+  image?: (number | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'embedBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -912,6 +942,7 @@ export interface PagesSelect<T extends boolean = true> {
         processSlider?: T | ProcessSliderSelect<T>;
         contactForm?: T | ContactFormSelect<T>;
         ctaBlock?: T | CtaBlockSelect<T>;
+        embedBlock?: T | EmbedBlockSelect<T>;
         shared?: T | SharedBlockSelect<T>;
       };
   seo?:
@@ -1234,6 +1265,8 @@ export interface ProcessSliderSelect<T extends boolean = true> {
  * via the `definition` "ContactForm_select".
  */
 export interface ContactFormSelect<T extends boolean = true> {
+  script?: T;
+  html?: T;
   id?: T;
   blockName?: T;
 }
@@ -1260,6 +1293,17 @@ export interface CtaBlockSelect<T extends boolean = true> {
         id?: T;
       };
   bgColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "EmbedBlock_select".
+ */
+export interface EmbedBlockSelect<T extends boolean = true> {
+  script?: T;
+  html?: T;
+  image?: T;
   id?: T;
   blockName?: T;
 }

@@ -1,8 +1,8 @@
 import type { Block } from "payload"
 
-export const ContactForm: Block = {
-  slug: "contactForm",
-  interfaceName: "ContactForm",
+export const EmbedBlock: Block = {
+  slug: "embedBlock",
+  interfaceName: "EmbedBlock",
   fields: [
     {
       name: "script",
@@ -20,6 +20,16 @@ export const ContactForm: Block = {
         description: "Plak het HTML-fragment (bijvoorbeeld een <div> voor de widget).",
       },
     },
+    {
+      name: "image",
+      type: "upload",
+      relationTo: "media",
+      admin: {
+        description:
+          "Deze afbeelding wordt rechts van het embedded formulier getoond, indien gekozen",
+      },
+    },
   ],
 }
-export default ContactForm
+
+export default EmbedBlock
