@@ -37,7 +37,7 @@ export const HeroComponent: React.FC<Hero & SharedBlockProps> = (props) => {
           </h1>
           <p
             className={cn(
-              "max-w-prose text-base",
+              "max-w-prose mx-auto text-base",
               bgColor && bgColor === "black" ? `text-white` : "text-muted-foreground",
             )}
           >

@@ -1,7 +1,5 @@
 import * as React from "react"
 import { render } from "@react-email/render"
-import { Submission } from "@payload-types"
-
 import {
   Body,
   Container,
@@ -12,27 +10,20 @@ import {
   Tailwind,
   Text,
 } from "@react-email/components"
+import { Submission } from "@payload-types"
 
 interface Props {
   doc: Submission
 }
 
-export const RenderedEmail = async (data: Props) => {
-  return await render(<Email {...data} />)
-}
-
-export const Email = ({ doc }: Props) => {
+// 1. Default-export the component…
+export default function Email({ doc }: Props) {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL
-
   return (
     <Html>
       <Tailwind>
         <Body style={main}>
-          <Img
-            src={`${baseUrl}/logo-wajo.png`}
-            width="50"
-            className="mx-auto mt-8"
-          />
+          <Img src={`${baseUrl}/logo-wajo.png`} width="50" className="mx-auto mt-8" />
           <Container style={container}>
             <Heading className="text-center">{doc.form}</Heading>
             <Section className="bg-slate-100 p-4 rounded">
@@ -58,6 +49,7 @@ export const Email = ({ doc }: Props) => {
   )
 }
 
+// 2. Attach PreviewProps to *the default-exported* component
 Email.PreviewProps = {
   doc: {
     id: 1,
@@ -73,6 +65,11 @@ Email.PreviewProps = {
     updatedAt: new Date().toDateString(),
   },
 } as Props
+
+// 3. (Optionally) if you need the `render()` wrapper, keep it as a named export
+export const RenderedEmail = async (data: Props) => {
+  return await render(<Email {...data} />)
+}
 
 const main = {
   fontFamily:

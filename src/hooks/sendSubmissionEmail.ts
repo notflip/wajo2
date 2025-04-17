@@ -19,7 +19,7 @@ export const SendSubmissionEmail: CollectionAfterChangeHook<
     await payload.sendEmail({
       to: website_emails.map((m) => m.email),
       from: process.env.MAIL_FROM,
-      subject: "Aanvraag voor afspraak",
+      subject: "💌 Contactaanvraag via website",
       html: await RenderedEmail({ doc }),
     })
   }

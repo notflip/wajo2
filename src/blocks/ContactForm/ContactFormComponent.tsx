@@ -1,15 +1,16 @@
 import { BlockContainer } from "@/blocks/BlockContainer"
+import { ContactForm } from "@/components/contact-form"
 import { getCachedGlobal } from "@/utils/getGlobals"
-import { ContactForm } from "@payload-types"
+import { ContactForm as ContactFormType } from "@payload-types"
 import Link from "next/link"
 
-export const ContactFormComponent: React.FC<ContactForm> = async (props) => {
+export const ContactFormComponent: React.FC<ContactFormType> = async (props) => {
   const siteSettings = await getCachedGlobal("settings")()
 
   return (
     <BlockContainer {...props}>
-      <div className="flex justify-between gap-32">
-        <div className="w-full lg:w-2/5">
+      <div className="lg:flex lg:justify-between gap-32">
+        <div className="lg:w-2/5">
           <div className="bg-beige-50 rounded-[16px] p-8">
             <ul className="space-y-8">
               <li>
@@ -43,7 +44,9 @@ export const ContactFormComponent: React.FC<ContactForm> = async (props) => {
             </ul>
           </div>
         </div>
-        <div className="w-full lg:w-3/5">Hello</div>
+        <div className="mt-8 lg:mt-0 lg:w-3/5">
+          <ContactForm />
+        </div>
       </div>
     </BlockContainer>
   )

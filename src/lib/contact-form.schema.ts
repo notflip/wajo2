@@ -8,16 +8,12 @@ export function getContactFormSchema() {
     email: z.string().email({
       message: "Gelieve een geldig e-mail adres in te voeren",
     }),
-    telefoon: z.string().min(2, {
-      message: "Telefoonnummer is niet geldig",
-    }),
+    telefoon: z.string().optional(),
     boodschap: z.string().optional(),
     accepteer: z.boolean().refine((value) => value === true, {
-      message: "Je moet akkoord gaan met de voorwaarden.",
+      message: "Bevestig of je akkoord gaat met de privacy voorwaarden.",
     }),
   })
 }
 
-export type ContactFormValues = z.infer<
-  ReturnType<typeof getContactFormSchema>
->
+export type ContactFormValues = z.infer<ReturnType<typeof getContactFormSchema>>

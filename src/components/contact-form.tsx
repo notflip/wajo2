@@ -1,10 +1,7 @@
 "use client"
 
 import { Form } from "@/components/ui/form"
-import {
-  ContactFormValues,
-  getContactFormSchema,
-} from "@/lib/contact-form.schema"
+import { ContactFormValues, getContactFormSchema } from "@/lib/contact-form.schema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { TextField } from "@/form/TextField"
@@ -52,9 +49,7 @@ export function ContactForm() {
       if (!response.ok) {
         const errorData = await response.json()
         setLoading(false)
-        setError(
-          errorData.message || "Er deed zich een fout voor bij het verzenden.",
-        )
+        setError(errorData.message || "Er deed zich een fout voor bij het verzenden.")
         return
       }
 
@@ -94,28 +89,31 @@ export function ContactForm() {
             method="POST"
           >
             <TextField label="Naam" control={form.control} name="naam" />
-            <EmailField
-              name="email"
-              label="E-mail adres"
-              control={form.control}
-            />
-            <TextField
-              name="telefoon"
-              label="Telefoonnummer"
-              control={form.control}
-            />
+            <EmailField name="email" label="E-mail adres" control={form.control} />
+            <TextField name="telefoon" label="Telefoonnummer" control={form.control} />
             <TextareaField
               name="boodschap"
               control={form.control}
-              label="Heb je opmerkingen?"
+              label="Bericht"
               placeholder="Typ uw bericht..."
             />
             <CheckboxField
               name="accepteer"
-              label="Ik accepteer de voorwaarden"
+              label={
+                <>
+                  Ik accepteer de{" "}
+                  <a
+                    target="_blank"
+                    href="/privacy-policy"
+                    className="underline underline-offset-4 hover:opacity-80"
+                  >
+                    privacy policy
+                  </a>
+                </>
+              }
               control={form.control}
             />
-            <AnimatedButton asChild type="submit" disabled={loading}>
+            <AnimatedButton variant="foreground" type="submit" disabled={loading}>
               {loading ? <span>Laden...</span> : <span>Verzenden</span>}
             </AnimatedButton>
           </form>

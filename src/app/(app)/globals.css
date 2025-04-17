@@ -12,6 +12,7 @@
   /* Slate */
   --slate-50: 210 40% 96%;
   --slate-100: 210 40% 92%;
+  --slate-200: 210 40% 86%;
   --slate-600: 224 16% 31%;
   --slate-950: 224 20% 23%;
 
@@ -43,8 +44,8 @@
   --destructive: 0 100% 30%;
   --destructive-foreground: 11 5% 90%;
   --border: var(--beige-100);
-  --input: 11 30% 17%;
-  --ring: 11 81.8% 89.2%;
+  --input: var(--slate-200);
+  --ring: var(--blue-500);
   --radius: 0.5rem;
 
   /* Swiper */

@@ -9,7 +9,8 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "email:dev": "cp .env ./node_modules/react-email/dist/preview && email dev --dir src/emails -p 3001",
+    "email:devold": "cp .env ./node_modules/react-email/dist/preview && email dev --dir src/emails -p 3001",
+    "email:dev": "email dev --dir src/emails",
     "build": "next build",
     "build:analyse": "ANALYZE=true pnpm build",
     "start": "next start",
