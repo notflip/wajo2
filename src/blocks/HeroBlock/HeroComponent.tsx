@@ -19,8 +19,13 @@ export const HeroComponent: React.FC<Hero & SharedBlockProps> = (props) => {
             "mx-auto text-center": textAlign === "center",
           })}
         >
-          <div className="mb-8">
-            <Breadcrumbs />
+          <div
+            className={cn(
+              "mb-8",
+              bgColor && bgColor === "black" ? `text-white` : "text-foreground",
+            )}
+          >
+            <Breadcrumbs textAlign={textAlign} />
           </div>
           <h1
             className={cn(
@@ -49,7 +54,12 @@ export const HeroComponent: React.FC<Hero & SharedBlockProps> = (props) => {
                   )
                 } else {
                   return (
-                    <AnimatedButton key={i} variant="avatars" avatars={<Avatars />} asChild>
+                    <AnimatedButton
+                      key={i}
+                      variant="avatars"
+                      avatars={<Avatars />}
+                      asChild
+                    >
                       <CmsLink {...link} />
                     </AnimatedButton>
                   )

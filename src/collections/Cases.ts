@@ -62,6 +62,33 @@ export const Cases: CollectionConfig = {
       ],
     },
     {
+      name: "stats",
+      type: "group",
+      fields: [
+        {
+          name: "statistics",
+          type: "array",
+          maxRows: 2,
+          label: false,
+          fields: [
+            IconField,
+            {
+              name: "amount",
+              type: "text",
+              required: true,
+              maxLength: 6,
+            },
+            {
+              name: "text",
+              type: "textarea",
+              required: true,
+              maxLength: 200,
+            },
+          ],
+        },
+      ],
+    },
+    {
       name: "problems",
       type: "group",
       fields: [
@@ -130,33 +157,6 @@ export const Cases: CollectionConfig = {
               type: "upload",
               relationTo: "media",
               required: true,
-            },
-          ],
-        },
-      ],
-    },
-    {
-      name: "stats",
-      type: "group",
-      fields: [
-        {
-          name: "statistics",
-          type: "array",
-          maxRows: 2,
-          label: false,
-          fields: [
-            IconField,
-            {
-              name: "amount",
-              type: "text",
-              required: true,
-              maxLength: 6,
-            },
-            {
-              name: "text",
-              type: "textarea",
-              required: true,
-              maxLength: 200,
             },
           ],
         },

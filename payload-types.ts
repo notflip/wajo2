@@ -294,6 +294,16 @@ export interface Case {
     content?: string | null;
     image?: (number | null) | Media;
   };
+  stats?: {
+    statistics?:
+      | {
+          icon: string;
+          amount: string;
+          text: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
   problems: {
     title: string;
     content?: string | null;
@@ -318,16 +328,6 @@ export interface Case {
     images?:
       | {
           image: number | Media;
-          id?: string | null;
-        }[]
-      | null;
-  };
-  stats?: {
-    statistics?:
-      | {
-          icon: string;
-          amount: string;
-          text: string;
           id?: string | null;
         }[]
       | null;
@@ -1267,6 +1267,18 @@ export interface CasesSelect1<T extends boolean = true> {
         content?: T;
         image?: T;
       };
+  stats?:
+    | T
+    | {
+        statistics?:
+          | T
+          | {
+              icon?: T;
+              amount?: T;
+              text?: T;
+              id?: T;
+            };
+      };
   problems?:
     | T
     | {
@@ -1298,18 +1310,6 @@ export interface CasesSelect1<T extends boolean = true> {
           | T
           | {
               image?: T;
-              id?: T;
-            };
-      };
-  stats?:
-    | T
-    | {
-        statistics?:
-          | T
-          | {
-              icon?: T;
-              amount?: T;
-              text?: T;
               id?: T;
             };
       };

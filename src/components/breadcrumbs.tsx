@@ -13,7 +13,11 @@ import { Fragment } from "react"
 
 import { HiArrowLeft } from "react-icons/hi"
 
-export default function Breadcrumbs() {
+interface BreadcrumbsProps {
+  textAlign?: "left" | "center" | null
+}
+
+export default function Breadcrumbs({ textAlign }: BreadcrumbsProps) {
   const paths = usePathname()
   const pathNames = paths.split("/").filter((path) => path)
 
@@ -23,7 +27,7 @@ export default function Breadcrumbs() {
 
   return (
     <Breadcrumb>
-      <BreadcrumbList>
+      <BreadcrumbList className={textAlign === "center" ? "justify-center" : ""}>
         <BreadcrumbItem>
           <BreadcrumbLink asChild className="flex gap-2 items-center">
             <Link href="/">
