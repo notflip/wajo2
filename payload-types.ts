@@ -169,6 +169,7 @@ export interface Page {
         | Slider
         | Logos
         | ProcessSlider
+        | ContactForm
         | CtaBlock
         | SharedBlock
       )[]
@@ -635,6 +636,15 @@ export interface ProcessSlider {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactForm".
+ */
+export interface ContactForm {
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contactForm';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "CtaBlock".
  */
 export interface CtaBlock {
@@ -900,6 +910,7 @@ export interface PagesSelect<T extends boolean = true> {
         slider?: T | SliderSelect<T>;
         logos?: T | LogosSelect<T>;
         processSlider?: T | ProcessSliderSelect<T>;
+        contactForm?: T | ContactFormSelect<T>;
         ctaBlock?: T | CtaBlockSelect<T>;
         shared?: T | SharedBlockSelect<T>;
       };
@@ -1215,6 +1226,14 @@ export interface ProcessSliderSelect<T extends boolean = true> {
         content?: T;
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactForm_select".
+ */
+export interface ContactFormSelect<T extends boolean = true> {
   id?: T;
   blockName?: T;
 }

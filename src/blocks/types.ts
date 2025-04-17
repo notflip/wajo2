@@ -22,6 +22,7 @@ export type BlockType =
   | "featureTestimonials"
   | "processSlider"
   | "ctaBlock"
+  | "contactForm"
   | "shared"
 
 export interface BlockItem {

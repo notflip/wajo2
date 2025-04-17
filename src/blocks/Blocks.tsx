@@ -18,6 +18,7 @@ import { FeatureTestimonialsComponent } from "@/blocks/FeatureTestimonials/Featu
 import { ProcessSliderComponent } from "@/blocks/ProcessSlider/ProcessSliderComponent"
 import { CtaBlockComponent } from "@/blocks/CtaBlock/CtaBlockComponent"
 import { SharedBlockComponent } from "@/blocks/SharedBlock/SharedBlockComponent"
+import { ContactFormComponent } from "@/blocks/ContactForm/ContactFormComponent"
 
 export const blockComponents: Record<string, BlockComponentType> = {
   hero: HeroComponent,
@@ -34,6 +35,7 @@ export const blockComponents: Record<string, BlockComponentType> = {
   logos: LogosComponent,
   featureTestimonials: FeatureTestimonialsComponent,
   processSlider: ProcessSliderComponent,
+  contactForm: ContactFormComponent,
   cta: CtaBlockComponent,
   shared: SharedBlockComponent,
 }

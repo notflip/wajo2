@@ -24,6 +24,7 @@ import { Slider } from "@/blocks/Slider/Slider"
 import { ProcessSlider } from "@/blocks/ProcessSlider/ProcessSlider"
 import { Logos } from "@/blocks/Logos/Logos"
 import { FeatureTestimonials } from "@/blocks/FeatureTestimonials/FeatureTestimonials"
+import ContactForm from "@/blocks/ContactForm/ContactForm"
 
 export const Pages: CollectionConfig<"pages"> = {
   slug: "pages",
@@ -118,6 +119,7 @@ export const Pages: CollectionConfig<"pages"> = {
                 Slider,
                 Logos,
                 ProcessSlider,
+                ContactForm,
                 CtaBlock,
                 SharedBlock,
               ],

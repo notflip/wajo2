@@ -14,6 +14,7 @@ export default {
       beige: {
         50: "hsl(var(--beige-50))",
         100: "hsl(var(--beige-100))",
+        400: "hsl(var(--beige-400))",
       },
       blue: {
         50: "hsl(var(--blue-50))",
