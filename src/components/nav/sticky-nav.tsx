@@ -31,7 +31,7 @@ export default function StickyNavbar(props: StickyNavbarProps) {
   return (
     <header
       className={`${
-        scrolledFromTop ? "h-16 lg:h-20 bg-slate-50" : "h-24"
+        scrolledFromTop ? "h-16 lg:h-20 backdrop-filter border-b border-slate-100" : "h-24"
       } transition-all fixed top-0 left-0 w-full z-[999] bg-white`}
     >
       <div className="h-full mx-auto max-w-screen-2xl px-4 md:px-12 2xl:px-16">

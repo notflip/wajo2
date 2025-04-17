@@ -294,6 +294,34 @@ export interface Case {
     content?: string | null;
     image?: (number | null) | Media;
   };
+  problems: {
+    title: string;
+    content?: string | null;
+    problem_sentences?:
+      | {
+          text: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  results: {
+    title: string;
+    content?: string | null;
+    result_sentences?:
+      | {
+          text: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  images_group?: {
+    images?:
+      | {
+          image: number | Media;
+          id?: string | null;
+        }[]
+      | null;
+  };
   stats?: {
     statistics?:
       | {
@@ -303,6 +331,12 @@ export interface Case {
           id?: string | null;
         }[]
       | null;
+  };
+  testimonial_group?: {
+    image?: (number | null) | Media;
+    text?: string | null;
+    author_name?: string | null;
+    author_company?: string | null;
   };
   tags?: ('copywriting' | 'webdevelopment' | 'webdesign' | 'marketing')[] | null;
   updatedAt: string;
@@ -1233,6 +1267,40 @@ export interface CasesSelect1<T extends boolean = true> {
         content?: T;
         image?: T;
       };
+  problems?:
+    | T
+    | {
+        title?: T;
+        content?: T;
+        problem_sentences?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+      };
+  results?:
+    | T
+    | {
+        title?: T;
+        content?: T;
+        result_sentences?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+      };
+  images_group?:
+    | T
+    | {
+        images?:
+          | T
+          | {
+              image?: T;
+              id?: T;
+            };
+      };
   stats?:
     | T
     | {
@@ -1244,6 +1312,14 @@ export interface CasesSelect1<T extends boolean = true> {
               text?: T;
               id?: T;
             };
+      };
+  testimonial_group?:
+    | T
+    | {
+        image?: T;
+        text?: T;
+        author_name?: T;
+        author_company?: T;
       };
   tags?: T;
   updatedAt?: T;

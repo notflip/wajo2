@@ -62,6 +62,80 @@ export const Cases: CollectionConfig = {
       ],
     },
     {
+      name: "problems",
+      type: "group",
+      fields: [
+        {
+          name: "title",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "content",
+          type: "textarea",
+        },
+        {
+          name: "problem_sentences",
+          type: "array",
+          label: false,
+          fields: [
+            {
+              name: "text",
+              type: "textarea",
+              required: true,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "results",
+      type: "group",
+      fields: [
+        {
+          name: "title",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "content",
+          type: "textarea",
+        },
+        {
+          name: "result_sentences",
+          type: "array",
+          label: false,
+          fields: [
+            {
+              name: "text",
+              type: "textarea",
+              required: true,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "images_group",
+      label: "Images",
+      type: "group",
+      fields: [
+        {
+          name: "images",
+          type: "array",
+          label: false,
+          fields: [
+            {
+              name: "image",
+              type: "upload",
+              relationTo: "media",
+              required: true,
+            },
+          ],
+        },
+      ],
+    },
+    {
       name: "stats",
       type: "group",
       fields: [
@@ -85,6 +159,31 @@ export const Cases: CollectionConfig = {
               maxLength: 200,
             },
           ],
+        },
+      ],
+    },
+    {
+      name: "testimonial_group",
+      label: "Testimonial",
+      type: "group",
+      fields: [
+        {
+          name: "image",
+          type: "upload",
+          relationTo: "media",
+        },
+        {
+          name: "text",
+          type: "textarea",
+          maxLength: 250,
+        },
+        {
+          name: "author_name",
+          type: "text",
+        },
+        {
+          name: "author_company",
+          type: "text",
         },
       ],
     },
