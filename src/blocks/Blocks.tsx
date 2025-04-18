@@ -20,6 +20,7 @@ import { CtaBlockComponent } from "@/blocks/CtaBlock/CtaBlockComponent"
 import { SharedBlockComponent } from "@/blocks/SharedBlock/SharedBlockComponent"
 import { ContactFormComponent } from "@/blocks/ContactForm/ContactFormComponent"
 import { EmbedBlockComponent } from "@/blocks/EmbedBlock/EmbedBlockComponent"
+import { FeatureGridComponent } from "@/blocks/FeatureGrid/FeatureGridComponent"
 
 export const blockComponents: Record<string, BlockComponentType> = {
   hero: HeroComponent,
@@ -27,14 +28,15 @@ export const blockComponents: Record<string, BlockComponentType> = {
   paragraph: ParagraphComponent,
   cards: CardsComponent,
   cases: CasesComponent,
+  featureGrid: FeatureGridComponent,
   featureRows: FeatureRowsComponent,
   featureList: FeatureListComponent,
+  featureTestimonials: FeatureTestimonialsComponent,
   testimonials: TestimonialsComponent,
   team: TeamComponent,
   feature: FeatureComponent,
   slider: SliderComponent,
   logos: LogosComponent,
-  featureTestimonials: FeatureTestimonialsComponent,
   processSlider: ProcessSliderComponent,
   contactForm: ContactFormComponent,
   embedBlock: EmbedBlockComponent,

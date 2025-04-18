@@ -2,8 +2,10 @@ import { link } from "@/fields/link/link"
 import {
   BlocksFeature,
   BoldFeature,
+  HeadingFeature,
   ItalicFeature,
   lexicalEditor,
+  LinkFeature,
   ParagraphFeature,
 } from "@payloadcms/richtext-lexical"
 import type { Block } from "payload"
@@ -16,7 +18,8 @@ export const Feature: Block = {
       name: "subtitle",
       type: "text",
       admin: {
-        description: "Indien dit ingevuld is, komt deze kleine titel boven de hoofd titel in een kader staan",
+        description:
+          "Indien dit ingevuld is, komt deze kleine titel boven de hoofd titel in een kader staan",
       },
     },
     {
@@ -29,9 +32,12 @@ export const Feature: Block = {
       name: "content",
       label: "Content",
       editor: lexicalEditor({
-        features: ({}) => {
-          return [ParagraphFeature(), BoldFeature(), ItalicFeature()]
-        },
+        features: ({ defaultFeatures }) => [
+          ...defaultFeatures,
+          HeadingFeature({
+            enabledHeadingSizes: ["h4", "h5"],
+          }),
+        ],
       }),
     },
     {

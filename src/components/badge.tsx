@@ -31,7 +31,7 @@ export default function Badge({ text, bgColor, showIcon = true }: BadgeProps) {
           />
         </svg>
       )}
-      <div className="whitespace-nowrap">{text}</div>
+      <div className="">{text}</div>
     </div>
   )
 }

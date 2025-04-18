@@ -13,30 +13,35 @@ export const EmbedBlockComponent: React.FC<EmbedBlock> = ({
   image,
   ...rest
 }) => {
-  const inlineScript = script.replace(/^<script[^>]*>/i, "").replace(/<\/script>$/i, "").trim()
+  const inlineScript = script
+    .replace(/^<script[^>]*>/i, "")
+    .replace(/<\/script>$/i, "")
+    .trim()
 
   return (
-    <BlockContainer {...rest} className="mt-16 lg:mt-24">
-      <div className="bg-beige-50 rounded-[16px] flex flex-col lg:flex-row items-stretch justify-between gap-8">
-        <div className="w-full lg:w-1/2 p-8">
+    <BlockContainer {...rest}>
+      <div className="pt-16 lg:pt-24 flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div className={`w-full ${image ? "lg:w-1/2" : ""}`}>
           <div dangerouslySetInnerHTML={{ __html: html }} />
           <Script
-            id="sender-init"
+            strategy="afterInteractive"
             dangerouslySetInnerHTML={{
               __html: inlineScript,
             }}
           ></Script>
         </div>
-        <div className="w-full lg:w-1/2 order-2 lg:order-1 relative min-h-[400px] lg:max-w-[42rem]">
-          {image && (
-            <ImageBox
-              fill
-              media={image}
-              sizes="(max-width: 1024px) 100vw, 40vw"
-              className="rounded-[16px]"
-            />
-          )}
-        </div>
+        {image && (
+          <div className="w-full lg:w-1/2 order-2 lg:order-1 relative min-h-[400px] lg:max-w-[42rem]">
+            {image && (
+              <ImageBox
+                fill
+                media={image}
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="rounded-[16px]"
+              />
+            )}
+          </div>
+        )}
       </div>
     </BlockContainer>
   )

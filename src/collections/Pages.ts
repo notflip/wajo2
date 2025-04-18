@@ -30,6 +30,7 @@ import { Logos } from "@/blocks/Logos/Logos"
 import { FeatureTestimonials } from "@/blocks/FeatureTestimonials/FeatureTestimonials"
 import ContactForm from "@/blocks/ContactForm/ContactForm"
 import EmbedBlock from "@/blocks/EmbedBlock/EmbedBlock"
+import { FeatureGrid } from "@/blocks/FeatureGrid/FeatureGrid"
 
 export const Pages: CollectionConfig<"pages"> = {
   slug: "pages",
@@ -110,24 +111,25 @@ export const Pages: CollectionConfig<"pages"> = {
               name: "blocks",
               type: "blocks",
               blocks: [
-                Hero,
-                Image,
-                Paragraph,
+                EmbedBlock,
                 Cards,
                 Cases,
+                ContactForm,
+                CtaBlock,
+                Feature,
+                Image,
+                FeatureGrid,
                 FeatureRows,
                 FeatureList,
                 FeatureTestimonials,
-                Testimonials,
-                Team,
-                Feature,
-                Slider,
+                Hero,
                 Logos,
+                Paragraph,
                 ProcessSlider,
-                ContactForm,
-                CtaBlock,
-                EmbedBlock,
+                Slider,
                 SharedBlock,
+                Team,
+                Testimonials,
               ],
             },
           ],

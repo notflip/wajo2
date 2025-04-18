@@ -12,11 +12,11 @@ export const FeatureComponent: React.FC<Feature> = (props) => {
     <BlockContainer>
       <div
         className={cn(
-          "flex flex-col lg:flex-row items-center justify-between gap-8",
+          "flex flex-col lg:flex-row items-stretch justify-between gap-8",
           { "lg:flex-row-reverse": variant === "imageLeft" },
         )}
       >
-        <div className="w-full lg:w-1/2 order-2 lg:order-1 relative h-[32rem] lg:max-w-[42rem]">
+        <div className="w-full lg:w-1/2 order-2 lg:order-1 relative lg:max-w-[42rem]">
           {image && (
             <ImageBox
               fill
@@ -32,7 +32,7 @@ export const FeatureComponent: React.FC<Feature> = (props) => {
               <Badge text={subtitle} />
             </div>
           )}
-          <h2 className="mb-6">{title}</h2>
+          <h2 className="h3 mb-8">{title}</h2>
           {content && <RichText data={content} />}
         </div>
       </div>

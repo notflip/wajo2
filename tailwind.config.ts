@@ -134,6 +134,16 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      typography: () => ({
+        DEFAULT: {
+          css: {
+            "--tw-prose-body": "hsl(var(--blue-950))",
+            h5: {
+              fontWeight: 600,
+            },
+          },
+        },
+      }),
       keyframes: {
         "scroll-x": {
           from: { transform: "translateX(var(--marquee-scroll-start))" },

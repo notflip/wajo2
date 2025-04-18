@@ -13,6 +13,7 @@ export const FeatureRows: Block = {
       name: "badge",
       type: "text",
       required: true,
+      maxLength: 30,
     },
     {
       name: "title",

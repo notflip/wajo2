@@ -155,24 +155,25 @@ export interface Page {
   title: string;
   blocks?:
     | (
-        | Hero
-        | Image
-        | Paragraph
+        | EmbedBlock
         | Cards
         | Cases
+        | ContactForm
+        | CtaBlock
+        | Feature
+        | Image
+        | FeatureGrid
         | FeatureRows
         | FeatureList
         | FeatureTestimonials
-        | Testimonials
-        | Team
-        | Feature
-        | Slider
+        | Hero
         | Logos
+        | Paragraph
         | ProcessSlider
-        | ContactForm
-        | CtaBlock
-        | EmbedBlock
+        | Slider
         | SharedBlock
+        | Team
+        | Testimonials
       )[]
     | null;
   seo?: {
@@ -198,49 +199,24 @@ export interface Page {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Hero".
+ * via the `definition` "EmbedBlock".
  */
-export interface Hero {
-  title: string;
-  content: string;
-  links?:
-    | {
-        link: {
-          type: 'reference' | 'custom';
-          newTab?: boolean | null;
-          reference?: {
-            relationTo: 'pages';
-            value: number | Page;
-          } | null;
-          url?: string | null;
-          label?: string | null;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  textAlign?: ('left' | 'center') | null;
-  bgColor?: ('beige' | 'black') | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'hero';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Image".
- */
-export interface Image {
+export interface EmbedBlock {
   /**
-   * Dit veld is een landschap afbeelding, de afbeelding die je hier upload moet in een landschap formaat zijn
+   * Plak hier je <script>...</script> fragment (inclusief de tags).
    */
-  image: number | Media;
-  callout?: {
-    content?: string | null;
-    link?: (number | null) | Case;
-    image?: (number | null) | Media;
-  };
+  script: string;
+  /**
+   * Plak het HTML-fragment (bijvoorbeeld een <div> voor de widget).
+   */
+  html: string;
+  /**
+   * Deze afbeelding wordt rechts van het embedded formulier getoond, indien gekozen
+   */
+  image?: (number | null) | Media;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'image';
+  blockType: 'embedBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -279,6 +255,146 @@ export interface Media {
       filename?: string | null;
     };
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Cards".
+ */
+export interface Cards {
+  items?:
+    | {
+        icon: string;
+        title: string;
+        text: string;
+        reference?: {
+          relationTo: 'pages';
+          value: number | Page;
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
+  bgColor?: 'beige' | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'cards';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Cases".
+ */
+export interface Cases {
+  badge?: string | null;
+  title?: string | null;
+  link?: {
+    type?: ('none' | 'reference' | 'custom') | null;
+    newTab?: boolean | null;
+    reference?: {
+      relationTo: 'pages';
+      value: number | Page;
+    } | null;
+    url?: string | null;
+    label?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'cases';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactForm".
+ */
+export interface ContactForm {
+  /**
+   * Plak hier je <script>...</script> fragment (inclusief de tags).
+   */
+  script: string;
+  /**
+   * Plak het HTML-fragment (bijvoorbeeld een <div> voor de widget).
+   */
+  html: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contactForm';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CtaBlock".
+ */
+export interface CtaBlock {
+  /**
+   * Indien dit ingevuld is, komt deze kleine titel boven de hoofd titel in een kader staan
+   */
+  subtitle?: string | null;
+  title: string;
+  text?: string | null;
+  links?:
+    | {
+        link: {
+          type: 'reference' | 'custom';
+          newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: number | Page;
+          } | null;
+          url?: string | null;
+          label?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  bgColor?: 'blue' | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ctaBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Feature".
+ */
+export interface Feature {
+  /**
+   * Indien dit ingevuld is, komt deze kleine titel boven de hoofd titel in een kader staan
+   */
+  subtitle?: string | null;
+  title: string;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  image: number | Media;
+  variant?: ('imageLeft' | 'imageRight') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'feature';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Image".
+ */
+export interface Image {
+  /**
+   * Dit veld is een landschap afbeelding, de afbeelding die je hier upload moet in een landschap formaat zijn
+   */
+  image: number | Media;
+  callout?: {
+    content?: string | null;
+    link?: (number | null) | Case;
+    image?: (number | null) | Media;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'image';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -347,58 +463,23 @@ export interface Case {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Paragraph".
+ * via the `definition` "FeatureGrid".
  */
-export interface Paragraph {
+export interface FeatureGrid {
   badge: string;
-  content: string;
-  bgColor?: 'beige' | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'paragraph';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Cards".
- */
-export interface Cards {
+  title: string;
   items?:
     | {
         icon: string;
         title: string;
         text: string;
-        reference?: {
-          relationTo: 'pages';
-          value: number | Page;
-        } | null;
         id?: string | null;
       }[]
     | null;
-  bgColor?: 'beige' | null;
+  bgColor?: ('beige' | 'gray') | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'cards';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Cases".
- */
-export interface Cases {
-  badge?: string | null;
-  title?: string | null;
-  link?: {
-    type?: ('none' | 'reference' | 'custom') | null;
-    newTab?: boolean | null;
-    reference?: {
-      relationTo: 'pages';
-      value: number | Page;
-    } | null;
-    url?: string | null;
-    label?: string | null;
-  };
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'cases';
+  blockType: 'featureGrid';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -425,7 +506,7 @@ export interface FeatureRows {
  * via the `definition` "FeatureList".
  */
 export interface FeatureList {
-  badge: string;
+  badge?: string | null;
   title: string;
   link: {
     type: 'reference' | 'custom';
@@ -482,32 +563,11 @@ export interface FeatureTestimonials {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Testimonials".
+ * via the `definition` "Hero".
  */
-export interface Testimonials {
-  badge: string;
+export interface Hero {
   title: string;
-  items?:
-    | {
-        name: string;
-        text: string;
-        image?: (number | null) | Media;
-        id?: string | null;
-      }[]
-    | null;
-  bgColor?: ('beige' | 'gray') | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'testimonials';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Team".
- */
-export interface Team {
-  badge: string;
-  title: string;
-  content?: string | null;
+  content: string;
   links?:
     | {
         link: {
@@ -523,48 +583,57 @@ export interface Team {
         id?: string | null;
       }[]
     | null;
-  members?:
-    | {
-        image?: (number | null) | Media;
-        id?: string | null;
-      }[]
-    | null;
-  showLine?: boolean | null;
-  bgColor?: 'beige' | null;
+  textAlign?: ('left' | 'center') | null;
+  bgColor?: ('beige' | 'black') | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'team';
+  blockType: 'hero';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Feature".
+ * via the `definition` "Logos".
  */
-export interface Feature {
-  /**
-   * Indien dit ingevuld is, komt deze kleine titel boven de hoofd titel in een kader staan
-   */
-  subtitle?: string | null;
-  title: string;
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  image: number | Media;
-  variant?: ('imageLeft' | 'imageRight') | null;
+export interface Logos {
+  items?:
+    | {
+        image: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  bgColor?: 'beige' | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'feature';
+  blockType: 'logos';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Paragraph".
+ */
+export interface Paragraph {
+  badge: string;
+  content: string;
+  bgColor?: 'beige' | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'paragraph';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProcessSlider".
+ */
+export interface ProcessSlider {
+  subtitle: string;
+  title: string;
+  items?:
+    | {
+        title: string;
+        content: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'processSlider';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -603,109 +672,6 @@ export interface Slider {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Logos".
- */
-export interface Logos {
-  items?:
-    | {
-        image: number | Media;
-        id?: string | null;
-      }[]
-    | null;
-  bgColor?: 'beige' | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'logos';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ProcessSlider".
- */
-export interface ProcessSlider {
-  subtitle: string;
-  title: string;
-  items?:
-    | {
-        title: string;
-        content: string;
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'processSlider';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ContactForm".
- */
-export interface ContactForm {
-  /**
-   * Plak hier je <script>...</script> fragment (inclusief de tags).
-   */
-  script: string;
-  /**
-   * Plak het HTML-fragment (bijvoorbeeld een <div> voor de widget).
-   */
-  html: string;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'contactForm';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CtaBlock".
- */
-export interface CtaBlock {
-  /**
-   * Indien dit ingevuld is, komt deze kleine titel boven de hoofd titel in een kader staan
-   */
-  subtitle?: string | null;
-  title: string;
-  text?: string | null;
-  links?:
-    | {
-        link: {
-          type: 'reference' | 'custom';
-          newTab?: boolean | null;
-          reference?: {
-            relationTo: 'pages';
-            value: number | Page;
-          } | null;
-          url?: string | null;
-          label?: string | null;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  bgColor?: 'blue' | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'ctaBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "EmbedBlock".
- */
-export interface EmbedBlock {
-  /**
-   * Plak hier je <script>...</script> fragment (inclusief de tags).
-   */
-  script: string;
-  /**
-   * Plak het HTML-fragment (bijvoorbeeld een <div> voor de widget).
-   */
-  html: string;
-  /**
-   * Deze afbeelding wordt rechts van het embedded formulier getoond, indien gekozen
-   */
-  image?: (number | null) | Media;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'embedBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "SharedBlock".
  */
 export interface SharedBlock {
@@ -724,6 +690,61 @@ export interface SharedBlock1 {
   blocks: (CtaBlock | Logos)[];
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Team".
+ */
+export interface Team {
+  badge: string;
+  title: string;
+  content?: string | null;
+  links?:
+    | {
+        link: {
+          type: 'reference' | 'custom';
+          newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: number | Page;
+          } | null;
+          url?: string | null;
+          label?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  members?:
+    | {
+        image?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  showLine?: boolean | null;
+  bgColor?: 'beige' | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'team';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Testimonials".
+ */
+export interface Testimonials {
+  badge: string;
+  title: string;
+  items?:
+    | {
+        name: string;
+        text: string;
+        image?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  bgColor?: ('beige' | 'gray') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'testimonials';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -926,24 +947,25 @@ export interface PagesSelect<T extends boolean = true> {
   blocks?:
     | T
     | {
-        hero?: T | HeroSelect<T>;
-        image?: T | ImageSelect<T>;
-        paragraph?: T | ParagraphSelect<T>;
+        embedBlock?: T | EmbedBlockSelect<T>;
         cards?: T | CardsSelect<T>;
         cases?: T | CasesSelect<T>;
+        contactForm?: T | ContactFormSelect<T>;
+        ctaBlock?: T | CtaBlockSelect<T>;
+        feature?: T | FeatureSelect<T>;
+        image?: T | ImageSelect<T>;
+        featureGrid?: T | FeatureGridSelect<T>;
         featureRows?: T | FeatureRowsSelect<T>;
         featureList?: T | FeatureListSelect<T>;
         featureTestimonials?: T | FeatureTestimonialsSelect<T>;
-        testimonials?: T | TestimonialsSelect<T>;
-        team?: T | TeamSelect<T>;
-        feature?: T | FeatureSelect<T>;
-        slider?: T | SliderSelect<T>;
+        hero?: T | HeroSelect<T>;
         logos?: T | LogosSelect<T>;
+        paragraph?: T | ParagraphSelect<T>;
         processSlider?: T | ProcessSliderSelect<T>;
-        contactForm?: T | ContactFormSelect<T>;
-        ctaBlock?: T | CtaBlockSelect<T>;
-        embedBlock?: T | EmbedBlockSelect<T>;
+        slider?: T | SliderSelect<T>;
         shared?: T | SharedBlockSelect<T>;
+        team?: T | TeamSelect<T>;
+        testimonials?: T | TestimonialsSelect<T>;
       };
   seo?:
     | T
@@ -967,54 +989,12 @@ export interface PagesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Hero_select".
+ * via the `definition` "EmbedBlock_select".
  */
-export interface HeroSelect<T extends boolean = true> {
-  title?: T;
-  content?: T;
-  links?:
-    | T
-    | {
-        link?:
-          | T
-          | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
-            };
-        id?: T;
-      };
-  textAlign?: T;
-  bgColor?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Image_select".
- */
-export interface ImageSelect<T extends boolean = true> {
+export interface EmbedBlockSelect<T extends boolean = true> {
+  script?: T;
+  html?: T;
   image?: T;
-  callout?:
-    | T
-    | {
-        content?: T;
-        link?: T;
-        image?: T;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Paragraph_select".
- */
-export interface ParagraphSelect<T extends boolean = true> {
-  badge?: T;
-  content?: T;
-  bgColor?: T;
   id?: T;
   blockName?: T;
 }
@@ -1052,6 +1032,90 @@ export interface CasesSelect<T extends boolean = true> {
         url?: T;
         label?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactForm_select".
+ */
+export interface ContactFormSelect<T extends boolean = true> {
+  script?: T;
+  html?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CtaBlock_select".
+ */
+export interface CtaBlockSelect<T extends boolean = true> {
+  subtitle?: T;
+  title?: T;
+  text?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
+  bgColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Feature_select".
+ */
+export interface FeatureSelect<T extends boolean = true> {
+  subtitle?: T;
+  title?: T;
+  content?: T;
+  image?: T;
+  variant?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Image_select".
+ */
+export interface ImageSelect<T extends boolean = true> {
+  image?: T;
+  callout?:
+    | T
+    | {
+        content?: T;
+        link?: T;
+        image?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeatureGrid_select".
+ */
+export interface FeatureGridSelect<T extends boolean = true> {
+  badge?: T;
+  title?: T;
+  items?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        text?: T;
+        id?: T;
+      };
+  bgColor?: T;
   id?: T;
   blockName?: T;
 }
@@ -1132,29 +1196,9 @@ export interface FeatureTestimonialsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Testimonials_select".
+ * via the `definition` "Hero_select".
  */
-export interface TestimonialsSelect<T extends boolean = true> {
-  badge?: T;
-  title?: T;
-  items?:
-    | T
-    | {
-        name?: T;
-        text?: T;
-        image?: T;
-        id?: T;
-      };
-  bgColor?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Team_select".
- */
-export interface TeamSelect<T extends boolean = true> {
-  badge?: T;
+export interface HeroSelect<T extends boolean = true> {
   title?: T;
   content?: T;
   links?:
@@ -1171,27 +1215,51 @@ export interface TeamSelect<T extends boolean = true> {
             };
         id?: T;
       };
-  members?:
-    | T
-    | {
-        image?: T;
-        id?: T;
-      };
-  showLine?: T;
+  textAlign?: T;
   bgColor?: T;
   id?: T;
   blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Feature_select".
+ * via the `definition` "Logos_select".
  */
-export interface FeatureSelect<T extends boolean = true> {
+export interface LogosSelect<T extends boolean = true> {
+  items?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  bgColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Paragraph_select".
+ */
+export interface ParagraphSelect<T extends boolean = true> {
+  badge?: T;
+  content?: T;
+  bgColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProcessSlider_select".
+ */
+export interface ProcessSliderSelect<T extends boolean = true> {
   subtitle?: T;
   title?: T;
-  content?: T;
-  image?: T;
-  variant?: T;
+  items?:
+    | T
+    | {
+        title?: T;
+        content?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -1230,54 +1298,21 @@ export interface SliderSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Logos_select".
+ * via the `definition` "SharedBlock_select".
  */
-export interface LogosSelect<T extends boolean = true> {
-  items?:
-    | T
-    | {
-        image?: T;
-        id?: T;
-      };
-  bgColor?: T;
+export interface SharedBlockSelect<T extends boolean = true> {
+  block?: T;
   id?: T;
   blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ProcessSlider_select".
+ * via the `definition` "Team_select".
  */
-export interface ProcessSliderSelect<T extends boolean = true> {
-  subtitle?: T;
+export interface TeamSelect<T extends boolean = true> {
+  badge?: T;
   title?: T;
-  items?:
-    | T
-    | {
-        title?: T;
-        content?: T;
-        id?: T;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ContactForm_select".
- */
-export interface ContactFormSelect<T extends boolean = true> {
-  script?: T;
-  html?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CtaBlock_select".
- */
-export interface CtaBlockSelect<T extends boolean = true> {
-  subtitle?: T;
-  title?: T;
-  text?: T;
+  content?: T;
   links?:
     | T
     | {
@@ -1292,27 +1327,33 @@ export interface CtaBlockSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  members?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  showLine?: T;
   bgColor?: T;
   id?: T;
   blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "EmbedBlock_select".
+ * via the `definition` "Testimonials_select".
  */
-export interface EmbedBlockSelect<T extends boolean = true> {
-  script?: T;
-  html?: T;
-  image?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "SharedBlock_select".
- */
-export interface SharedBlockSelect<T extends boolean = true> {
-  block?: T;
+export interface TestimonialsSelect<T extends boolean = true> {
+  badge?: T;
+  title?: T;
+  items?:
+    | T
+    | {
+        name?: T;
+        text?: T;
+        image?: T;
+        id?: T;
+      };
+  bgColor?: T;
   id?: T;
   blockName?: T;
 }

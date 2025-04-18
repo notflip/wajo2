@@ -12,6 +12,7 @@ export const Cases: Block = {
     {
       name: "badge",
       type: "text",
+      maxLength: 30,
     },
     {
       name: "title",

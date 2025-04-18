@@ -12,7 +12,7 @@ export const FeatureList: Block = {
     {
       name: "badge",
       type: "text",
-      required: true,
+      maxLength: 30,
     },
     {
       name: "title",

@@ -9,6 +9,7 @@ export const Paragraph: Block = {
       name: "badge",
       type: "text",
       required: true,
+      maxLength: 30,
     },
     {
       name: "content",

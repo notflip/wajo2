@@ -44,7 +44,7 @@ export default function DesktopNav({
                             type="reference"
                             {...link}
                             onClick={() => setOpen(false)} // Close dropdown on click
-                            className="block py-2 px-4 hover:bg-black/5"
+                            className="block font-medium py-2 px-4 hover:bg-black/5"
                           />
                         </li>
                       ))}
@@ -115,7 +115,7 @@ const ListDropdown = ({ children, label }: FlyoutLinkProps) => {
     >
       <Link
         href="#"
-        className="flex items-center gap-1 py-1.5 px-3 rounded-lg hover:bg-black/5"
+        className="flex items-center gap-1 py-1.5 px-3 font-medium rounded-lg hover:bg-black/5"
       >
         {label}
         <LuChevronDown

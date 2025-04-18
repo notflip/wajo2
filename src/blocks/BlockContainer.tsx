@@ -44,7 +44,7 @@ export const BlockContainer: React.FC<BlockContainerProps> = (props) => {
           blockType !== "hero"
           ? "pb-lg lg:pb-xl"
           : "",
-        bgColor && prevBlock?.bgColor !== bgColor ? "pt-lg lg:pt-xl" : "",
+        // bgColor && prevBlock?.bgColor !== bgColor ? "pt-lg lg:pt-xl" : "",
         bgColor ? bgColorMap[bgColor] : "",
         !bgColor && blockType !== "image" && prevBlock?.bgColor ? "mt-sm lg:mt-lg" : "",
         // Skip top padding for some components following the hero

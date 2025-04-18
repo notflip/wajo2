@@ -1,12 +1,12 @@
+import IconField from "@/fields/icon/IconField"
 import type { Block } from "payload"
-import { link } from "@/fields/link/link"
 
-export const Testimonials: Block = {
-  slug: "testimonials",
-  interfaceName: "Testimonials",
+export const FeatureGrid: Block = {
+  slug: "featureGrid",
+  interfaceName: "FeatureGrid",
   labels: {
-    singular: "Testimonials",
-    plural: "Testimonials",
+    singular: "FeatureGrid",
+    plural: "FeatureGrid",
   },
   fields: [
     {
@@ -24,8 +24,9 @@ export const Testimonials: Block = {
       name: "items",
       type: "array",
       fields: [
+        IconField,
         {
-          name: "name",
+          name: "title",
           type: "text",
           required: true,
         },
@@ -33,12 +34,6 @@ export const Testimonials: Block = {
           name: "text",
           type: "textarea",
           required: true,
-        },
-        {
-          name: "image",
-          type: "upload",
-          relationTo: "media",
-          displayPreview: true,
         },
       ],
     },
@@ -61,4 +56,3 @@ export const Testimonials: Block = {
     },
   ],
 }
-export default Testimonials

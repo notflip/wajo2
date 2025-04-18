@@ -14,6 +14,7 @@ export type BlockType =
   | "cases"
   | "featureRows"
   | "featureList"
+  | "featureGrid"
   | "testimonials"
   | "team"
   | "feature"
