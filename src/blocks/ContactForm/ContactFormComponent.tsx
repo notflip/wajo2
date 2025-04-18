@@ -1,5 +1,6 @@
 import { BlockContainer } from "@/blocks/BlockContainer"
 import { ContactForm } from "@/components/contact-form"
+import EmbedTally from "@/components/embed-tally"
 import { getCachedGlobal } from "@/utils/getGlobals"
 import { ContactForm as ContactFormType } from "@payload-types"
 import Link from "next/link"
@@ -18,14 +19,7 @@ export const ContactFormComponent: React.FC<ContactFormType> = async (props) => 
     <BlockContainer {...props}>
       <div className="lg:flex lg:justify-between gap-32">
         <div className="mt-8 lg:mt-0 lg:w-3/5 order-1 lg:order-2">
-          {/* <ContactForm /> */}
-          <div dangerouslySetInnerHTML={{ __html: html }} />
-          <Script
-            id="sender-init"
-            dangerouslySetInnerHTML={{
-              __html: inlineScript,
-            }}
-          ></Script>
+          <EmbedTally formId="3l42kW" />
         </div>
         <div className="lg:w-2/5">
           <div className="bg-beige-50 rounded-[16px] p-8">
