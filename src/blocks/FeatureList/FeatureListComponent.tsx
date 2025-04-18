@@ -12,7 +12,7 @@ export const FeatureListComponent: React.FC<FeatureList> = async (props) => {
 
   return (
     <BlockContainer>
-      <Badge text={badge} />
+      {badge && <Badge text={badge} />}
       <div className="mt-8 flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
         <h2 className="max-w-4xl">{title}</h2>
         <AnimatedButton variant="light" asChild>
