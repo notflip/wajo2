@@ -23,6 +23,7 @@ export type BlockType =
   | "featureTestimonials"
   | "processSlider"
   | "ctaBlock"
+  | "formBlock"
   | "contactForm"
   | "embedBlock"
   | "shared"

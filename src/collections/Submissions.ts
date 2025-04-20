@@ -19,14 +19,18 @@ export const Submissions: CollectionConfig = {
     defaultColumns: ["form", "createdAt"],
   },
   hooks: {
-    afterChange: [SendSubmissionEmail],
+    // afterChange: [SendSubmissionEmail],
   },
   fields: [
     {
       name: "form",
-      type: "text",
+      type: "relationship",
+      relationTo: "forms",
       label: "Formulier",
       required: true,
+      admin: {
+        readOnly: true,
+      },
     },
     {
       name: "data",

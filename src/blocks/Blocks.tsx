@@ -21,6 +21,7 @@ import { SharedBlockComponent } from "@/blocks/SharedBlock/SharedBlockComponent"
 import { ContactFormComponent } from "@/blocks/ContactForm/ContactFormComponent"
 import { EmbedBlockComponent } from "@/blocks/EmbedBlock/EmbedBlockComponent"
 import { FeatureGridComponent } from "@/blocks/FeatureGrid/FeatureGridComponent"
+import { FormBlockComponent } from "@/blocks/FormBlock/FormBlockComponent"
 
 export const blockComponents: Record<string, BlockComponentType> = {
   hero: HeroComponent,
@@ -40,6 +41,7 @@ export const blockComponents: Record<string, BlockComponentType> = {
   processSlider: ProcessSliderComponent,
   contactForm: ContactFormComponent,
   embedBlock: EmbedBlockComponent,
+  formBlock: FormBlockComponent,
   cta: CtaBlockComponent,
   shared: SharedBlockComponent,
 }

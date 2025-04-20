@@ -7,7 +7,14 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
-export const TextField = ({ name, label, defaultValue, control }: any) => {
+export const TextField = ({
+  name,
+  label,
+  defaultValue,
+  control,
+  register,
+  required: requiredFromProps,
+}: any) => {
   return (
     <FormField
       control={control}
@@ -16,7 +23,13 @@ export const TextField = ({ name, label, defaultValue, control }: any) => {
         <FormItem>
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <Input placeholder={defaultValue} {...field} />
+            <Input
+              placeholder={defaultValue}
+              {...field}
+              {...register(name, {
+                required: requiredFromProps && "Dit veld is verplicht",
+              })}
+            />
           </FormControl>
           <FormMessage />
         </FormItem>

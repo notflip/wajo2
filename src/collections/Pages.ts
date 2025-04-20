@@ -31,6 +31,7 @@ import { FeatureTestimonials } from "@/blocks/FeatureTestimonials/FeatureTestimo
 import ContactForm from "@/blocks/ContactForm/ContactForm"
 import EmbedBlock from "@/blocks/EmbedBlock/EmbedBlock"
 import { FeatureGrid } from "@/blocks/FeatureGrid/FeatureGrid"
+import { FormBlock } from "@/blocks/FormBlock/Form"
 
 export const Pages: CollectionConfig<"pages"> = {
   slug: "pages",
@@ -127,6 +128,7 @@ export const Pages: CollectionConfig<"pages"> = {
                 Paragraph,
                 ProcessSlider,
                 Slider,
+                FormBlock,
                 SharedBlock,
                 Team,
                 Testimonials,

@@ -7,6 +7,7 @@ import { Settings } from "@/globals/Settings"
 import { NavigationMain } from "@/globals/NavigationMain/NavigationMain"
 import { nodemailerAdapter } from "@payloadcms/email-nodemailer"
 import { nestedDocsPlugin } from "@payloadcms/plugin-nested-docs"
+import { formBuilderPlugin } from "@payloadcms/plugin-form-builder"
 
 import { seoPlugin } from "@payloadcms/plugin-seo"
 import Media from "@/collections/Media"
@@ -19,6 +20,7 @@ import { Footer } from "@/globals/Footer"
 import { SharedBlocks } from "@/collections/SharedBlocks"
 import { Submissions } from "@/collections/Submissions"
 import { Cases } from "@/collections/Cases"
+import { Forms } from "@/collections/forms/Forms"
 
 export default buildConfig({
   editor: lexicalEditor(),
@@ -76,17 +78,29 @@ export default buildConfig({
     PostCategories,
     Media,
     SharedBlocks,
+    Forms,
     Submissions,
   ],
+
   globals: [Settings, BlogSettings, NavigationMain, Footer],
 
   plugins: [
     nestedDocsPlugin({
       collections: ["pages"],
       generateLabel: (_, doc) => doc.title as string,
-      generateURL: (docs) =>
-        docs.reduce((url, doc) => `${url}/${doc.slug}`, ""),
+      generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.slug}`, ""),
     }),
+
+    // formBuilderPlugin({
+    //   fields: {
+    //     text: true,
+    //     textarea: true,
+    //     select: true,
+    //     email: true,
+    //     checkbox: true,
+    //     message: true,
+    //   },
+    // }),
 
     // bunnyStorage({
     //   collections: {
