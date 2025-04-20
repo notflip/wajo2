@@ -1,6 +1,6 @@
 import { CollectionConfig } from "payload"
 import { isAdmin } from "@/access/isAdmin"
-import { SendSubmissionEmail } from "@/hooks/sendSubmissionEmail"
+import { SendWebhook } from "@/hooks/sendWebhook"
 
 export const Submissions: CollectionConfig = {
   slug: "submissions",
@@ -19,7 +19,7 @@ export const Submissions: CollectionConfig = {
     defaultColumns: ["form", "createdAt"],
   },
   hooks: {
-    // afterChange: [SendSubmissionEmail],
+    afterChange: [SendWebhook],
   },
   fields: [
     {
