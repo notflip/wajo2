@@ -1,54 +1,7 @@
-import { BlockProps, BlockType } from "@/blocks/types"
+import { blockComponents, BlocksProps, BlockType } from "@/blocks/types"
 import React from "react"
-import { BlockComponentType } from "@/blocks/types"
 
-import { HeroComponent } from "@/blocks/HeroBlock/HeroComponent"
-import { ImageComponent } from "@/blocks/Image/ImageComponent"
-import { ParagraphComponent } from "@/blocks/Paragraph/ParagraphComponent"
-import { CardsComponent } from "@/blocks/Cards/CardsComponent"
-import { CasesComponent } from "@/blocks/Cases/CasesComponent"
-import { FeatureRowsComponent } from "@/blocks/FeatureRows/FeatureRowsComponent"
-import { FeatureListComponent } from "@/blocks/FeatureList/FeatureListComponent"
-import { TestimonialsComponent } from "@/blocks/Testimonials/TestimonialsComponent"
-import { TeamComponent } from "@/blocks/Team/TeamComponent"
-import { FeatureComponent } from "@/blocks/Feature/FeatureComponent"
-import { SliderComponent } from "@/blocks/Slider/SliderComponent"
-import { LogosComponent } from "@/blocks/Logos/LogosComponent"
-import { FeatureTestimonialsComponent } from "@/blocks/FeatureTestimonials/FeatureTestimonialsComponent"
-import { ProcessSliderComponent } from "@/blocks/ProcessSlider/ProcessSliderComponent"
-import { CtaBlockComponent } from "@/blocks/CtaBlock/CtaBlockComponent"
-import { SharedBlockComponent } from "@/blocks/SharedBlock/SharedBlockComponent"
-import { ContactFormComponent } from "@/blocks/ContactForm/ContactFormComponent"
-import { EmbedBlockComponent } from "@/blocks/EmbedBlock/EmbedBlockComponent"
-import { FeatureGridComponent } from "@/blocks/FeatureGrid/FeatureGridComponent"
-import { FormBlockComponent } from "@/blocks/FormBlock/FormBlockComponent"
-import { HeroFormComponent } from "@/blocks/HeroFormComponent/HeroFormComponent"
-
-export const blockComponents: Record<string, BlockComponentType> = {
-  hero: HeroComponent,
-  heroForm: HeroFormComponent,
-  image: ImageComponent,
-  paragraph: ParagraphComponent,
-  cards: CardsComponent,
-  cases: CasesComponent,
-  featureGrid: FeatureGridComponent,
-  featureRows: FeatureRowsComponent,
-  featureList: FeatureListComponent,
-  featureTestimonials: FeatureTestimonialsComponent,
-  testimonials: TestimonialsComponent,
-  team: TeamComponent,
-  feature: FeatureComponent,
-  slider: SliderComponent,
-  logos: LogosComponent,
-  processSlider: ProcessSliderComponent,
-  contactForm: ContactFormComponent,
-  embedBlock: EmbedBlockComponent,
-  formBlock: FormBlockComponent,
-  cta: CtaBlockComponent,
-  shared: SharedBlockComponent,
-}
-
-const Blocks: React.FC<BlockProps> = (props) => {
+const Blocks: React.FC<BlocksProps> = (props) => {
   const { blocks } = props
 
   const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0
