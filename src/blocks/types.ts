@@ -36,7 +36,7 @@ export const blockComponents = {
   slider: SliderComponent,
   logos: LogosComponent,
   processSlider: ProcessSliderComponent,
-  cta: CtaBlockComponent,
+  ctaBlock: CtaBlockComponent,
   shared: SharedBlockComponent,
   contactForm: ContactFormComponent,
   embedBlock: EmbedBlockComponent,
