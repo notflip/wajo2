@@ -8,6 +8,7 @@ export type BlockComponentType = React.ComponentType<any & SharedBlockProps>
 
 export type BlockType =
   | "hero"
+  | "heroForm"
   | "image"
   | "paragraph"
   | "cards"

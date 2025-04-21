@@ -22,9 +22,11 @@ import { ContactFormComponent } from "@/blocks/ContactForm/ContactFormComponent"
 import { EmbedBlockComponent } from "@/blocks/EmbedBlock/EmbedBlockComponent"
 import { FeatureGridComponent } from "@/blocks/FeatureGrid/FeatureGridComponent"
 import { FormBlockComponent } from "@/blocks/FormBlock/FormBlockComponent"
+import { HeroFormComponent } from "@/blocks/HeroFormComponent/HeroFormComponent"
 
 export const blockComponents: Record<string, BlockComponentType> = {
   hero: HeroComponent,
+  heroForm: HeroFormComponent,
   image: ImageComponent,
   paragraph: ParagraphComponent,
   cards: CardsComponent,

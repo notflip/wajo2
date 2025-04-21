@@ -32,6 +32,7 @@ import ContactForm from "@/blocks/ContactForm/ContactForm"
 import EmbedBlock from "@/blocks/EmbedBlock/EmbedBlock"
 import { FeatureGrid } from "@/blocks/FeatureGrid/FeatureGrid"
 import { FormBlock } from "@/blocks/FormBlock/Form"
+import { HeroForm } from "@/blocks/HeroFormComponent/HeroForm"
 
 export const Pages: CollectionConfig<"pages"> = {
   slug: "pages",
@@ -124,6 +125,7 @@ export const Pages: CollectionConfig<"pages"> = {
                 FeatureList,
                 FeatureTestimonials,
                 Hero,
+                HeroForm,
                 Logos,
                 Paragraph,
                 ProcessSlider,

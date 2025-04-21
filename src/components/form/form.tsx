@@ -1,7 +1,7 @@
 "use client"
 
 import { Form as FormType } from "@payload-types"
-import { buildInitialFormState } from "@/blocks/FormBlock/buildInitialFormState"
+import { buildInitialFormState } from "@/components/form/buildInitialFormState"
 import AnimatedButton from "@/components/interface/AnimatedButton"
 import RichText from "@/components/RichText"
 import { useRouter } from "next/navigation"
@@ -123,7 +123,9 @@ export const Form: React.FC<FormProps> = ({ form }) => {
                       />
                     )
                   })}
-                  <AnimatedButton>{submitButtonLabel ?? "Verzenden"}</AnimatedButton>
+                  <AnimatedButton variant="foreground">
+                    {submitButtonLabel ?? "Verzenden"}
+                  </AnimatedButton>
                 </form>
               </div>
             )}

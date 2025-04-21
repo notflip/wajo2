@@ -169,6 +169,7 @@ export interface Page {
         | FeatureList
         | FeatureTestimonials
         | Hero
+        | HeroForm
         | Logos
         | Paragraph
         | ProcessSlider
@@ -594,94 +595,19 @@ export interface Hero {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Logos".
+ * via the `definition` "HeroForm".
  */
-export interface Logos {
-  items?:
-    | {
-        image: number | Media;
-        id?: string | null;
-      }[]
-    | null;
-  bgColor?: 'beige' | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'logos';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Paragraph".
- */
-export interface Paragraph {
-  badge: string;
+export interface HeroForm {
+  title: string;
   content: string;
-  bgColor?: 'beige' | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'paragraph';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ProcessSlider".
- */
-export interface ProcessSlider {
-  subtitle: string;
-  title: string;
-  items?:
-    | {
-        title: string;
-        content: string;
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'processSlider';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Slider".
- */
-export interface Slider {
-  subtitle: string;
-  title: string;
-  links?:
-    | {
-        link: {
-          type: 'reference' | 'custom';
-          newTab?: boolean | null;
-          reference?: {
-            relationTo: 'pages';
-            value: number | Page;
-          } | null;
-          url?: string | null;
-          label?: string | null;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  items?:
-    | {
-        icon: string;
-        title: string;
-        content: string;
-        id?: string | null;
-      }[]
-    | null;
-  bgColor?: 'beige' | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'slider';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FormBlock".
- */
-export interface FormBlock {
   form: number | Form;
+  /**
+   * Deze afbeelding wordt rechts van het embedded formulier getoond, indien gekozen
+   */
+  image?: (number | null) | Media;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'formBlock';
+  blockType: 'heroForm';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -817,6 +743,97 @@ export interface Form {
   };
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Logos".
+ */
+export interface Logos {
+  items?:
+    | {
+        image: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  bgColor?: 'beige' | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'logos';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Paragraph".
+ */
+export interface Paragraph {
+  badge: string;
+  content: string;
+  bgColor?: 'beige' | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'paragraph';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProcessSlider".
+ */
+export interface ProcessSlider {
+  subtitle: string;
+  title: string;
+  items?:
+    | {
+        title: string;
+        content: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'processSlider';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Slider".
+ */
+export interface Slider {
+  subtitle: string;
+  title: string;
+  links?:
+    | {
+        link: {
+          type: 'reference' | 'custom';
+          newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: number | Page;
+          } | null;
+          url?: string | null;
+          label?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  items?:
+    | {
+        icon: string;
+        title: string;
+        content: string;
+        id?: string | null;
+      }[]
+    | null;
+  bgColor?: 'beige' | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'slider';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FormBlock".
+ */
+export interface FormBlock {
+  form: number | Form;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'formBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1111,6 +1128,7 @@ export interface PagesSelect<T extends boolean = true> {
         featureList?: T | FeatureListSelect<T>;
         featureTestimonials?: T | FeatureTestimonialsSelect<T>;
         hero?: T | HeroSelect<T>;
+        heroForm?: T | HeroFormSelect<T>;
         logos?: T | LogosSelect<T>;
         paragraph?: T | ParagraphSelect<T>;
         processSlider?: T | ProcessSliderSelect<T>;
@@ -1370,6 +1388,18 @@ export interface HeroSelect<T extends boolean = true> {
       };
   textAlign?: T;
   bgColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroForm_select".
+ */
+export interface HeroFormSelect<T extends boolean = true> {
+  title?: T;
+  content?: T;
+  form?: T;
+  image?: T;
   id?: T;
   blockName?: T;
 }
