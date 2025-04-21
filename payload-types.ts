@@ -173,12 +173,7 @@ export interface Page {
         | Paragraph
         | ProcessSlider
         | Slider
-        | {
-            form: number | Form;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'formBlock';
-          }
+        | FormBlock
         | SharedBlock
         | Team
         | Testimonials
@@ -680,6 +675,16 @@ export interface Slider {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FormBlock".
+ */
+export interface FormBlock {
+  form: number | Form;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'formBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "forms".
  */
 export interface Form {
@@ -1110,13 +1115,7 @@ export interface PagesSelect<T extends boolean = true> {
         paragraph?: T | ParagraphSelect<T>;
         processSlider?: T | ProcessSliderSelect<T>;
         slider?: T | SliderSelect<T>;
-        formBlock?:
-          | T
-          | {
-              form?: T;
-              id?: T;
-              blockName?: T;
-            };
+        formBlock?: T | FormBlockSelect<T>;
         shared?: T | SharedBlockSelect<T>;
         team?: T | TeamSelect<T>;
         testimonials?: T | TestimonialsSelect<T>;
@@ -1447,6 +1446,15 @@ export interface SliderSelect<T extends boolean = true> {
         id?: T;
       };
   bgColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FormBlock_select".
+ */
+export interface FormBlockSelect<T extends boolean = true> {
+  form?: T;
   id?: T;
   blockName?: T;
 }
