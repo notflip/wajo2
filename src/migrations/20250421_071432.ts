@@ -150,6 +150,11 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   );
   
   ALTER TABLE "submissions" RENAME COLUMN "form" TO "form_id";
+  
+  ALTER TABLE "submissions"
+    ALTER COLUMN "form_id" TYPE integer
+      USING form_id::integer;
+
   ALTER TABLE "payload_locked_documents_rels" ADD COLUMN "forms_id" integer;
   DO $$ BEGIN
    ALTER TABLE "pages_blocks_hero_form" ADD CONSTRAINT "pages_blocks_hero_form_form_id_forms_id_fk" FOREIGN KEY ("form_id") REFERENCES "public"."forms"("id") ON DELETE set null ON UPDATE no action;
