@@ -5,13 +5,12 @@ import { Logos, Media } from "@payload-types"
 export const LogosComponent: React.FC<Logos> = (props) => {
   const { items, bgColor } = props
 
+  if (!items?.length) {
+    return null
+  }
+
   return (
-    <BlockContainer
-      fullWidth
-      className="py-xs lg:py-sm"
-      bgColor={bgColor}
-      {...props}
-    >
+    <BlockContainer fullWidth className="py-xs lg:py-sm" bgColor={bgColor} {...props}>
       <div className="flex gap-[var(--marquee-gap)] overflow-hidden">
         <div className="flex shrink-0 items-center justify-around gap-[var(--marquee-gap)] min-w-full animate-scroll-x">
           {(items || []).map(({ image }, index) => (
