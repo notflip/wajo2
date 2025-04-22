@@ -52,7 +52,11 @@ export const BlockContainer: React.FC<BlockContainerProps> = (props) => {
           prevBlock?.blockType === "hero"
           ? "pt-0 lg:pt-0"
           : "",
-        blockType === "image" ? "pb-0 lg:pb-0" : "",
+        // Skip top padding for paragraph and cards
+        blockType === "cards" && prevBlock?.blockType === "paragraph"
+          ? "pt-0 lg:pt-0"
+          : "",
+        // blockType === "image" ? "pb-0 lg:pb-0" : "",
         className,
       )}
     >
