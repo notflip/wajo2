@@ -40,6 +40,12 @@ export const Cases: CollectionConfig = {
       required: true,
     },
     {
+      type: "textarea",
+      name: "description",
+      required: true,
+      maxLength: 350,
+    },
+    {
       name: "image",
       type: "upload",
       relationTo: "media",

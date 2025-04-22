@@ -410,6 +410,7 @@ export interface Case {
    */
   slug?: string | null;
   title: string;
+  description: string;
   image: number | Media;
   callout?: {
     content?: string | null;
@@ -1535,6 +1536,7 @@ export interface TestimonialsSelect<T extends boolean = true> {
 export interface CasesSelect1<T extends boolean = true> {
   slug?: T;
   title?: T;
+  description?: T;
   image?: T;
   callout?:
     | T

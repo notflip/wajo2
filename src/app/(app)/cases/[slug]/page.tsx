@@ -33,11 +33,7 @@ export default async function Page({ params }: PageProps) {
             </div>
           </div>
           <div className="max-w-4xl">
-            <p className="mb-8">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus sunt
-              adipisci eligendi quidem fugit qui quos ducimus earum animi. Repellendus
-              neque vel ex eius eum ducimus autem aperiam deleniti est.
-            </p>
+            <p className="mb-8">{singleCase.description}</p>
           </div>
           <div className="flex items-center gap-2">
             {(singleCase.tags || []).map((item, index) => (
