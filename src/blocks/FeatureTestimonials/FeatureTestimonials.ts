@@ -52,8 +52,9 @@ export const FeatureTestimonials: Block = {
     {
       name: "bgColor",
       type: "select",
+      defaultValue: "black",
       admin: {
-        isClearable: true,
+        readOnly: true,
       },
       options: [
         {
