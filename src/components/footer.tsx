@@ -22,7 +22,7 @@ export async function Footer() {
               sizes="120px"
             />
             <p className="text-blue-950 max-w-sm mb-6">
-              Een klein team van de juiste experts, die hun jarenlange kennis
+              Een team van de juiste experts, die hun jarenlange kennis
               van web, marketing en copywriting samenbrengen.
             </p>
             <p className="whitespace-pre">{siteSettings.company_info}</p>
