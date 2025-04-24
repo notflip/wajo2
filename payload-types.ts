@@ -599,7 +599,7 @@ export interface Hero {
  */
 export interface HeroForm {
   title: string;
-  content: string;
+  content?: string | null;
   form: number | Form;
   /**
    * Deze afbeelding wordt rechts van het embedded formulier getoond, indien gekozen

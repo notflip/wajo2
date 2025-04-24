@@ -15,7 +15,7 @@ export const HeroFormComponent: React.FC<HeroForm> = (props) => {
       <div className="pt-16 lg:pt-24 flex flex-col lg:flex-row items-stretch justify-between gap-32">
         <div className="w-full lg:w-1/2">
           <h1 className="mb-8">{title}</h1>
-          <p className="mb-8 max-w-prose">{content}</p>
+          {content && <p className="mb-8 max-w-prose">{content}</p>}
           <Form form={form} />
         </div>
         {image && (

@@ -12,7 +12,6 @@ export const HeroForm: Block = {
     {
       name: "content",
       type: "textarea",
-      required: true,
     },
     {
       name: "form",
