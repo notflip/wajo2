@@ -47,7 +47,7 @@ export default async function Page({ params }: PageProps) {
         <section className="relative py-sm">
           <div className="mx-auto max-w-screen-2xl px-4 md:px-12 2xl:px-16">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <div className="relative min-h-[400px] lg:h-auto group p-4 lg:p-8 rounded-[16px] hover:-translate-y-1 transition overflow-hidden">
+              <div className="relative lg:h-auto group p-4 lg:p-8 rounded-[16px] hover:-translate-y-1 transition overflow-hidden">
                 <ImageBox
                   fill
                   media={singleCase.image}
