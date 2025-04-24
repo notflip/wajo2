@@ -6,20 +6,21 @@ import Badge from "@/components/badge"
 import { BlockContainer } from "@/blocks/BlockContainer"
 
 export const FeatureComponent: React.FC<Feature> = (props) => {
-  const { subtitle, title, content, image, variant } = props
+  const { subtitle, title, content, image, imageNoFill, variant } = props
+
+  console.log(imageNoFill)
 
   return (
     <BlockContainer>
       <div
-        className={cn(
-          "flex flex-col lg:flex-row items-stretch justify-between gap-8",
-          { "lg:flex-row-reverse": variant === "imageLeft" },
-        )}
+        className={cn("flex flex-col lg:flex-row items-stretch justify-between gap-8", {
+          "lg:flex-row-reverse": variant === "imageLeft",
+        })}
       >
         <div className="w-full lg:w-1/2 order-2 lg:order-1 relative lg:max-w-[42rem]">
           {image && (
             <ImageBox
-              fill
+              fill={!imageNoFill}
               media={image}
               sizes="(max-width: 1024px) 100vw, 40vw"
               className="rounded-[16px]"

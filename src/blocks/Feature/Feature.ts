@@ -47,6 +47,14 @@ export const Feature: Block = {
       required: true,
     },
     {
+      name: "imageNoFill",
+      type: "checkbox",
+      admin: {
+        description:
+          "Vink dit aan indien de afbeelding niet de grootte van de container mag opnemen, bijvoorbeeld voor screenshots",
+      },
+    },
+    {
       name: "variant",
       type: "select",
       defaultValue: "imageLeft",

@@ -376,6 +376,10 @@ export interface Feature {
     [k: string]: unknown;
   } | null;
   image: number | Media;
+  /**
+   * Vink dit aan indien de afbeelding niet de grootte van de container mag opnemen, bijvoorbeeld voor screenshots
+   */
+  imageNoFill?: boolean | null;
   variant?: ('imageLeft' | 'imageRight') | null;
   id?: string | null;
   blockName?: string | null;
@@ -1240,6 +1244,7 @@ export interface FeatureSelect<T extends boolean = true> {
   title?: T;
   content?: T;
   image?: T;
+  imageNoFill?: T;
   variant?: T;
   id?: T;
   blockName?: T;
