@@ -43,39 +43,41 @@ export default async function Page({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="relative py-sm">
-        <div className="mx-auto max-w-screen-2xl px-4 md:px-12 2xl:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="relative h-[400px] lg:h-auto group p-4 lg:p-8 rounded-[16px] hover:-translate-y-1 transition overflow-hidden">
-              <ImageBox
-                fill
-                media={singleCase.image}
-                sizes="(max-width: 768px) 100vw, 30vw"
-              />
-            </div>
-            {(singleCase.stats?.statistics || []).map((item, index) => (
-              <div
-                key={index}
-                className="bg-slate-50 group p-4 lg:p-8 rounded-[16px] hover:-translate-y-1 transition"
-              >
-                <div className="flex items-center justify-between">
-                  <h4 className="mb-8">{item.amount}</h4>
-                  {item.icon && (
-                    <div className="inline-flex rounded-full mb-8 p-4 bg-slate-100">
-                      <DynamicIcon
-                        iconName={item.icon}
-                        size={32}
-                        className="transition group-hover:rotate-12"
-                      />
-                    </div>
-                  )}
-                </div>
-                <p className="mt-8">{item.text}</p>
+      {singleCase.stats?.statistics && singleCase.stats.statistics.length > 0 && (
+        <section className="relative py-sm">
+          <div className="mx-auto max-w-screen-2xl px-4 md:px-12 2xl:px-16">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div className="relative min-h-[400px] lg:h-auto group p-4 lg:p-8 rounded-[16px] hover:-translate-y-1 transition overflow-hidden">
+                <ImageBox
+                  fill
+                  media={singleCase.image}
+                  sizes="(max-width: 768px) 100vw, 30vw"
+                />
               </div>
-            ))}
+              {(singleCase.stats?.statistics || []).map((item, index) => (
+                <div
+                  key={index}
+                  className="bg-slate-50 group p-4 lg:p-8 rounded-[16px] hover:-translate-y-1 transition"
+                >
+                  <div className="flex items-center justify-between">
+                    <h4 className="mb-8">{item.amount}</h4>
+                    {item.icon && (
+                      <div className="inline-flex rounded-full mb-8 p-4 bg-slate-100">
+                        <DynamicIcon
+                          iconName={item.icon}
+                          size={32}
+                          className="transition group-hover:rotate-12"
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <p className="mt-8">{item.text}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Probleemstelling */}
       <section className="relative py-sm mb-sm lg:mb-lg">
