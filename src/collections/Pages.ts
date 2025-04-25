@@ -32,6 +32,7 @@ import ContactForm from "@/blocks/ContactForm/ContactForm"
 import EmbedBlock from "@/blocks/EmbedBlock/EmbedBlock"
 import { FeatureGrid } from "@/blocks/FeatureGrid/FeatureGrid"
 import { HeroForm } from "@/blocks/HeroFormComponent/HeroForm"
+import ContentBlock from "@/blocks/ContentBlock/ContentBlock"
 
 export const Pages: CollectionConfig<"pages"> = {
   slug: "pages",
@@ -115,6 +116,7 @@ export const Pages: CollectionConfig<"pages"> = {
                 EmbedBlock,
                 Cards,
                 Cases,
+                ContentBlock,
                 ContactForm,
                 CtaBlock,
                 Feature,

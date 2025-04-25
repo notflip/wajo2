@@ -160,6 +160,7 @@ export interface Page {
         | EmbedBlock
         | Cards
         | Cases
+        | ContentBlock
         | ContactForm
         | CtaBlock
         | Feature
@@ -301,6 +302,30 @@ export interface Cases {
   id?: string | null;
   blockName?: string | null;
   blockType: 'cases';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentBlock".
+ */
+export interface ContentBlock {
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contentBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1113,6 +1138,7 @@ export interface PagesSelect<T extends boolean = true> {
         embedBlock?: T | EmbedBlockSelect<T>;
         cards?: T | CardsSelect<T>;
         cases?: T | CasesSelect<T>;
+        contentBlock?: T | ContentBlockSelect<T>;
         contactForm?: T | ContactFormSelect<T>;
         ctaBlock?: T | CtaBlockSelect<T>;
         feature?: T | FeatureSelect<T>;
@@ -1196,6 +1222,15 @@ export interface CasesSelect<T extends boolean = true> {
         url?: T;
         label?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentBlock_select".
+ */
+export interface ContentBlockSelect<T extends boolean = true> {
+  content?: T;
   id?: T;
   blockName?: T;
 }

@@ -1,6 +1,7 @@
 import { CardsComponent } from "@/blocks/Cards/CardsComponent"
 import { CasesComponent } from "@/blocks/Cases/CasesComponent"
 import { ContactFormComponent } from "@/blocks/ContactForm/ContactFormComponent"
+import { ContentBlockComponent } from "@/blocks/ContentBlock/ContentBlockComponent"
 import { CtaBlockComponent } from "@/blocks/CtaBlock/CtaBlockComponent"
 import { EmbedBlockComponent } from "@/blocks/EmbedBlock/EmbedBlockComponent"
 import { FeatureComponent } from "@/blocks/Feature/FeatureComponent"
@@ -26,6 +27,8 @@ export const blockComponents = {
   paragraph: ParagraphComponent,
   cards: CardsComponent,
   cases: CasesComponent,
+  contentBlock: ContentBlockComponent,
+  contactForm: ContactFormComponent,
   featureGrid: FeatureGridComponent,
   featureRows: FeatureRowsComponent,
   featureList: FeatureListComponent,
@@ -38,7 +41,6 @@ export const blockComponents = {
   processSlider: ProcessSliderComponent,
   ctaBlock: CtaBlockComponent,
   shared: SharedBlockComponent,
-  contactForm: ContactFormComponent,
   embedBlock: EmbedBlockComponent,
 } as const
 
