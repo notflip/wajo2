@@ -14,9 +14,7 @@ export type CmsLinkType = {
   onClick?: () => void
 }
 
-export const CmsLink: React.FC<React.PropsWithChildren<CmsLinkType>> = (
-  props,
-) => {
+export const CmsLink: React.FC<React.PropsWithChildren<CmsLinkType>> = (props) => {
   const { type, reference, url, newTab, label, className, onClick } = props
 
   // Return null if it's a reference and the reference is a draft
@@ -27,9 +25,7 @@ export const CmsLink: React.FC<React.PropsWithChildren<CmsLinkType>> = (
 
   // Determine href based on reference or fallback to url
   const href =
-    type === "reference" &&
-    typeof reference?.value === "object" &&
-    reference.value.path
+    type === "reference" && typeof reference?.value === "object" && reference.value.path
       ? reference.value.path
       : url || null
 
@@ -37,17 +33,10 @@ export const CmsLink: React.FC<React.PropsWithChildren<CmsLinkType>> = (
     return <div className={className}>{props.children}</div>
   }
 
-  const newTabProps = newTab
-    ? { rel: "noopener noreferrer", target: "_blank" }
-    : {}
+  const newTabProps = newTab ? { rel: "noopener noreferrer", target: "_blank" } : {}
 
   return (
-    <NextLink
-      onClick={onClick}
-      href={href}
-      {...newTabProps}
-      className={className}
-    >
+    <NextLink onClick={onClick} href={href} {...newTabProps} className={className}>
       {props.children ||
         label ||
         (reference?.value &&

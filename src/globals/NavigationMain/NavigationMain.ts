@@ -1,5 +1,6 @@
 import { GlobalConfig } from "payload"
 import { revalidateGlobal } from "@/hooks/revalidateGlobal"
+import { link2 } from "@/fields/link2/link2"
 
 export const NavigationMain: GlobalConfig = {
   slug: "navigation_main",
@@ -146,5 +147,6 @@ export const NavigationMain: GlobalConfig = {
         },
       ],
     },
+    link2(),
   ],
 }

@@ -1971,6 +1971,16 @@ export interface NavigationMain {
         id?: string | null;
       }[]
     | null;
+  link?: {
+    type?: ('none' | 'reference' | 'custom') | null;
+    newTab?: boolean | null;
+    reference?: {
+      relationTo: 'pages';
+      value: number | Page;
+    } | null;
+    url?: string | null;
+    label?: string | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -2097,6 +2107,15 @@ export interface NavigationMainSelect<T extends boolean = true> {
               id?: T;
             };
         id?: T;
+      };
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
       };
   updatedAt?: T;
   createdAt?: T;
