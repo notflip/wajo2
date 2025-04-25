@@ -20,8 +20,7 @@ export const bgColorMap: Record<string, string> = {
 }
 
 export const BlockContainer: React.FC<BlockContainerProps> = (props) => {
-  const { blockType, children, bgColor, className, nextBlock, prevBlock, fullWidth } =
-    props
+  const { blockType, children, bgColor, className, nextBlock, prevBlock, fullWidth } = props
 
   // If shared block, fetch the bgColor
   if (prevBlock?.blockType === "shared") {
@@ -38,14 +37,13 @@ export const BlockContainer: React.FC<BlockContainerProps> = (props) => {
         // bgColor && blockType !== "hero" && prevBlock?.blockType !== "image" && !prevBlock?.bgColor
         //   ? "mt-sm lg:mt-lg py-lg lg:py-xl"
         //   : "",
-        bgColor &&
-          nextBlock?.bgColor &&
-          nextBlock?.bgColor !== bgColor &&
-          blockType !== "hero"
+        bgColor && nextBlock?.bgColor && nextBlock?.bgColor !== bgColor && blockType !== "hero"
           ? "pb-lg lg:pb-xl"
           : "",
         // bgColor && prevBlock?.bgColor !== bgColor ? "pt-lg lg:pt-xl" : "",
         bgColor ? bgColorMap[bgColor] : "",
+        // Add top margin if bgColor and previous does not, or vice versa
+        bgColor && prevBlock?.blockType !== "image" && !prevBlock?.bgColor ? "mt-sm lg:mt-lg" : "",
         !bgColor && blockType !== "image" && prevBlock?.bgColor ? "mt-sm lg:mt-lg" : "",
         // Skip top padding for some components following the hero
         (blockType === "image" || blockType === "cases" || blockType === "contactForm") &&
@@ -53,9 +51,7 @@ export const BlockContainer: React.FC<BlockContainerProps> = (props) => {
           ? "pt-0 lg:pt-0"
           : "",
         // Skip top padding for paragraph and cards
-        blockType === "cards" && prevBlock?.blockType === "paragraph"
-          ? "pt-0 lg:pt-0"
-          : "",
+        blockType === "cards" && prevBlock?.blockType === "paragraph" ? "pt-0 lg:pt-0" : "",
         // blockType === "image" ? "pb-0 lg:pb-0" : "",
         className,
       )}
@@ -65,9 +61,7 @@ export const BlockContainer: React.FC<BlockContainerProps> = (props) => {
         <pre>currColor: {JSON.stringify(bgColor)}</pre>
         <pre>nextColor: {JSON.stringify(nextBlock?.bgColor)}</pre>
       </div> */}
-      <div
-        className={`${!fullWidth ? "mx-auto max-w-screen-2xl px-4 md:px-12 2xl:px-16" : ""}`}
-      >
+      <div className={`${!fullWidth ? "mx-auto max-w-screen-2xl px-4 md:px-12 2xl:px-16" : ""}`}>
         {children}
       </div>
     </section>
