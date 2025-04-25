@@ -4,9 +4,9 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.execute(sql`
    ALTER TABLE "uploads" DISABLE ROW LEVEL SECURITY;
   DROP TABLE "uploads" CASCADE;
-  ALTER TABLE "forms" DROP CONSTRAINT "forms_attachment_id_uploads_id_fk";
+  ALTER TABLE "forms" DROP CONSTRAINT IF EXISTS "forms_attachment_id_uploads_id_fk";
   
-  ALTER TABLE "payload_locked_documents_rels" DROP CONSTRAINT "payload_locked_documents_rels_uploads_fk";
+  ALTER TABLE "payload_locked_documents_rels" DROP CONSTRAINT IF EXISTS "payload_locked_documents_rels_uploads_fk";
   
   DROP INDEX IF EXISTS "forms_attachment_idx";
   DROP INDEX IF EXISTS "payload_locked_documents_rels_uploads_id_idx";
