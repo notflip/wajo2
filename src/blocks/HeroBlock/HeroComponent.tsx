@@ -13,7 +13,7 @@ export const HeroComponent: React.FC<Hero & SharedBlockProps> = (props) => {
 
   return (
     <BlockContainer bgColor={bgColor} {...props}>
-      <div className="flex items-center pt-16 lg:pt-24">
+      <div className="flex items-center">
         <div
           className={cn("max-w-4xl", {
             "mx-auto text-center": textAlign === "center",

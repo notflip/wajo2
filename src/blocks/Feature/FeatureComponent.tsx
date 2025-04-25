@@ -8,8 +8,6 @@ import { BlockContainer } from "@/blocks/BlockContainer"
 export const FeatureComponent: React.FC<Feature> = (props) => {
   const { subtitle, title, content, image, imageNoFill, variant } = props
 
-  console.log(imageNoFill)
-
   return (
     <BlockContainer>
       <div
@@ -17,7 +15,7 @@ export const FeatureComponent: React.FC<Feature> = (props) => {
           "lg:flex-row-reverse": variant === "imageLeft",
         })}
       >
-        <div className="w-full lg:w-1/2 order-2 lg:order-1 relative lg:max-w-[42rem]">
+        <div className="w-full lg:w-1/2 order-2 lg:order-1 relative lg:max-w-[42rem] min-h-[400px]">
           {image && (
             <ImageBox
               fill={!imageNoFill}

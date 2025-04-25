@@ -1,3 +1,4 @@
+import { InlineButton } from "@/blocks/InlineButton/InlineButton"
 import { link } from "@/fields/link/link"
 import {
   BlocksFeature,
@@ -37,6 +38,7 @@ export const Feature: Block = {
           HeadingFeature({
             enabledHeadingSizes: ["h4", "h5"],
           }),
+          BlocksFeature({ blocks: [InlineButton] }),
         ],
       }),
     },

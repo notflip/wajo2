@@ -1,3 +1,4 @@
+import { InlineButton } from "@/blocks/InlineButton/InlineButton"
 import {
   BlocksFeature,
   EXPERIMENTAL_TableFeature,
@@ -27,6 +28,7 @@ export const richTextField = ({ name, label, admin = {} }: Props): Field => ({
         UploadFeature(),
         HeadingFeature({ enabledHeadingSizes: ["h2", "h3", "h4"] }),
         // BlocksFeature({ blocks: [MediaBlock, InlineListBlock] }),
+        BlocksFeature({ blocks: [InlineButton] }),
         UnorderedListFeature(),
         EXPERIMENTAL_TableFeature(),
       ]

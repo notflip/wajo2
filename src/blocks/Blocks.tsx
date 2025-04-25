@@ -16,7 +16,16 @@ const Blocks: React.FC<BlocksProps> = (props) => {
             const Block = blockComponents[blockType as BlockType]
 
             if (Block) {
-              return (
+              return index === 0 ? (
+                <div key={index} className="pt-16 lg:pt-24">
+                  <Block
+                    index={index}
+                    {...block}
+                    prevBlock={blocks[index - 1]}
+                    nextBlock={blocks[index + 1]}
+                  />
+                </div>
+              ) : (
                 <Block
                   key={index}
                   index={index}
