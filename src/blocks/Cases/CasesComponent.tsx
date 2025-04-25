@@ -29,7 +29,7 @@ export const CasesComponent: React.FC<Cases> = async (props) => {
       )}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {(latestCases || []).map((item, index) => (
-          <Link href={`/cases/${item.slug}`} key={index} className="relative group">
+          <Link href={`/projecten/${item.slug}`} key={index} className="relative group">
             <div className="relative h-[400px] rounded-[16px] overflow-hidden">
               {item.image && (
                 <ImageBox

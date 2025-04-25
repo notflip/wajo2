@@ -33,7 +33,7 @@ export const FeatureTestimonialsComponent: React.FC<FeatureTestimonials> = (prop
                   <div>
                     {item?.link && (
                       <Link
-                        href={`/cases/${(item?.link as Case).slug}`}
+                        href={`/projecten/${(item?.link as Case).slug}`}
                         className="block px-4 py-1.5 rounded-full bg-white hover:bg-white/90 text-foreground"
                       >
                         <HiOutlineArrowUpRight size={18} />

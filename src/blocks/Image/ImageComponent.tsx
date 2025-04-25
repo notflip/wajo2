@@ -60,7 +60,7 @@ export const Callout: React.FC<{ callout: any }> = ({ callout }: any) => {
           <p className="text-caption">{callout?.content}</p>
           {callout?.link && (
             <Link
-              href={`/cases/${callout?.link.slug}`}
+              href={`/projecten/${callout?.link.slug}`}
               className="block px-4 py-1.5 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground"
             >
               <HiOutlineArrowUpRight size={18} />
