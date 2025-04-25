@@ -2,8 +2,7 @@
 
 import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
-import { Slottable, Slot } from "@radix-ui/react-slot"
-import { ButtonHTMLAttributes, ReactNode } from "react"
+import { ButtonHTMLAttributes, cloneElement, isValidElement, ReactNode } from "react"
 
 type Props = {
   children: ReactNode
@@ -41,13 +40,21 @@ export default function AnimatedButton({
   icon,
   ...props
 }: Props) {
-  const Comp = asChild ? Slot : "button"
+  const className = cn(animatedButtonVariants({ variant }), props.className)
+
+  if (asChild && isValidElement(children)) {
+    return cloneElement(children as React.ReactElement<any>, {
+      ...props,
+      className: cn((children.props as any)?.className, className),
+      children: (children as any).props?.children,
+    })
+  }
 
   return (
-    <Comp {...props} className={cn(animatedButtonVariants({ variant }), props.className)}>
+    <button {...props} className={className}>
       {avatars}
-      <Slottable>{children}</Slottable>
+      {children}
       {icon && <div>{icon}</div>}
-    </Comp>
+    </button>
   )
 }

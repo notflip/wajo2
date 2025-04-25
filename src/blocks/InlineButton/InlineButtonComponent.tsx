@@ -10,7 +10,9 @@ export const InlineButtonComponent: React.FC<InlineButton> = ({ link }) => {
 
   return (
     <AnimatedButton asChild variant="foreground">
-      <CmsLink {...link} className="no-underline" />
+      <CmsLink {...link} className="no-underline">
+        {link.label}
+      </CmsLink>
     </AnimatedButton>
   )
 }

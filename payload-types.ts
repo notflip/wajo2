@@ -74,7 +74,6 @@ export interface Config {
     posts: Post;
     postCategories: PostCategory;
     media: Media;
-    uploads: Upload;
     sharedBlocks: SharedBlock1;
     forms: Form;
     submissions: Submission;
@@ -91,7 +90,6 @@ export interface Config {
     posts: PostsSelect<false> | PostsSelect<true>;
     postCategories: PostCategoriesSelect<false> | PostCategoriesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    uploads: UploadsSelect<false> | UploadsSelect<true>;
     sharedBlocks: SharedBlocksSelect<false> | SharedBlocksSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     submissions: SubmissionsSelect<false> | SubmissionsSelect<true>;
@@ -736,28 +734,8 @@ export interface Form {
   redirect?: {
     url: string;
   };
-  attachment?: (number | null) | Upload;
   updatedAt: string;
   createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "uploads".
- */
-export interface Upload {
-  id: number;
-  title: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1098,10 +1076,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
-      } | null)
-    | ({
-        relationTo: 'uploads';
-        value: number | Upload;
       } | null)
     | ({
         relationTo: 'sharedBlocks';
@@ -1791,24 +1765,6 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "uploads_select".
- */
-export interface UploadsSelect<T extends boolean = true> {
-  title?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  url?: T;
-  thumbnailURL?: T;
-  filename?: T;
-  mimeType?: T;
-  filesize?: T;
-  width?: T;
-  height?: T;
-  focalX?: T;
-  focalY?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "sharedBlocks_select".
  */
 export interface SharedBlocksSelect<T extends boolean = true> {
@@ -1927,7 +1883,6 @@ export interface FormsSelect<T extends boolean = true> {
     | {
         url?: T;
       };
-  attachment?: T;
   updatedAt?: T;
   createdAt?: T;
 }

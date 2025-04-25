@@ -86,25 +86,6 @@ export const Form: React.FC<FormProps> = ({ form }) => {
     return <p>No fields to render.</p>
   }
 
-  // With download link
-  if (!isLoading && hasSubmitted && form.attachment && (form.attachment as Upload)?.filename) {
-    return (
-      <div>
-        <RichText data={confirmationMessage!} />
-        <AnimatedButton asChild variant="foreground" className="mt-4">
-          <Link
-            href={`/uploads/${(form.attachment as Upload).filename!}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            download
-          >
-            {(form.attachment as Upload).title}
-          </Link>
-        </AnimatedButton>
-      </div>
-    )
-  }
-
   return (
     <Fragment>
       {!isLoading && hasSubmitted && confirmationType === "message" && (

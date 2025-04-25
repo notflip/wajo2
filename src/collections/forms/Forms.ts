@@ -1,5 +1,7 @@
 import { Block, CollectionConfig } from "payload"
 import { fields } from "./fields"
+import { BlocksFeature, lexicalEditor } from "@payloadcms/richtext-lexical"
+import { InlineButton } from "@/blocks/InlineButton/InlineButton"
 
 export const Forms: CollectionConfig = {
   slug: "forms",
@@ -55,10 +57,15 @@ export const Forms: CollectionConfig = {
     {
       name: "confirmationMessage",
       type: "richText",
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [
+          ...defaultFeatures,
+          BlocksFeature({ blocks: [InlineButton] }),
+        ],
+      }),
       admin: {
         condition: (_, siblingData) => siblingData?.confirmationType === "message",
       },
-      localized: true,
       required: true,
     },
     {
@@ -76,12 +83,6 @@ export const Forms: CollectionConfig = {
           required: true,
         },
       ],
-    },
-    {
-      name: "attachment",
-      type: "upload",
-      relationTo: "uploads",
-      required: false,
     },
   ],
 }

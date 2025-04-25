@@ -39,10 +39,8 @@ export const CmsLink: React.FC<React.PropsWithChildren<CmsLinkType>> = (props) =
     <NextLink onClick={onClick} href={href} {...newTabProps} className={className}>
       {props.children ||
         label ||
-        (reference?.value &&
-          typeof reference.value === "object" &&
-          reference.value.title) ||
-        "Untitled"}
+        (reference?.value && typeof reference.value === "object" && reference.value.title) ||
+        "Verzenden"}
     </NextLink>
   )
 }
