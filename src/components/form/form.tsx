@@ -1,6 +1,6 @@
 "use client"
 
-import { Form as FormType, Upload } from "@payload-types"
+import { Form as FormType } from "@payload-types"
 import { buildInitialFormState } from "@/components/form/buildInitialFormState"
 import AnimatedButton from "@/components/interface/AnimatedButton"
 import RichText from "@/components/RichText"
