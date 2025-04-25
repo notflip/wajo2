@@ -9,6 +9,7 @@ import { getCachedGlobal } from "@/utils/getGlobals"
 import { getDescription, getOgImage, getTitle } from "@/utils/seo"
 import { mergeOpenGraph } from "@/utils/mergeOpenGraph"
 import { PayloadRedirects } from "@/components/payload-redirects"
+import { notFound } from "next/navigation"
 
 interface DocPageProps {
   params: Promise<{
@@ -42,21 +43,17 @@ export async function generateMetadata({ params }: DocPageProps) {
   const path = (await params).path || "home"
   const page = await getCachedDocumentByPath(path, "pages")
 
-  if (!page) {
-    return {}
-  }
-
   const pageDescription = getDescription(page)
 
   return {
     title: getTitle(page),
     ...(pageDescription ? { description: pageDescription } : {}),
     alternates: {
-      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}${page.path === "/home" ? "/" : page.path}`,
+      canonical: `${process.env.NEXT_PUBLIC_SITE_URL}${page?.path === "/home" ? "/" : page?.path}`,
     },
     openGraph: await mergeOpenGraph({
-      url: `${process.env.NEXT_PUBLIC_SITE_URL}${page.path === "/home" ? "/" : page.path}`,
-      images: getOgImage(page.seo?.image),
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}${page?.path === "/home" ? "/" : page?.path}`,
+      images: getOgImage(page?.seo?.image),
     }),
   }
 }
@@ -80,9 +77,7 @@ export default async function Page({ params }: { params: any }) {
     "@type": "LocalBusiness",
     name: settings.website_title,
     url: `${process.env.NEXT_PUBLIC_SITE_URL}${page.path === "/home" ? "/" : page.path}`,
-    email: settings.website_emails?.length
-      ? settings.website_emails[0].email
-      : "",
+    email: settings.website_emails?.length ? settings.website_emails[0].email : "",
     telephone: settings.website_phone ?? "",
   }
 
