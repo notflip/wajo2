@@ -74,6 +74,7 @@ export interface Config {
     posts: Post;
     postCategories: PostCategory;
     media: Media;
+    uploads: Upload;
     sharedBlocks: SharedBlock1;
     forms: Form;
     submissions: Submission;
@@ -90,6 +91,7 @@ export interface Config {
     posts: PostsSelect<false> | PostsSelect<true>;
     postCategories: PostCategoriesSelect<false> | PostCategoriesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    uploads: UploadsSelect<false> | UploadsSelect<true>;
     sharedBlocks: SharedBlocksSelect<false> | SharedBlocksSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     submissions: SubmissionsSelect<false> | SubmissionsSelect<true>;
@@ -169,6 +171,7 @@ export interface Page {
         | FeatureRows
         | FeatureList
         | FeatureTestimonials
+        | FormBlock
         | Hero
         | HeroForm
         | Logos
@@ -596,47 +599,15 @@ export interface FeatureTestimonials {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Hero".
+ * via the `definition` "FormBlock".
  */
-export interface Hero {
+export interface FormBlock {
   title: string;
-  content: string;
-  links?:
-    | {
-        link: {
-          type: 'reference' | 'custom';
-          newTab?: boolean | null;
-          reference?: {
-            relationTo: 'pages';
-            value: number | Page;
-          } | null;
-          url?: string | null;
-          label?: string | null;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  textAlign?: ('left' | 'center') | null;
-  bgColor?: ('beige' | 'black') | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'hero';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "HeroForm".
- */
-export interface HeroForm {
-  title: string;
-  content?: string | null;
+  text?: string | null;
   form: number | Form;
-  /**
-   * Deze afbeelding wordt rechts van het embedded formulier getoond, indien gekozen
-   */
-  image?: (number | null) | Media;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'heroForm';
+  blockType: 'formBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -688,7 +659,6 @@ export interface Form {
         | {
             name: string;
             label?: string | null;
-            defaultValue?: number | null;
             required?: boolean | null;
             id?: string | null;
             blockName?: string | null;
@@ -697,7 +667,6 @@ export interface Form {
         | {
             name: string;
             label?: string | null;
-            defaultValue?: string | null;
             options?:
               | {
                   label: string;
@@ -713,7 +682,6 @@ export interface Form {
         | {
             name: string;
             label?: string | null;
-            defaultValue?: string | null;
             placeholder?: string | null;
             options?:
               | {
@@ -730,7 +698,6 @@ export interface Form {
         | {
             name: string;
             label?: string | null;
-            defaultValue?: string | null;
             required?: boolean | null;
             id?: string | null;
             blockName?: string | null;
@@ -739,7 +706,6 @@ export interface Form {
         | {
             name: string;
             label?: string | null;
-            defaultValue?: string | null;
             required?: boolean | null;
             id?: string | null;
             blockName?: string | null;
@@ -770,8 +736,72 @@ export interface Form {
   redirect?: {
     url: string;
   };
+  attachment?: (number | null) | Upload;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "uploads".
+ */
+export interface Upload {
+  id: number;
+  title: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Hero".
+ */
+export interface Hero {
+  title: string;
+  content: string;
+  links?:
+    | {
+        link: {
+          type: 'reference' | 'custom';
+          newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: number | Page;
+          } | null;
+          url?: string | null;
+          label?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  textAlign?: ('left' | 'center') | null;
+  bgColor?: ('beige' | 'black') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'hero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroForm".
+ */
+export interface HeroForm {
+  title: string;
+  content?: string | null;
+  form: number | Form;
+  /**
+   * Deze afbeelding wordt rechts van het embedded formulier getoond, indien gekozen
+   */
+  image?: (number | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'heroForm';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1070,6 +1100,10 @@ export interface PayloadLockedDocument {
         value: number | Media;
       } | null)
     | ({
+        relationTo: 'uploads';
+        value: number | Upload;
+      } | null)
+    | ({
         relationTo: 'sharedBlocks';
         value: number | SharedBlock1;
       } | null)
@@ -1147,6 +1181,7 @@ export interface PagesSelect<T extends boolean = true> {
         featureRows?: T | FeatureRowsSelect<T>;
         featureList?: T | FeatureListSelect<T>;
         featureTestimonials?: T | FeatureTestimonialsSelect<T>;
+        formBlock?: T | FormBlockSelect<T>;
         hero?: T | HeroSelect<T>;
         heroForm?: T | HeroFormSelect<T>;
         logos?: T | LogosSelect<T>;
@@ -1391,6 +1426,17 @@ export interface FeatureTestimonialsSelect<T extends boolean = true> {
         id?: T;
       };
   bgColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FormBlock_select".
+ */
+export interface FormBlockSelect<T extends boolean = true> {
+  title?: T;
+  text?: T;
+  form?: T;
   id?: T;
   blockName?: T;
 }
@@ -1745,6 +1791,24 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "uploads_select".
+ */
+export interface UploadsSelect<T extends boolean = true> {
+  title?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "sharedBlocks_select".
  */
 export interface SharedBlocksSelect<T extends boolean = true> {
@@ -1799,7 +1863,6 @@ export interface FormsSelect<T extends boolean = true> {
           | {
               name?: T;
               label?: T;
-              defaultValue?: T;
               required?: T;
               id?: T;
               blockName?: T;
@@ -1809,7 +1872,6 @@ export interface FormsSelect<T extends boolean = true> {
           | {
               name?: T;
               label?: T;
-              defaultValue?: T;
               options?:
                 | T
                 | {
@@ -1826,7 +1888,6 @@ export interface FormsSelect<T extends boolean = true> {
           | {
               name?: T;
               label?: T;
-              defaultValue?: T;
               placeholder?: T;
               options?:
                 | T
@@ -1844,7 +1905,6 @@ export interface FormsSelect<T extends boolean = true> {
           | {
               name?: T;
               label?: T;
-              defaultValue?: T;
               required?: T;
               id?: T;
               blockName?: T;
@@ -1854,7 +1914,6 @@ export interface FormsSelect<T extends boolean = true> {
           | {
               name?: T;
               label?: T;
-              defaultValue?: T;
               required?: T;
               id?: T;
               blockName?: T;
@@ -1868,6 +1927,7 @@ export interface FormsSelect<T extends boolean = true> {
     | {
         url?: T;
       };
+  attachment?: T;
   updatedAt?: T;
   createdAt?: T;
 }

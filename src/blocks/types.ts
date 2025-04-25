@@ -9,6 +9,7 @@ import { FeatureGridComponent } from "@/blocks/FeatureGrid/FeatureGridComponent"
 import { FeatureListComponent } from "@/blocks/FeatureList/FeatureListComponent"
 import { FeatureRowsComponent } from "@/blocks/FeatureRows/FeatureRowsComponent"
 import { FeatureTestimonialsComponent } from "@/blocks/FeatureTestimonials/FeatureTestimonialsComponent"
+import { FormBlockComponent } from "@/blocks/Form/FormBlockComponent"
 import { HeroComponent } from "@/blocks/HeroBlock/HeroComponent"
 import { HeroFormComponent } from "@/blocks/HeroFormComponent/HeroFormComponent"
 import { ImageComponent } from "@/blocks/Image/ImageComponent"
@@ -33,6 +34,7 @@ export const blockComponents = {
   featureRows: FeatureRowsComponent,
   featureList: FeatureListComponent,
   featureTestimonials: FeatureTestimonialsComponent,
+  formBlock: FormBlockComponent,
   testimonials: TestimonialsComponent,
   team: TeamComponent,
   feature: FeatureComponent,
@@ -47,14 +49,12 @@ export const blockComponents = {
 export type BlockType = keyof typeof blockComponents
 
 export interface SharedBlockProps {
-  index?: number
+  blockIndex?: number
   prevBlock?: any
   nextBlock?: any
 }
 
-export type BlockComponentType = React.ComponentType<
-  SharedBlockProps & { [key: string]: any }
->
+export type BlockComponentType = React.ComponentType<SharedBlockProps & { [key: string]: any }>
 
 export interface BlockItem {
   blockType: BlockType

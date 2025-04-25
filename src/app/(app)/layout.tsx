@@ -53,24 +53,22 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default async function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const { isEnabled } = await draftMode()
   const websiteSettings = await getCachedGlobal("settings")()
 
   return (
-    <html lang="en">
-      <body className={`${gilroy.variable} font-sans text-base text-foreground antialiased relative`}>
+    <html lang="en" className="scroll-smooth">
+      <body
+        className={`${gilroy.variable} font-sans text-base text-foreground antialiased relative`}
+      >
         {/* <TopNav settings={websiteSettings} /> */}
         <Nav settings={websiteSettings} />
         {children}
         <AdminBar draft={isEnabled} />
         <Footer />
       </body>
-      {process.env.NODE_ENV === "production" && (
-        <GoogleAnalytics gaId="G-XXXXXXXXXX" />
-      )}
+      {process.env.NODE_ENV === "production" && <GoogleAnalytics gaId="G-XXXXXXXXXX" />}
     </html>
   )
 }

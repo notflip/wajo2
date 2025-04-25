@@ -21,6 +21,7 @@ import { SharedBlocks } from "@/collections/SharedBlocks"
 import { Submissions } from "@/collections/Submissions"
 import { Cases } from "@/collections/Cases"
 import { Forms } from "@/collections/forms/Forms"
+import { Uploads } from "@/collections/Uploads"
 
 export default buildConfig({
   editor: lexicalEditor(),
@@ -77,6 +78,7 @@ export default buildConfig({
     Posts,
     PostCategories,
     Media,
+    Uploads,
     SharedBlocks,
     Forms,
     Submissions,

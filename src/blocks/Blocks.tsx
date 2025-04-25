@@ -19,7 +19,7 @@ const Blocks: React.FC<BlocksProps> = (props) => {
               return index === 0 ? (
                 <div key={index} className="pt-16 lg:pt-24">
                   <Block
-                    index={index}
+                    blockIndex={index}
                     {...block}
                     prevBlock={blocks[index - 1]}
                     nextBlock={blocks[index + 1]}
@@ -28,7 +28,7 @@ const Blocks: React.FC<BlocksProps> = (props) => {
               ) : (
                 <Block
                   key={index}
-                  index={index}
+                  blockIndex={index}
                   {...block}
                   prevBlock={blocks[index - 1]}
                   nextBlock={blocks[index + 1]}

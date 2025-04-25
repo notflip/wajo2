@@ -1,6 +1,6 @@
 "use client"
 
-import { Form as FormType } from "@payload-types"
+import { Form as FormType, Upload } from "@payload-types"
 import { buildInitialFormState } from "@/components/form/buildInitialFormState"
 import AnimatedButton from "@/components/interface/AnimatedButton"
 import RichText from "@/components/RichText"
@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation"
 import { Fragment, useState } from "react"
 import { useForm, FormProvider } from "react-hook-form"
 import { fieldsMap } from "@/components/form/fieldsMap"
+import Link from "next/link"
 
 interface FormProps {
   form: FormType
@@ -85,6 +86,25 @@ export const Form: React.FC<FormProps> = ({ form }) => {
     return <p>No fields to render.</p>
   }
 
+  // With download link
+  if (!isLoading && hasSubmitted && form.attachment && (form.attachment as Upload)?.filename) {
+    return (
+      <div>
+        <RichText data={confirmationMessage!} />
+        <AnimatedButton asChild variant="foreground" className="mt-4">
+          <Link
+            href={`/uploads/${(form.attachment as Upload).filename!}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            download
+          >
+            {(form.attachment as Upload).title}
+          </Link>
+        </AnimatedButton>
+      </div>
+    )
+  }
+
   return (
     <Fragment>
       {!isLoading && hasSubmitted && confirmationType === "message" && (
@@ -103,31 +123,30 @@ export const Form: React.FC<FormProps> = ({ form }) => {
               </div>
             )}
             {!hasSubmitted && (
-              <div className="container">
-                <form
-                  key={formID}
-                  onSubmit={handleSubmit(onSubmit)}
-                  className="space-y-4 mx-auto"
-                >
-                  {fields.map((field, i) => {
-                    //@ts-ignore
-                    const FieldComponent = fieldsMap[field.blockType]
-                    return (
-                      <FieldComponent
-                        key={i}
-                        form={form}
-                        {...field}
-                        control={control}
-                        errors={errors}
-                        register={register}
-                      />
-                    )
-                  })}
-                  <AnimatedButton variant="foreground">
-                    {submitButtonLabel ?? "Verzenden"}
-                  </AnimatedButton>
-                </form>
-              </div>
+              <form
+                id="form"
+                key={formID}
+                onSubmit={handleSubmit(onSubmit)}
+                className="max-w-xl space-y-4 scroll-mt-[300px]"
+              >
+                {fields.map((field, i) => {
+                  //@ts-ignore
+                  const FieldComponent = fieldsMap[field.blockType]
+                  return (
+                    <FieldComponent
+                      key={i}
+                      form={form}
+                      {...field}
+                      control={control}
+                      errors={errors}
+                      register={register}
+                    />
+                  )
+                })}
+                <AnimatedButton variant="foreground">
+                  {submitButtonLabel ?? "Verzenden"}
+                </AnimatedButton>
+              </form>
             )}
           </Fragment>
         </FormProvider>

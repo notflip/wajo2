@@ -76,9 +76,9 @@ export default {
       },
       fontSize: {
         "heading-1": [
-          "4rem",
+          "3.8rem",
           {
-            lineHeight: "4rem",
+            lineHeight: "3.8rem",
             fontWeight: "700",
           },
         ],

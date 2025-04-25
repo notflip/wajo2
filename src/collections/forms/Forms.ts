@@ -77,5 +77,11 @@ export const Forms: CollectionConfig = {
         },
       ],
     },
+    {
+      name: "attachment",
+      type: "upload",
+      relationTo: "uploads",
+      required: false,
+    },
   ],
 }

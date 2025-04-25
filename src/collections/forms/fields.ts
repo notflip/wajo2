@@ -47,20 +47,6 @@ const Radio: Block = {
       ],
     },
     {
-      type: "row",
-      fields: [
-        {
-          name: "defaultValue",
-          type: "text",
-          admin: {
-            width: "50%",
-          },
-          label: "Default Value",
-          localized: true,
-        },
-      ],
-    },
-    {
       name: "options",
       type: "array",
       fields: [
@@ -120,20 +106,6 @@ const Select: Block = {
           admin: {
             width: "50%",
           },
-        },
-      ],
-    },
-    {
-      type: "row",
-      fields: [
-        {
-          name: "defaultValue",
-          type: "text",
-          admin: {
-            width: "50%",
-          },
-          label: "Default Value",
-          localized: true,
         },
       ],
     },
@@ -208,20 +180,6 @@ const Text: Block = {
         },
       ],
     },
-    {
-      type: "row",
-      fields: [
-        {
-          name: "defaultValue",
-          type: "text",
-          admin: {
-            width: "50%",
-          },
-          label: "Default Value",
-          localized: true,
-        },
-      ],
-    },
     required,
   ],
   labels: {
@@ -250,20 +208,6 @@ const TextArea: Block = {
         },
       ],
     },
-    {
-      type: "row",
-      fields: [
-        {
-          name: "defaultValue",
-          type: "text",
-          admin: {
-            width: "50%",
-          },
-          label: "Default Value",
-          localized: true,
-        },
-      ],
-    },
     required,
   ],
   labels: {
@@ -289,19 +233,6 @@ const Number: Block = {
           admin: {
             width: "50%",
           },
-        },
-      ],
-    },
-    {
-      type: "row",
-      fields: [
-        {
-          name: "defaultValue",
-          type: "number",
-          admin: {
-            width: "50%",
-          },
-          label: "Default Value",
         },
       ],
     },

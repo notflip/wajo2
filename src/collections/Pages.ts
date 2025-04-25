@@ -1,10 +1,6 @@
 import { CollectionConfig } from "payload"
 import { generatePreviewPath } from "@/utils/generatePreviewPath"
-import {
-  MetaDescriptionField,
-  MetaImageField,
-  MetaTitleField,
-} from "@payloadcms/plugin-seo/fields"
+import { MetaDescriptionField, MetaImageField, MetaTitleField } from "@payloadcms/plugin-seo/fields"
 import { isAuthenticated } from "@/access/isAuthenticated"
 import { slugField } from "@/fields/slug"
 import { isAuthenticatedOrPublished } from "@/access/isAuthenticatedOrPublished"
@@ -33,6 +29,7 @@ import EmbedBlock from "@/blocks/EmbedBlock/EmbedBlock"
 import { FeatureGrid } from "@/blocks/FeatureGrid/FeatureGrid"
 import { HeroForm } from "@/blocks/HeroFormComponent/HeroForm"
 import ContentBlock from "@/blocks/ContentBlock/ContentBlock"
+import { FormBlock } from "@/blocks/Form/FormBlock"
 
 export const Pages: CollectionConfig<"pages"> = {
   slug: "pages",
@@ -125,6 +122,7 @@ export const Pages: CollectionConfig<"pages"> = {
                 FeatureRows,
                 FeatureList,
                 FeatureTestimonials,
+                FormBlock,
                 Hero,
                 HeroForm,
                 Logos,

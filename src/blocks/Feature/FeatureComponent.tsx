@@ -4,9 +4,10 @@ import { cn } from "@/lib/utils"
 import RichText from "@/components/RichText"
 import Badge from "@/components/badge"
 import { BlockContainer } from "@/blocks/BlockContainer"
+import { SharedBlockProps } from "@/blocks/types"
 
-export const FeatureComponent: React.FC<Feature> = (props) => {
-  const { subtitle, title, content, image, imageNoFill, variant } = props
+export const FeatureComponent: React.FC<Feature & SharedBlockProps> = (props) => {
+  const { subtitle, title, content, image, imageNoFill, variant, blockIndex } = props
 
   return (
     <BlockContainer>
@@ -31,7 +32,7 @@ export const FeatureComponent: React.FC<Feature> = (props) => {
               <Badge text={subtitle} />
             </div>
           )}
-          <h2 className="h3 mb-8">{title}</h2>
+          {blockIndex === 0 ? <h1 className="mb-8">{title}</h1> : <h2 className="mb-8">{title}</h2>}
           {content && <RichText data={content} />}
         </div>
       </div>

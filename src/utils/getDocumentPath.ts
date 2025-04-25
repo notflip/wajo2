@@ -7,8 +7,9 @@ import { cache } from "react"
 import { PATH_UNIQUE_AGINST_COLLECTIONS } from "@/fields/path/path"
 
 type PathUniqueCollection = (typeof PATH_UNIQUE_AGINST_COLLECTIONS)[number]
-type CollectionDocument<K extends keyof Config["collections"]> =
-  Config["collections"][K] & { _collection: K }
+type CollectionDocument<K extends keyof Config["collections"]> = Config["collections"][K] & {
+  _collection: K
+}
 type CollectionDocuments = {
   [K in keyof Config["collections"]]: CollectionDocument<K>
 }[keyof Config["collections"]]
@@ -35,9 +36,7 @@ export async function getDocumentByPath(
   })
   const normalizedPath = normalizePath(path, false)
 
-  const collectionsToSearch = collection
-    ? [collection]
-    : PATH_UNIQUE_AGINST_COLLECTIONS
+  const collectionsToSearch = collection ? [collection] : PATH_UNIQUE_AGINST_COLLECTIONS
 
   const queries = collectionsToSearch.map((collectionSlug) =>
     payload
@@ -60,8 +59,7 @@ export async function getDocumentByPath(
   )
 
   const results = (await Promise.allSettled(queries)).filter(
-    (v): v is PromiseFulfilledResult<CollectionDocuments | null> =>
-      v.status === "fulfilled",
+    (v): v is PromiseFulfilledResult<CollectionDocuments | null> => v.status === "fulfilled",
   )
 
   return results.find((result) => result.value !== null)?.value ?? null
