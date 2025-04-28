@@ -46,7 +46,13 @@ export default function AnimatedButton({
     return cloneElement(children as React.ReactElement<any>, {
       ...props,
       className: cn((children.props as any)?.className, className),
-      children: (children as any).props?.children,
+      children: (
+        <>
+          {avatars}
+          {(children as any).props?.children}
+          {icon && <div>{icon}</div>}
+        </>
+      ),
     })
   }
 
