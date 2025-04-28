@@ -29,6 +29,9 @@ export default {
         600: "hsl(var(--slate-600))",
         950: "hsl(var(--slate-950))",
       },
+      yellow: {
+        400: "hsl(var(--yellow-400))",
+      },
       white: colors.white,
       border: "hsl(var(--border))",
       input: "hsl(var(--input))",

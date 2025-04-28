@@ -3,6 +3,8 @@ import Badge from "@/components/badge"
 import { ImageBox } from "@/components/ImageBox"
 import { cn } from "@/lib/utils"
 import { Media, Testimonials } from "@payload-types"
+import { DynamicIcon } from "@/components/dynamic-icon"
+import { HiStar } from "react-icons/hi2"
 
 export const TestimonialsComponent: React.FC<Testimonials> = (props) => {
   const { badge, title, items, bgColor } = props
@@ -26,14 +28,19 @@ export const TestimonialsComponent: React.FC<Testimonials> = (props) => {
                 shouldSpan2 ? "lg:col-span-2" : "lg:col-span-1",
               )}
             >
-              <h5>{item.text}</h5>
+              <div>
+                <div className="flex space-x-1 mb-6">
+                  <HiStar className="w-5 h-5 text-yellow-400" />
+                  <HiStar className="w-5 h-5 text-yellow-400" />
+                  <HiStar className="w-5 h-5 text-yellow-400" />
+                  <HiStar className="w-5 h-5 text-yellow-400" />
+                  <HiStar className="w-5 h-5 text-yellow-400" />
+                </div>
+                <h5>{item.text}</h5>
+              </div>
               <div className="mt-16 flex items-center gap-3">
                 {item.image && (
-                  <ImageBox
-                    className="w-12 h-12 rounded-full"
-                    media={item.image}
-                    sizes="96px"
-                  />
+                  <ImageBox className="w-12 h-12 rounded-full" media={item.image} sizes="96px" />
                 )}
                 {item.name}
               </div>

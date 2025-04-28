@@ -21,6 +21,9 @@
   --beige-100: 30 45% 92%;
   --beige-400: 30 40% 70%;
 
+  /* Yellow */
+  --yellow-400: 42 100% 60%;
+
   /* Definitions */
   --background: 0 0 100%; /* white */
   --foreground: var(--blue-950); /* blueish almost black */
