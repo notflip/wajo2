@@ -43,21 +43,18 @@ export default async function Page({ params }: PageProps) {
         </div>
       </section>
 
+      {/* Stats */}
       {singleCase.stats?.statistics && singleCase.stats.statistics.length > 0 && (
         <section className="relative py-sm">
           <div className="mx-auto max-w-screen-2xl px-4 md:px-12 2xl:px-16">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <div className="relative lg:h-auto group p-4 lg:p-8 rounded-[16px] hover:-translate-y-1 transition overflow-hidden">
-                <ImageBox
-                  fill
-                  media={singleCase.image}
-                  sizes="(max-width: 768px) 100vw, 30vw"
-                />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="relative h-[300px] md:h-auto group p-4 md:p-8 rounded-[16px] hover:-translate-y-1 transition overflow-hidden">
+                <ImageBox fill media={singleCase.image} sizes="(max-width: 768px) 100vw, 30vw" />
               </div>
               {(singleCase.stats?.statistics || []).map((item, index) => (
                 <div
                   key={index}
-                  className="bg-slate-50 group p-4 lg:p-8 rounded-[16px] hover:-translate-y-1 transition"
+                  className="bg-slate-50 group p-4 md:p-8 rounded-[16px] hover:-translate-y-1 transition"
                 >
                   <div className="flex items-center justify-between">
                     <h4 className="mb-8">{item.amount}</h4>
@@ -117,8 +114,7 @@ export default async function Page({ params }: PageProps) {
             {(singleCase.images_group?.images || []).map((item, index) => {
               const isFirstInPair = index % 2 === 0
               const isEvenRow = Math.floor(index / 2) % 2 === 0
-              const shouldSpan2 =
-                (isFirstInPair && isEvenRow) || (!isFirstInPair && !isEvenRow)
+              const shouldSpan2 = (isFirstInPair && isEvenRow) || (!isFirstInPair && !isEvenRow)
               return (
                 <div
                   key={index}
@@ -128,11 +124,7 @@ export default async function Page({ params }: PageProps) {
                   )}
                 >
                   {item.image && (
-                    <ImageBox
-                      fill
-                      media={item.image}
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                    />
+                    <ImageBox fill media={item.image} sizes="(max-width: 1024px) 100vw, 50vw" />
                   )}
                 </div>
               )
