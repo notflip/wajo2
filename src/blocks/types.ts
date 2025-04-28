@@ -13,6 +13,7 @@ import { FormBlockComponent } from "@/blocks/Form/FormBlockComponent"
 import { HeroComponent } from "@/blocks/HeroBlock/HeroComponent"
 import { HeroFormComponent } from "@/blocks/HeroFormComponent/HeroFormComponent"
 import { ImageComponent } from "@/blocks/Image/ImageComponent"
+import { ImageGridComponent } from "@/blocks/ImageGrid/ImageGridComponent"
 import { LogosComponent } from "@/blocks/Logos/LogosComponent"
 import { ParagraphComponent } from "@/blocks/Paragraph/ParagraphComponent"
 import { ProcessSliderComponent } from "@/blocks/ProcessSlider/ProcessSliderComponent"
@@ -25,6 +26,7 @@ export const blockComponents = {
   hero: HeroComponent,
   heroForm: HeroFormComponent,
   image: ImageComponent,
+  imageGrid: ImageGridComponent,
   paragraph: ParagraphComponent,
   cards: CardsComponent,
   cases: CasesComponent,

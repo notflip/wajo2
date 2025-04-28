@@ -165,6 +165,7 @@ export interface Page {
         | CtaBlock
         | Feature
         | Image
+        | ImageGrid
         | FeatureGrid
         | FeatureRows
         | FeatureList
@@ -494,6 +495,22 @@ export interface Case {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageGrid".
+ */
+export interface ImageGrid {
+  items?:
+    | {
+        image?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  bgColor?: 'beige' | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'imageGrid';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1151,6 +1168,7 @@ export interface PagesSelect<T extends boolean = true> {
         ctaBlock?: T | CtaBlockSelect<T>;
         feature?: T | FeatureSelect<T>;
         image?: T | ImageSelect<T>;
+        imageGrid?: T | ImageGridSelect<T>;
         featureGrid?: T | FeatureGridSelect<T>;
         featureRows?: T | FeatureRowsSelect<T>;
         featureList?: T | FeatureListSelect<T>;
@@ -1306,6 +1324,21 @@ export interface ImageSelect<T extends boolean = true> {
         link?: T;
         image?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageGrid_select".
+ */
+export interface ImageGridSelect<T extends boolean = true> {
+  items?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  bgColor?: T;
   id?: T;
   blockName?: T;
 }

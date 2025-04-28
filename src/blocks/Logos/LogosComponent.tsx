@@ -5,7 +5,7 @@ import { Logos, Media } from "@payload-types"
 export const LogosComponent: React.FC<Logos> = (props) => {
   const { items, bgColor } = props
 
-  if (!items?.length) {
+  if (!Array.isArray(items) || items.length === 0) {
     return null
   }
 

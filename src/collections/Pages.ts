@@ -30,6 +30,7 @@ import { FeatureGrid } from "@/blocks/FeatureGrid/FeatureGrid"
 import { HeroForm } from "@/blocks/HeroFormComponent/HeroForm"
 import ContentBlock from "@/blocks/ContentBlock/ContentBlock"
 import { FormBlock } from "@/blocks/Form/FormBlock"
+import { ImageGrid } from "@/blocks/ImageGrid/ImageGrid"
 
 export const Pages: CollectionConfig<"pages"> = {
   slug: "pages",
@@ -118,6 +119,7 @@ export const Pages: CollectionConfig<"pages"> = {
                 CtaBlock,
                 Feature,
                 Image,
+                ImageGrid,
                 FeatureGrid,
                 FeatureRows,
                 FeatureList,
