@@ -42,25 +42,25 @@ export default function AnimatedButton({
 }: Props) {
   const className = cn(animatedButtonVariants({ variant }), props.className)
 
+  const content = (
+    <>
+      {avatars}
+      {children}
+      {icon && <div>{icon}</div>}
+    </>
+  )
+
   if (asChild && isValidElement(children)) {
     return cloneElement(children as React.ReactElement<any>, {
       ...props,
       className: cn((children.props as any)?.className, className),
-      children: (
-        <>
-          {avatars}
-          {(children as any).props?.children}
-          {icon && <div>{icon}</div>}
-        </>
-      ),
+      children: content,
     })
   }
 
   return (
     <button {...props} className={className}>
-      {avatars}
-      {children}
-      {icon && <div>{icon}</div>}
+      {content}
     </button>
   )
 }
