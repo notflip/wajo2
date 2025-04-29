@@ -18,6 +18,7 @@ export default {
       },
       blue: {
         50: "hsl(var(--blue-50))",
+        100: "hsl(var(--blue-100))",
         500: "hsl(var(--blue-500))",
         600: "hsl(var(--blue-600))",
         950: "hsl(var(--blue-950))",
