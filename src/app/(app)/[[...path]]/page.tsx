@@ -67,7 +67,7 @@ export default async function Page({ params }: { params: any }) {
   const page = await getCachedDocumentByPath(path, "pages")
 
   if (!page) {
-    return <PayloadRedirects path={`/${path}`} />
+    return <PayloadRedirects path={`/${path.join('/')}`} />
   }
 
   // JSONLD
