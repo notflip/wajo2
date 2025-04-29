@@ -11,9 +11,11 @@ export const FormBlockComponent: React.FC<FormBlock> = (props) => {
 
   return (
     <BlockContainer {...rest}>
-      <h1 className="mb-8">{title}</h1>
-      {text && <p className="mb-8 max-w-prose">{text}</p>}
-      <Form form={form} />
+      <div className="mx-auto max-w-2xl">
+        <h1 className="mb-8">{title}</h1>
+        {text && <p className="mb-8 max-w-prose">{text}</p>}
+        <Form form={form} />
+      </div>
     </BlockContainer>
   )
 }

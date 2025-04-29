@@ -8,12 +8,12 @@ export const FeatureGridComponent: React.FC<FeatureGrid> = (props) => {
 
   return (
     <BlockContainer bgColor={bgColor} {...props}>
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-        <div className="md:col-span-3 md:sticky top-8 self-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div className="lg:col-span-3 lg:sticky top-8 self-start">
           <Badge text={badge} />
           <h3 className="mt-8">{title}</h3>
         </div>
-        <div className="md:col-start-5 md:col-span-full">
+        <div className="lg:col-start-5 lg:col-span-full">
           <div className="grid grid-cols-2 gap-8">
             {(items || []).map((item, index) => (
               <div key={index} className="bg-white p-4 lg:p-8 rounded-[16px]">
