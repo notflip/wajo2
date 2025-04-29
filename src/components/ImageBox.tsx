@@ -5,6 +5,7 @@ import React from "react"
 interface ImageBoxProps extends React.HTMLAttributes<HTMLDivElement> {
   fill?: boolean
   lazyload?: boolean
+  objectFit?: any
   media?: Media | number | null
   quality?: number
   sizes?: string
@@ -15,6 +16,7 @@ export const ImageBox: React.FC<ImageBoxProps> = ({
   media,
   fill,
   sizes,
+  objectFit = "cover",
   lazyload = true,
   quality = 85,
   disableBlurhash = false,
@@ -29,9 +31,7 @@ export const ImageBox: React.FC<ImageBoxProps> = ({
   const height = imageHeight ?? undefined
 
   const objectPosition =
-    media.focalX != null && media.focalY != null
-      ? `${media.focalX}% ${media.focalY}%`
-      : "center"
+    media.focalX != null && media.focalY != null ? `${media.focalX}% ${media.focalY}%` : "center"
 
   return (
     <Image
@@ -44,7 +44,7 @@ export const ImageBox: React.FC<ImageBoxProps> = ({
       sizes={sizes}
       loading={lazyload ? "lazy" : "eager"}
       style={{
-        objectFit: "cover",
+        objectFit,
         objectPosition,
       }}
       placeholder={!disableBlurhash && media.blurhash ? "blur" : "empty"}

@@ -16,12 +16,13 @@ export const FeatureComponent: React.FC<Feature & SharedBlockProps> = (props) =>
           "lg:flex-row-reverse": variant === "imageLeft",
         })}
       >
-        <div className="w-full lg:w-1/2 order-2 lg:order-1 relative lg:max-w-[42rem] min-h-[400px]">
+        <div className="w-full order-2 relative h-[400px] lg:h-auto lg:w-1/2 lg:order-1 lg:max-w-[42rem] lg:max-h-[550px]">
           {image && (
             <ImageBox
-              fill={!imageNoFill}
+              fill
               media={image}
               sizes="(max-width: 1024px) 100vw, 40vw"
+              objectFit="contain"
               className="rounded-[16px]"
             />
           )}
