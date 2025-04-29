@@ -1,6 +1,4 @@
-"use client"
-
-import { cva, type VariantProps } from "class-variance-authority"
+import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 import { ButtonHTMLAttributes, cloneElement, isValidElement, ReactNode } from "react"
 
