@@ -15,7 +15,7 @@ export const PayloadRedirects: React.FC<Props> = async ({ path }) => {
   const redirects = await getCachedRedirects()()
 
   if (!redirects || redirects.length === 0) {
-    return null
+    notFound()
   }
 
   const redirectItem = redirects.find((redirect) => redirect.from === path)
