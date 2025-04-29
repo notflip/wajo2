@@ -6,6 +6,7 @@ interface ImageBoxProps extends React.HTMLAttributes<HTMLDivElement> {
   fill?: boolean
   lazyload?: boolean
   objectFit?: any
+  objectPosition?: any
   media?: Media | number | null
   quality?: number
   sizes?: string
@@ -17,6 +18,7 @@ export const ImageBox: React.FC<ImageBoxProps> = ({
   fill,
   sizes,
   objectFit = "cover",
+  objectPosition = "center",
   lazyload = true,
   quality = 85,
   disableBlurhash = false,
@@ -30,8 +32,11 @@ export const ImageBox: React.FC<ImageBoxProps> = ({
   const width = imageWidth ?? undefined
   const height = imageHeight ?? undefined
 
-  const objectPosition =
-    media.focalX != null && media.focalY != null ? `${media.focalX}% ${media.focalY}%` : "center"
+  const setObjectPosition = objectPosition
+    ? objectPosition
+    : media.focalX != null && media.focalY != null
+      ? `${media.focalX}% ${media.focalY}%`
+      : ""
 
   return (
     <Image
@@ -45,7 +50,7 @@ export const ImageBox: React.FC<ImageBoxProps> = ({
       loading={lazyload ? "lazy" : "eager"}
       style={{
         objectFit,
-        objectPosition,
+        objectPosition: setObjectPosition,
       }}
       placeholder={!disableBlurhash && media.blurhash ? "blur" : "empty"}
       blurDataURL={(!disableBlurhash && media.blurhash) || undefined}
