@@ -3,7 +3,6 @@ import { CasesComponent } from "@/blocks/Cases/CasesComponent"
 import { ContactFormComponent } from "@/blocks/ContactForm/ContactFormComponent"
 import { ContentBlockComponent } from "@/blocks/ContentBlock/ContentBlockComponent"
 import { CtaBlockComponent } from "@/blocks/CtaBlock/CtaBlockComponent"
-import { EmbedBlockComponent } from "@/blocks/EmbedBlock/EmbedBlockComponent"
 import { FeatureComponent } from "@/blocks/Feature/FeatureComponent"
 import { FeatureGridComponent } from "@/blocks/FeatureGrid/FeatureGridComponent"
 import { FeatureListComponent } from "@/blocks/FeatureList/FeatureListComponent"
@@ -19,6 +18,7 @@ import { ParagraphComponent } from "@/blocks/Paragraph/ParagraphComponent"
 import { ProcessSliderComponent } from "@/blocks/ProcessSlider/ProcessSliderComponent"
 import { SharedBlockComponent } from "@/blocks/SharedBlock/SharedBlockComponent"
 import { SliderComponent } from "@/blocks/Slider/SliderComponent"
+import { TallyEmbedComponent } from "@/blocks/TallyEmbed/TallyEmbedComponent"
 import { TeamComponent } from "@/blocks/Team/TeamComponent"
 import { TestimonialsComponent } from "@/blocks/Testimonials/TestimonialsComponent"
 
@@ -43,9 +43,9 @@ export const blockComponents = {
   slider: SliderComponent,
   logos: LogosComponent,
   processSlider: ProcessSliderComponent,
+  tallyEmbed: TallyEmbedComponent,
   ctaBlock: CtaBlockComponent,
   shared: SharedBlockComponent,
-  embedBlock: EmbedBlockComponent,
 } as const
 
 export type BlockType = keyof typeof blockComponents

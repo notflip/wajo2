@@ -1,10 +1,4 @@
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
 /**
@@ -22,21 +16,18 @@ export const EmailField = ({
     <FormField
       control={control}
       name={name}
+      rules={{
+        required: requiredFromProps && "Dit veld is verplicht",
+        pattern: {
+          value: /^\S[^\s@]*@\S+$/,
+          message: "Geen geldig e-mail adres",
+        },
+      }}
       render={({ field }) => (
         <FormItem>
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <Input
-              placeholder={defaultValue}
-              {...field}
-              {...register(name, {
-                required: requiredFromProps && "Dit veld is verplicht",
-                pattern: {
-                  value: /^\S[^\s@]*@\S+$/,
-                  message: "Geen geldig e-mail adres",
-                },
-              })}
-            />
+            <Input placeholder={defaultValue} {...field} />
           </FormControl>
           <FormMessage />
         </FormItem>

@@ -157,7 +157,6 @@ export interface Page {
   title: string;
   blocks?:
     | (
-        | EmbedBlock
         | Cards
         | Cases
         | ContentBlock
@@ -178,6 +177,7 @@ export interface Page {
         | ProcessSlider
         | Slider
         | SharedBlock
+        | TallyEmbed
         | Team
         | Testimonials
       )[]
@@ -202,65 +202,6 @@ export interface Page {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "EmbedBlock".
- */
-export interface EmbedBlock {
-  /**
-   * Plak hier je <script>...</script> fragment (inclusief de tags).
-   */
-  script: string;
-  /**
-   * Plak het HTML-fragment (bijvoorbeeld een <div> voor de widget).
-   */
-  html: string;
-  /**
-   * Deze afbeelding wordt rechts van het embedded formulier getoond, indien gekozen
-   */
-  image?: (number | null) | Media;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'embedBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
- */
-export interface Media {
-  id: number;
-  alt?: string | null;
-  blurhash?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-  sizes?: {
-    thumbnail?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    og?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -334,14 +275,16 @@ export interface ContentBlock {
  * via the `definition` "ContactForm".
  */
 export interface ContactForm {
-  /**
-   * Plak hier je <script>...</script> fragment (inclusief de tags).
-   */
-  script: string;
-  /**
-   * Plak het HTML-fragment (bijvoorbeeld een <div> voor de widget).
-   */
-  html: string;
+  link?: {
+    type?: ('none' | 'reference' | 'custom') | null;
+    newTab?: boolean | null;
+    reference?: {
+      relationTo: 'pages';
+      value: number | Page;
+    } | null;
+    url?: string | null;
+    label?: string | null;
+  };
   id?: string | null;
   blockName?: string | null;
   blockType: 'contactForm';
@@ -411,6 +354,44 @@ export interface Feature {
   id?: string | null;
   blockName?: string | null;
   blockType: 'feature';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: number;
+  alt?: string | null;
+  blurhash?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    og?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -902,6 +883,15 @@ export interface SharedBlock1 {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TallyEmbed".
+ */
+export interface TallyEmbed {
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'tallyEmbed';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "Team".
  */
 export interface Team {
@@ -1160,7 +1150,6 @@ export interface PagesSelect<T extends boolean = true> {
   blocks?:
     | T
     | {
-        embedBlock?: T | EmbedBlockSelect<T>;
         cards?: T | CardsSelect<T>;
         cases?: T | CasesSelect<T>;
         contentBlock?: T | ContentBlockSelect<T>;
@@ -1181,6 +1170,7 @@ export interface PagesSelect<T extends boolean = true> {
         processSlider?: T | ProcessSliderSelect<T>;
         slider?: T | SliderSelect<T>;
         shared?: T | SharedBlockSelect<T>;
+        tallyEmbed?: T | TallyEmbedSelect<T>;
         team?: T | TeamSelect<T>;
         testimonials?: T | TestimonialsSelect<T>;
       };
@@ -1203,17 +1193,6 @@ export interface PagesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "EmbedBlock_select".
- */
-export interface EmbedBlockSelect<T extends boolean = true> {
-  script?: T;
-  html?: T;
-  image?: T;
-  id?: T;
-  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1266,8 +1245,15 @@ export interface ContentBlockSelect<T extends boolean = true> {
  * via the `definition` "ContactForm_select".
  */
 export interface ContactFormSelect<T extends boolean = true> {
-  script?: T;
-  html?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -1567,6 +1553,14 @@ export interface SliderSelect<T extends boolean = true> {
  */
 export interface SharedBlockSelect<T extends boolean = true> {
   block?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TallyEmbed_select".
+ */
+export interface TallyEmbedSelect<T extends boolean = true> {
   id?: T;
   blockName?: T;
 }

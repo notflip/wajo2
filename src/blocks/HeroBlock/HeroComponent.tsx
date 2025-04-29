@@ -49,7 +49,7 @@ export const HeroComponent: React.FC<Hero & SharedBlockProps> = (props) => {
               {(links || []).map(({ link }, i) => {
                 if (i === 0) {
                   return (
-                    <AnimatedButton key={i} icon={<HiOutlineChat size={20} />} asChild>
+                    <AnimatedButton key={i} icon={<HiOutlineChat size={20} />}>
                       <CmsLink {...link} />
                     </AnimatedButton>
                   )
@@ -57,9 +57,8 @@ export const HeroComponent: React.FC<Hero & SharedBlockProps> = (props) => {
                   return (
                     <AnimatedButton
                       key={i}
-                      variant="avatars"
+                      variant="light"
                       avatars={<Avatars />}
-                      asChild
                     >
                       <CmsLink {...link} />
                     </AnimatedButton>

@@ -1,10 +1,4 @@
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
 export const TextField = ({
@@ -19,17 +13,14 @@ export const TextField = ({
     <FormField
       control={control}
       name={name}
+      rules={{
+        required: requiredFromProps && "Dit veld is verplicht",
+      }}
       render={({ field, fieldState: { error } }) => (
         <FormItem>
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <Input
-              placeholder={defaultValue}
-              {...field}
-              {...register(name, {
-                required: requiredFromProps && "Dit veld is verplicht",
-              })}
-            />
+            <Input placeholder={defaultValue} {...field} />
           </FormControl>
           <FormMessage />
         </FormItem>

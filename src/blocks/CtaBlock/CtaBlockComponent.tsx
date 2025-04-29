@@ -32,7 +32,7 @@ export const CtaBlockComponent: React.FC<CtaBlock> = (props) => {
               return (
                 <AnimatedButton
                   key={i}
-                  variant="avatars"
+                  variant="light"
                   avatars={<Avatars />}
                   asChild
                 >

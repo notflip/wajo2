@@ -25,7 +25,7 @@ import { ProcessSlider } from "@/blocks/ProcessSlider/ProcessSlider"
 import { Logos } from "@/blocks/Logos/Logos"
 import { FeatureTestimonials } from "@/blocks/FeatureTestimonials/FeatureTestimonials"
 import ContactForm from "@/blocks/ContactForm/ContactForm"
-import EmbedBlock from "@/blocks/EmbedBlock/EmbedBlock"
+import TallyEmbed from "@/blocks/TallyEmbed/TallyEmbed"
 import { FeatureGrid } from "@/blocks/FeatureGrid/FeatureGrid"
 import { HeroForm } from "@/blocks/HeroFormComponent/HeroForm"
 import ContentBlock from "@/blocks/ContentBlock/ContentBlock"
@@ -111,7 +111,6 @@ export const Pages: CollectionConfig<"pages"> = {
               name: "blocks",
               type: "blocks",
               blocks: [
-                EmbedBlock,
                 Cards,
                 Cases,
                 ContentBlock,
@@ -132,6 +131,7 @@ export const Pages: CollectionConfig<"pages"> = {
                 ProcessSlider,
                 Slider,
                 SharedBlock,
+                TallyEmbed,
                 Team,
                 Testimonials,
               ],
