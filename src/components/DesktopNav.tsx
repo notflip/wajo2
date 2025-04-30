@@ -6,8 +6,6 @@ import { AnimatePresence, motion } from "motion/react"
 import { NavigationMain } from "@payload-types"
 import { LuChevronDown } from "react-icons/lu"
 import { cn } from "@/lib/utils"
-import { CmsLink } from "./CmsLink"
-import AnimatedButton from "@/components/interface/AnimatedButton"
 import { Type4 } from "@/components/interface/Type4"
 
 export default function DesktopNav({ items }: { items: NavigationMain["items"] }) {
@@ -62,14 +60,12 @@ export default function DesktopNav({ items }: { items: NavigationMain["items"] }
                         {column.description && <p className="max-w-sm">{column.description}</p>}
                         {column.links.map((link, index) => (
                           <div className="mt-3" key={index}>
-                            <AnimatedButton
-                              asChild
-                              key={link.id}
-                              variant="link"
-                              className="font-bold"
-                            >
-                              <CmsLink type="reference" {...link} onClick={() => setOpen(false)} />
-                            </AnimatedButton>
+                            <Type4
+                              variant="ghost"
+                              link={{ type: "reference", ...link }}
+                              className="font-medium"
+                              onClick={() => setOpen(false)}
+                            />
                           </div>
                         ))}
                       </div>

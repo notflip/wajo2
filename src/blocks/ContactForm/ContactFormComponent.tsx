@@ -1,9 +1,6 @@
 import { BlockContainer } from "@/blocks/BlockContainer"
-import Avatars from "@/components/avatars"
-import { CmsLink } from "@/components/CmsLink"
 import { ContactForm } from "@/components/contact-form"
-import EmbedTally from "@/components/embed-tally"
-import AnimatedButton from "@/components/interface/AnimatedButton"
+import { Type4 } from "@/components/interface/Type4"
 import { getCachedGlobal } from "@/utils/getGlobals"
 import { ContactForm as ContactFormType } from "@payload-types"
 import Link from "next/link"
@@ -11,7 +8,7 @@ import Link from "next/link"
 export const ContactFormComponent: React.FC<ContactFormType> = async (props) => {
   const siteSettings = await getCachedGlobal("settings")()
   const { link } = props
-  
+
   return (
     <BlockContainer {...props}>
       <div className="lg:flex lg:justify-between gap-32">
@@ -49,9 +46,11 @@ export const ContactFormComponent: React.FC<ContactFormType> = async (props) => 
                 </li>
               )}
               <li>
-                <AnimatedButton variant="foreground" avatars={<Avatars />}>
-                  <CmsLink {...link} />
-                </AnimatedButton>
+                {link && (
+                  <Type4 link={link} variant="foreground" avatars>
+                    {link.label}
+                  </Type4>
+                )}
               </li>
             </ul>
           </div>
