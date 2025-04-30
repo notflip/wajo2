@@ -16,7 +16,7 @@ export type Type4Interface = {
   }
   variant?: "default" | "light" | "link" | "foreground" | "ghost"
   avatars?: boolean
-  className?: string 
+  className?: string
   icon?: React.ReactNode
   onClick?: () => void
 }
@@ -30,7 +30,7 @@ const animatedButtonVariants = cva(
         foreground: "bg-foreground hover:bg-foreground/90 text-white",
         light: "bg-blue-50 hover:bg-blue-100 text-blue-950",
         link: "bg-transparent px-0 py-2 underline underline-offset-[6px] hover:underline-offset-[8px]",
-        ghost: "px-0"
+        ghost: "px-0",
       },
       hasAvatars: {
         true: "",
@@ -76,9 +76,6 @@ export const Type4: React.FC<React.PropsWithChildren<Type4Interface>> = (props) 
   }
 
   const newTabProps = newTab ? { rel: "noopener noreferrer", target: "_blank" } : {}
-
-  console.log('--------')
-  console.log(href, props.children || label)
 
   return (
     <Link
