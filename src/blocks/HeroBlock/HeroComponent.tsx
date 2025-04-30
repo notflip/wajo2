@@ -7,6 +7,7 @@ import Avatars from "@/components/avatars"
 import Breadcrumbs from "@/components/breadcrumbs"
 import { BlockContainer } from "@/blocks/BlockContainer"
 import { SharedBlockProps } from "@/blocks/types"
+import { Type4 } from "@/components/interface/Type4"
 
 export const HeroComponent: React.FC<Hero & SharedBlockProps> = (props) => {
   const { title, content, links, textAlign, bgColor } = props
@@ -49,19 +50,16 @@ export const HeroComponent: React.FC<Hero & SharedBlockProps> = (props) => {
               {(links || []).map(({ link }, i) => {
                 if (i === 0) {
                   return (
-                    <AnimatedButton key={i} icon={<HiOutlineChat size={20} />}>
-                      <CmsLink {...link} />
-                    </AnimatedButton>
+                    <Type4 key={i} link={link}>
+                      {link.label}
+                      <HiOutlineChat />
+                    </Type4>
                   )
                 } else {
                   return (
-                    <AnimatedButton
-                      key={i}
-                      variant="light"
-                      avatars={<Avatars />}
-                    >
-                      <CmsLink {...link} />
-                    </AnimatedButton>
+                    <Type4 key={i} link={link} variant="light" avatars>
+                      {link.label}
+                    </Type4>
                   )
                 }
               })}

@@ -2,6 +2,7 @@ import { BlockContainer } from "@/blocks/BlockContainer"
 import Avatars from "@/components/avatars"
 import { CmsLink } from "@/components/CmsLink"
 import AnimatedButton from "@/components/interface/AnimatedButton"
+import { Type4 } from "@/components/interface/Type4"
 import { CtaBlock } from "@payload-types"
 import { HiOutlineChat } from "react-icons/hi"
 
@@ -20,24 +21,16 @@ export const CtaBlockComponent: React.FC<CtaBlock> = (props) => {
           {(links || []).map(({ link }, i) => {
             if (i === 0) {
               return (
-                <AnimatedButton
-                  key={i}
-                  icon={<HiOutlineChat size={20} />}
-                  asChild
-                >
-                  <CmsLink {...link} />
-                </AnimatedButton>
+                <Type4 key={i} link={link}>
+                  {link.label}
+                  <HiOutlineChat />
+                </Type4>
               )
             } else {
               return (
-                <AnimatedButton
-                  key={i}
-                  variant="light"
-                  avatars={<Avatars />}
-                  asChild
-                >
-                  <CmsLink {...link} />
-                </AnimatedButton>
+                <Type4 key={i} link={link} variant="light" avatars>
+                  {link.label}
+                </Type4>
               )
             }
           })}
