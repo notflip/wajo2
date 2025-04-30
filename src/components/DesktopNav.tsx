@@ -8,27 +8,24 @@ import { LuChevronDown } from "react-icons/lu"
 import { cn } from "@/lib/utils"
 import { CmsLink } from "./CmsLink"
 import AnimatedButton from "@/components/interface/AnimatedButton"
+import { Type4 } from "@/components/interface/Type4"
 
-export default function DesktopNav({
-  items,
-}: {
-  items: NavigationMain["items"]
-}) {
+export default function DesktopNav({ items }: { items: NavigationMain["items"] }) {
+  console.log(items)
+
   return (
     <ul className="flex flex-wrap items-center gap-x-1 xl:gap-x-2">
       {(items ?? []).map((item, index) => {
         if (item.type === "single") {
           return (
             <li key={index}>
-              <CmsLink
-                type="reference"
-                reference={item.reference}
+              <Type4
+                variant="ghost"
+                link={{ type: "reference", reference: item.reference }}
                 className="flex items-center gap-1 font-medium whitespace-nowrap"
               >
-                <div className="hover:bg-slate-50 py-1.5 px-3 rounded-lg">
-                  {item.label}
-                </div>
-              </CmsLink>
+                <div className="hover:bg-slate-50 py-1.5 px-3 rounded-lg">{item.label}</div>
+              </Type4>
             </li>
           )
         } else if (item.type === "list" && item.links) {
@@ -40,11 +37,11 @@ export default function DesktopNav({
                     {item.links &&
                       item.links.map((link, index) => (
                         <li key={index}>
-                          <CmsLink
-                            type="reference"
-                            {...link}
-                            onClick={() => setOpen(false)} // Close dropdown on click
+                          <Type4
+                            variant="ghost"
+                            link={{ type: "reference", ...link }}
                             className="block font-medium py-2 px-4 hover:bg-black/5"
+                            onClick={() => setOpen(false)} // Close dropdown on click
                           />
                         </li>
                       ))}
@@ -62,9 +59,7 @@ export default function DesktopNav({
                     {(item.columns || []).map((column, index) => (
                       <div key={index}>
                         <div className="mb-3 font-bold">{column.label}</div>
-                        {column.description && (
-                          <p className="max-w-sm">{column.description}</p>
-                        )}
+                        {column.description && <p className="max-w-sm">{column.description}</p>}
                         {column.links.map((link, index) => (
                           <div className="mt-3" key={index}>
                             <AnimatedButton
@@ -73,11 +68,7 @@ export default function DesktopNav({
                               variant="link"
                               className="font-bold"
                             >
-                              <CmsLink
-                                type="reference"
-                                {...link}
-                                onClick={() => setOpen(false)}
-                              />
+                              <CmsLink type="reference" {...link} onClick={() => setOpen(false)} />
                             </AnimatedButton>
                           </div>
                         ))}
@@ -98,9 +89,7 @@ type FlyoutLinkProps = {
   label: string
   children:
     | ReactNode
-    | ((props: {
-        setOpen: React.Dispatch<React.SetStateAction<boolean>>
-      }) => ReactNode)
+    | ((props: { setOpen: React.Dispatch<React.SetStateAction<boolean>> }) => ReactNode)
 }
 
 const ListDropdown = ({ children, label }: FlyoutLinkProps) => {
@@ -118,9 +107,7 @@ const ListDropdown = ({ children, label }: FlyoutLinkProps) => {
         className="flex items-center gap-1 py-1.5 px-3 font-medium rounded-lg hover:bg-black/5"
       >
         {label}
-        <LuChevronDown
-          className={cn("transition", showFlyout ? "rotate-180" : "rotate-0")}
-        />
+        <LuChevronDown className={cn("transition", showFlyout ? "rotate-180" : "rotate-0")} />
       </Link>
       <AnimatePresence>
         {showFlyout && (
@@ -146,14 +133,9 @@ const MegaMenuDropdown = ({ children, label }: FlyoutLinkProps) => {
 
   return (
     <div onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
-      <Link
-        href="#"
-        className="flex items-center gap-1 py-1.5 px-3 rounded-lg hover:bg-black/5"
-      >
+      <Link href="#" className="flex items-center gap-1 py-1.5 px-3 rounded-lg hover:bg-black/5">
         {label}
-        <LuChevronDown
-          className={cn("transition", showFlyout ? "rotate-180" : "rotate-0")}
-        />
+        <LuChevronDown className={cn("transition", showFlyout ? "rotate-180" : "rotate-0")} />
       </Link>
       <AnimatePresence>
         {showFlyout && (

@@ -9,6 +9,7 @@ import AnimatedButton from "@/components/interface/AnimatedButton"
 import { HiOutlineChat } from "react-icons/hi"
 import MobileNavWithClipPath from "@/components/MobileNavWithClipPath"
 import { CmsLink } from "@/components/CmsLink"
+import { Type4 } from "@/components/interface/Type4"
 
 type StickyNavbarProps = {
   items: NavigationMain["items"]
@@ -33,9 +34,7 @@ export default function StickyNavbar(props: StickyNavbarProps) {
   return (
     <header
       className={`${
-        scrolledFromTop
-          ? "h-16 lg:h-20 backdrop-filter border-b border-slate-100"
-          : "h-24"
+        scrolledFromTop ? "h-16 lg:h-20 backdrop-filter border-b border-slate-100" : "h-24"
       } transition-all fixed top-0 left-0 w-full z-[999] bg-white`}
     >
       <div className="h-full mx-auto max-w-screen-2xl px-4 md:px-12 2xl:px-16">
@@ -54,9 +53,12 @@ export default function StickyNavbar(props: StickyNavbarProps) {
           </div>
           {/*Button*/}
           <div className="hidden lg:block">
-            <AnimatedButton icon={<HiOutlineChat size={20} />}>
-              <CmsLink {...link} />
-            </AnimatedButton>
+            {link && (
+              <Type4 link={link}>
+                {link.label}
+                <HiOutlineChat />
+              </Type4>
+            )}
           </div>
           {/* Mobile Menu */}
           <div className="lg:hidden">

@@ -2,7 +2,6 @@ import Link from "next/link"
 import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 import Avatars from "@/components/avatars"
-import { Page } from "@payload-types"
 
 export type Type4Interface = {
   link: {
@@ -10,13 +9,14 @@ export type Type4Interface = {
     newTab?: boolean | null
     reference?: {
       relationTo: "pages"
-      value: number | Page
+      value: any
     } | null
     url?: string | null
     label?: string | null
   }
-  variant?: "default" | "light" | "link" | "foreground"
+  variant?: "default" | "light" | "link" | "foreground" | "ghost"
   avatars?: boolean
+  className?: string 
   icon?: React.ReactNode
   onClick?: () => void
 }
@@ -30,6 +30,7 @@ const animatedButtonVariants = cva(
         foreground: "bg-foreground hover:bg-foreground/90 text-white",
         light: "bg-blue-50 hover:bg-blue-100 text-blue-950",
         link: "bg-transparent px-0 py-2 underline underline-offset-[6px] hover:underline-offset-[8px]",
+        ghost: "px-0"
       },
       hasAvatars: {
         true: "",
@@ -61,7 +62,7 @@ const animatedButtonVariants = cva(
 )
 
 export const Type4: React.FC<React.PropsWithChildren<Type4Interface>> = (props) => {
-  const { link, onClick, variant, avatars } = props
+  const { link, onClick, variant, avatars, className } = props
 
   const { type, reference, url, newTab, label } = link
 
@@ -76,11 +77,14 @@ export const Type4: React.FC<React.PropsWithChildren<Type4Interface>> = (props) 
 
   const newTabProps = newTab ? { rel: "noopener noreferrer", target: "_blank" } : {}
 
+  console.log('--------')
+  console.log(href, props.children || label)
+
   return (
     <Link
       onClick={onClick}
       href={href}
-      className={cn(animatedButtonVariants({ variant, hasAvatars: Boolean(avatars) }))}
+      className={cn(animatedButtonVariants({ variant, hasAvatars: Boolean(avatars) }), className)}
       {...newTabProps}
     >
       {avatars && <Avatars />}
