@@ -9,8 +9,6 @@ import { cn } from "@/lib/utils"
 import { Type4 } from "@/components/interface/Type4"
 
 export default function DesktopNav({ items }: { items: NavigationMain["items"] }) {
-  console.log(items)
-
   return (
     <ul className="flex flex-wrap items-center gap-x-1 xl:gap-x-2">
       {(items ?? []).map((item, index) => {
