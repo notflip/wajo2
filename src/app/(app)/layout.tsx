@@ -8,7 +8,6 @@ import localFont from "next/font/local"
 import { Footer } from "@/components/footer"
 import { Metadata } from "next"
 import { getCachedGlobal } from "@/utils/getGlobals"
-import TopNav from "@/components/top-nav"
 
 const gilroy = localFont({
   src: [
@@ -68,7 +67,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         <AdminBar draft={isEnabled} />
         <Footer />
       </body>
-      {process.env.NODE_ENV === "production" && <GoogleAnalytics gaId="G-XXXXXXXXXX" />}
+      {process.env.NODE_ENV === "production" && <GoogleAnalytics gaId="G-W6MWQWJD73" />}
     </html>
   )
 }
