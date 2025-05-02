@@ -1,5 +1,5 @@
 import "./globals.css"
-import { GoogleAnalytics } from "@next/third-parties/google"
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google"
 import { AdminBar } from "@/components/AdminBar"
 import { draftMode } from "next/headers"
 import { Nav } from "@/components/Nav"
@@ -67,7 +67,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         <AdminBar draft={isEnabled} />
         <Footer />
       </body>
-      {process.env.NODE_ENV === "production" && <GoogleAnalytics gaId="G-W6MWQWJD73" />}
+      {process.env.NODE_ENV === "production" && <GoogleTagManager gtmId="GTM-TKF2PKX8" />}
     </html>
   )
 }
