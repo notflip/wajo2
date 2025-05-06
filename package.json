@@ -21,8 +21,10 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
+    "@mux/mux-player-react": "^3.4.0",
     "@next/bundle-analyzer": "^15.3.0",
     "@next/third-parties": "^15.3.0",
+    "@oversightstudio/mux-video": "^1.1.1",
     "@payloadcms/db-postgres": "^3.35.0",
     "@payloadcms/email-nodemailer": "^3.35.0",
     "@payloadcms/live-preview-react": "^3.35.0",

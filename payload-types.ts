@@ -77,6 +77,7 @@ export interface Config {
     sharedBlocks: SharedBlock1;
     forms: Form;
     submissions: Submission;
+    'mux-video': MuxVideo;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -93,6 +94,7 @@ export interface Config {
     sharedBlocks: SharedBlocksSelect<false> | SharedBlocksSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     submissions: SubmissionsSelect<false> | SubmissionsSelect<true>;
+    'mux-video': MuxVideoSelect<false> | MuxVideoSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -180,6 +182,7 @@ export interface Page {
         | TallyEmbed
         | Team
         | Testimonials
+        | Video
       )[]
     | null;
   seo?: {
@@ -345,7 +348,9 @@ export interface Feature {
     };
     [k: string]: unknown;
   } | null;
-  image: number | Media;
+  mediaType: 'image' | 'video';
+  image?: (number | null) | Media;
+  video?: (number | null) | MuxVideo;
   /**
    * Vink dit aan indien de afbeelding niet de grootte van de container mag opnemen, bijvoorbeeld voor screenshots
    */
@@ -392,6 +397,38 @@ export interface Media {
       filename?: string | null;
     };
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mux-video".
+ */
+export interface MuxVideo {
+  id: number;
+  /**
+   * A unique title for this video that will help you identify it later.
+   */
+  title: string;
+  assetId?: string | null;
+  duration?: number | null;
+  /**
+   * Pick a timestamp (in seconds) from the video to be used as the poster image. When unset, defaults to the middle of the video.
+   */
+  posterTimestamp?: number | null;
+  aspectRatio?: string | null;
+  maxWidth?: number | null;
+  maxHeight?: number | null;
+  playbackOptions?:
+    | {
+        playbackId?: string | null;
+        playbackPolicy?: ('signed' | 'public') | null;
+        playbackUrl?: string | null;
+        posterUrl?: string | null;
+        gifUrl?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -947,6 +984,16 @@ export interface Testimonials {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Video".
+ */
+export interface Video {
+  video?: (number | null) | MuxVideo;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'video';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1095,6 +1142,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'submissions';
         value: number | Submission;
+      } | null)
+    | ({
+        relationTo: 'mux-video';
+        value: number | MuxVideo;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -1173,6 +1224,7 @@ export interface PagesSelect<T extends boolean = true> {
         tallyEmbed?: T | TallyEmbedSelect<T>;
         team?: T | TeamSelect<T>;
         testimonials?: T | TestimonialsSelect<T>;
+        video?: T | VideoSelect<T>;
       };
   seo?:
     | T
@@ -1291,7 +1343,9 @@ export interface FeatureSelect<T extends boolean = true> {
   subtitle?: T;
   title?: T;
   content?: T;
+  mediaType?: T;
   image?: T;
+  video?: T;
   imageNoFill?: T;
   variant?: T;
   id?: T;
@@ -1618,6 +1672,15 @@ export interface TestimonialsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Video_select".
+ */
+export interface VideoSelect<T extends boolean = true> {
+  video?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "cases_select".
  */
 export interface CasesSelect1<T extends boolean = true> {
@@ -1920,6 +1983,31 @@ export interface FormsSelect<T extends boolean = true> {
 export interface SubmissionsSelect<T extends boolean = true> {
   form?: T;
   data?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mux-video_select".
+ */
+export interface MuxVideoSelect<T extends boolean = true> {
+  title?: T;
+  assetId?: T;
+  duration?: T;
+  posterTimestamp?: T;
+  aspectRatio?: T;
+  maxWidth?: T;
+  maxHeight?: T;
+  playbackOptions?:
+    | T
+    | {
+        playbackId?: T;
+        playbackPolicy?: T;
+        playbackUrl?: T;
+        posterUrl?: T;
+        gifUrl?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }

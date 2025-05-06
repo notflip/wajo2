@@ -21,6 +21,7 @@ import { SliderComponent } from "@/blocks/Slider/SliderComponent"
 import { TallyEmbedComponent } from "@/blocks/TallyEmbed/TallyEmbedComponent"
 import { TeamComponent } from "@/blocks/Team/TeamComponent"
 import { TestimonialsComponent } from "@/blocks/Testimonials/TestimonialsComponent"
+import { VideoComponent } from "@/blocks/Video/VideoComponent"
 
 export const blockComponents = {
   hero: HeroComponent,
@@ -44,6 +45,7 @@ export const blockComponents = {
   logos: LogosComponent,
   processSlider: ProcessSliderComponent,
   tallyEmbed: TallyEmbedComponent,
+  video: VideoComponent,
   ctaBlock: CtaBlockComponent,
   shared: SharedBlockComponent,
 } as const

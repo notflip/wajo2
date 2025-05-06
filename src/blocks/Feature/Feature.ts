@@ -43,10 +43,38 @@ export const Feature: Block = {
       }),
     },
     {
+      name: "mediaType",
+      type: "radio",
+      options: [
+        {
+          label: "Image",
+          value: "image",
+        },
+        {
+          label: "Video",
+          value: "video",
+        },
+      ],
+      defaultValue: "image",
+      required: true,
+    },
+    {
       name: "image",
       type: "upload",
       relationTo: "media",
       required: true,
+      admin: {
+        condition: (_, siblingData) => siblingData?.mediaType === "image",
+      },
+    },
+    {
+      name: "video",
+      label: "Video",
+      type: "relationship",
+      relationTo: "mux-video",
+      admin: {
+        condition: (_, siblingData) => siblingData?.mediaType === "video",
+      },
     },
     {
       name: "imageNoFill",
@@ -54,6 +82,7 @@ export const Feature: Block = {
       admin: {
         description:
           "Vink dit aan indien de afbeelding niet de grootte van de container mag opnemen, bijvoorbeeld voor screenshots",
+        condition: (_, siblingData) => siblingData?.mediaType === "image",
       },
     },
     {

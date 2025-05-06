@@ -31,6 +31,7 @@ import { HeroForm } from "@/blocks/HeroFormComponent/HeroForm"
 import ContentBlock from "@/blocks/ContentBlock/ContentBlock"
 import { FormBlock } from "@/blocks/Form/FormBlock"
 import { ImageGrid } from "@/blocks/ImageGrid/ImageGrid"
+import Video from "@/blocks/Video/Video"
 
 export const Pages: CollectionConfig<"pages"> = {
   slug: "pages",
@@ -134,6 +135,7 @@ export const Pages: CollectionConfig<"pages"> = {
                 TallyEmbed,
                 Team,
                 Testimonials,
+                Video,
               ],
             },
           ],

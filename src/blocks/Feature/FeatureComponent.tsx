@@ -5,9 +5,11 @@ import RichText from "@/components/RichText"
 import Badge from "@/components/badge"
 import { BlockContainer } from "@/blocks/BlockContainer"
 import { SharedBlockProps } from "@/blocks/types"
+import MuxPlayer from "@mux/mux-player-react"
 
 export const FeatureComponent: React.FC<Feature & SharedBlockProps> = (props) => {
-  const { subtitle, title, content, image, imageNoFill, variant, blockIndex } = props
+  const { subtitle, title, content, mediaType, video, image, imageNoFill, variant, blockIndex } =
+    props
 
   return (
     <BlockContainer>
@@ -16,14 +18,24 @@ export const FeatureComponent: React.FC<Feature & SharedBlockProps> = (props) =>
           "lg:flex-row-reverse": variant === "imageLeft",
         })}
       >
-        <div className="w-full order-2 relative h-[400px] lg:h-auto lg:w-1/2 lg:order-1 lg:max-w-[42rem] lg:max-h-[550px]">
-          {image && (
-            <ImageBox
-              fill
-              media={image}
-              sizes="(max-width: 1024px) 100vw, 40vw"
-              objectFit="contain"
-              className="rounded-[16px]"
+        <div className="relative order-2 lg:w-1/2 lg:order-1 ">
+          {mediaType === "image" && image && (
+            <div className="h-[400px] lg:h-auto lg:min-h-[300px] lg:max-h-[600px] w-full lg:max-w-[42rem]">
+              <ImageBox
+                fill
+                media={image}
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                objectFit="contain"
+                className="rounded-[16px]"
+              />
+            </div>
+          )}
+          {mediaType === "video" && video && typeof video !== "number" && (
+            <MuxPlayer
+              playbackId={video.playbackOptions![0].playbackId!}
+              src={video.playbackOptions![0].playbackUrl!}
+              poster={video.playbackOptions![0].posterUrl!}
+              className={`h-[600px] aspect-${video.aspectRatio}`}
             />
           )}
         </div>

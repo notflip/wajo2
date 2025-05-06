@@ -7,7 +7,7 @@ import { Settings } from "@/globals/Settings"
 import { NavigationMain } from "@/globals/NavigationMain/NavigationMain"
 import { nodemailerAdapter } from "@payloadcms/email-nodemailer"
 import { nestedDocsPlugin } from "@payloadcms/plugin-nested-docs"
-import { formBuilderPlugin } from "@payloadcms/plugin-form-builder"
+import { muxVideoPlugin } from "@oversightstudio/mux-video"
 
 import { seoPlugin } from "@payloadcms/plugin-seo"
 import Media from "@/collections/Media"
@@ -89,6 +89,19 @@ export default buildConfig({
       collections: ["pages"],
       generateLabel: (_, doc) => doc.title as string,
       generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.slug}`, ""),
+    }),
+
+    muxVideoPlugin({
+      enabled: true,
+      access: () => true,
+      initSettings: {
+        tokenId: process.env.MUX_TOKEN_ID || "",
+        tokenSecret: process.env.MUX_TOKEN_SECRET || "",
+        webhookSecret: process.env.MUX_WEBHOOK_SIGNING_SECRET || "",
+      },
+      uploadSettings: {
+        cors_origin: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+      },
     }),
 
     // formBuilderPlugin({
