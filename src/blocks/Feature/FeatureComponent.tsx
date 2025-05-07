@@ -5,7 +5,7 @@ import RichText from "@/components/RichText"
 import Badge from "@/components/badge"
 import { BlockContainer } from "@/blocks/BlockContainer"
 import { SharedBlockProps } from "@/blocks/types"
-import MuxPlayer from "@mux/mux-player-react"
+import VideoPlayer from "@/components/video-player"
 
 export const FeatureComponent: React.FC<Feature & SharedBlockProps> = (props) => {
   const { subtitle, title, content, mediaType, video, image, imageNoFill, variant, blockIndex } =
@@ -31,12 +31,7 @@ export const FeatureComponent: React.FC<Feature & SharedBlockProps> = (props) =>
             </div>
           )}
           {mediaType === "video" && video && typeof video !== "number" && (
-            <MuxPlayer
-              playbackId={video.playbackOptions![0].playbackId!}
-              src={video.playbackOptions![0].playbackUrl!}
-              poster={video.playbackOptions![0].posterUrl!}
-              className={`h-[600px] aspect-${video.aspectRatio}`}
-            />
+            <VideoPlayer video={video} />
           )}
         </div>
         <div className="w-full lg:w-1/2 lg:max-w-xl">
