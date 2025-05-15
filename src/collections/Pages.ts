@@ -69,7 +69,7 @@ export const Pages: CollectionConfig<"pages"> = {
     preview: (data) =>
       generatePreviewPath({
         collection: "pages",
-        value: data.value as string,
+        value: data.path as string,
       }),
   },
   hooks: {
