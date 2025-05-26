@@ -16,6 +16,9 @@ export const Media: CollectionConfig = {
     read: isAnyone,
     update: isAuthenticated,
   },
+  admin: {
+    folders: true,
+  },
   upload: {
     staticDir: "media",
     mimeTypes: ["image/*"],

@@ -15,15 +15,18 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true,
   },
 
-  logging: {
-    fetches: {
-      fullUrl: true,
-    },
-  },
+  //   logging: {
+  //     fetches: {
+  //       fullUrl: true,
+  //     },
+  //   },
 }
 
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true",
-})
+// const withBundleAnalyzer = require("@next/bundle-analyzer")({
+//   enabled: process.env.ANALYZE === "true",
+// })
 
-export default withBundleAnalyzer(withPayload(nextConfig))
+// export default withBundleAnalyzerwithPayload(nextConfig))
+export default withPayload(nextConfig, {
+  devBundleServerPackages: false,
+})
