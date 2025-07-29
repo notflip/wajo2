@@ -15,6 +15,16 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true,
   },
 
+  async redirects() {
+    return [
+      {
+        source: "/:path*/page",
+        destination: "/:path*/page/1",
+        permanent: true,
+      },
+    ]
+  },
+
   //   logging: {
   //     fetches: {
   //       fullUrl: true,
