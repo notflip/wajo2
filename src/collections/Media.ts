@@ -1,12 +1,7 @@
-import path from "path"
-import { fileURLToPath } from "url"
 import { CollectionConfig } from "payload"
 import { generateBlurHash } from "@/hooks/generateBlurhash"
 import { isAuthenticated } from "@/access/isAuthenticated"
 import { isAnyone } from "@/access/isAnyone"
-
-const filename = fileURLToPath(import.meta.url)
-const dirname = path.dirname(filename)
 
 export const Media: CollectionConfig = {
   slug: "media",
