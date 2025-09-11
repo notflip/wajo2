@@ -41,7 +41,7 @@ export function ContactForm() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          form: "Contact Formulier",
+          form: 4,
           data: data,
         }),
       })
@@ -59,9 +59,7 @@ export function ContactForm() {
       setLoading(false)
     } catch (error) {
       console.error("Error submitting form:", error)
-      setError(
-        "Een overwachte fout heeft zich voorgedaan, neem contact op met een administrator",
-      )
+      setError("Een overwachte fout heeft zich voorgedaan, neem contact op met een administrator")
       setLoading(false)
     }
   }
@@ -83,11 +81,7 @@ export function ContactForm() {
 
       {!success && (
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-6"
-            method="POST"
-          >
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" method="POST">
             <TextField label="Naam" control={form.control} name="naam" />
             <EmailField name="email" label="E-mail adres" control={form.control} />
             <TextField name="telefoon" label="Telefoonnummer" control={form.control} />
@@ -102,11 +96,7 @@ export function ContactForm() {
               label={
                 <>
                   Ik accepteer de{" "}
-                  <a
-                    target="_blank"
-                    href="/privacy-policy"
-                    className="underline hover:opacity-80"
-                  >
+                  <a target="_blank" href="/privacy-policy" className="underline hover:opacity-80">
                     privacy policy
                   </a>
                 </>
