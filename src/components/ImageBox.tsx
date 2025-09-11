@@ -18,7 +18,6 @@ export const ImageBox: React.FC<ImageBoxProps> = ({
   fill,
   sizes,
   objectFit = "cover",
-  objectPosition = "center",
   lazyload = true,
   quality = 85,
   disableBlurhash = false,

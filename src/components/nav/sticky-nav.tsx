@@ -2,13 +2,11 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
-import { Media, NavigationMain } from "@payload-types"
+import { NavigationMain } from "@payload-types"
 import DesktopNav from "@/components/DesktopNav"
 import { ImageBox } from "@/components/ImageBox"
-import AnimatedButton from "@/components/interface/AnimatedButton"
 import { HiOutlineChat } from "react-icons/hi"
 import MobileNavWithClipPath from "@/components/MobileNavWithClipPath"
-import { CmsLink } from "@/components/CmsLink"
 import { Type4 } from "@/components/interface/Type4"
 
 type StickyNavbarProps = {
@@ -31,6 +29,8 @@ export default function StickyNavbar(props: StickyNavbarProps) {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  // TODO Use the new nav implementation from hausmaus
+  // TODO use the new resolveCmsLink + Type4 implementation from hausmaus
   return (
     <header
       className={`${
