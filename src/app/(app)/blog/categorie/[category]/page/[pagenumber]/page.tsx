@@ -56,11 +56,7 @@ export default async function Blog({ params }: Args) {
 
           <div>
             {posts.totalPages > 1 && posts.page && (
-              <Pagination
-                page={posts.page}
-                totalPages={posts.totalPages}
-                category={category}
-              />
+              <Pagination page={posts.page} totalPages={posts.totalPages} category={category} />
             )}
           </div>
         </div>
@@ -108,7 +104,7 @@ export async function generateStaticParams() {
 
   const pages: { category: string; pagenumber: string }[] = []
 
-  const result = await payload.db.drizzle.execute<{
+  const result = (await payload.db.drizzle.execute<{
     slug: string
     count: number
   }>(sql`
@@ -118,7 +114,7 @@ export async function generateStaticParams() {
       ON post_categories.id = category_id
       GROUP BY post_categories.id
       ORDER BY count DESC
-  `)
+  `)) as { rows: { slug: string; count: number }[] }
 
   for (const row of result.rows) {
     const totalPages = Math.ceil(row.count / postsPerPage)
