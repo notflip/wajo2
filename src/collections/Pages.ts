@@ -10,6 +10,7 @@ import pathField from "@/fields/path/path"
 import { SharedBlock } from "@/blocks/SharedBlock/SharedBlock"
 import beforeDuplicate from "@/hooks/beforeDuplicateSlugged"
 import { revalidateDelete, revalidatePage } from "@/hooks/revalidatePage"
+import { Calculator } from "@/blocks/Calculator/Calculator"
 import { Hero } from "@/blocks/HeroBlock/Hero"
 import { Image } from "@/blocks/Image/Image"
 import { Paragraph } from "@/blocks/Paragraph/Paragraph"
@@ -112,6 +113,7 @@ export const Pages: CollectionConfig<"pages"> = {
               name: "blocks",
               type: "blocks",
               blocks: [
+                Calculator,
                 Cards,
                 Cases,
                 ContentBlock,

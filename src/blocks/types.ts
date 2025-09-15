@@ -1,3 +1,4 @@
+import { CalculatorComponent } from "@/blocks/Calculator/CalculatorComponent"
 import { CardsComponent } from "@/blocks/Cards/CardsComponent"
 import { CasesComponent } from "@/blocks/Cases/CasesComponent"
 import { ContactFormComponent } from "@/blocks/ContactForm/ContactFormComponent"
@@ -24,6 +25,7 @@ import { TestimonialsComponent } from "@/blocks/Testimonials/TestimonialsCompone
 import { VideoComponent } from "@/blocks/Video/VideoComponent"
 
 export const blockComponents = {
+  calculator: CalculatorComponent,
   hero: HeroComponent,
   heroForm: HeroFormComponent,
   image: ImageComponent,

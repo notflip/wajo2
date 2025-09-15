@@ -78,16 +78,11 @@ export interface Config {
     forms: Form;
     submissions: Submission;
     'mux-video': MuxVideo;
-    'payload-folders': FolderInterface;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {
-    'payload-folders': {
-      documentsAndFolders: 'payload-folders' | 'media';
-    };
-  };
+  collectionsJoins: {};
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
     cases: CasesSelect1<false> | CasesSelect1<true>;
@@ -100,7 +95,6 @@ export interface Config {
     forms: FormsSelect<false> | FormsSelect<true>;
     submissions: SubmissionsSelect<false> | SubmissionsSelect<true>;
     'mux-video': MuxVideoSelect<false> | MuxVideoSelect<true>;
-    'payload-folders': PayloadFoldersSelect<false> | PayloadFoldersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -165,6 +159,7 @@ export interface Page {
   title: string;
   blocks?:
     | (
+        | Calculator
         | Cards
         | Cases
         | ContentBlock
@@ -211,6 +206,18 @@ export interface Page {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Calculator".
+ */
+export interface Calculator {
+  title: string;
+  description: string;
+  bgColor?: ('beige' | 'gray' | 'blue' | 'black') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'calculator';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -374,7 +381,6 @@ export interface Media {
   id: number;
   alt?: string | null;
   blurhash?: string | null;
-  folder?: (number | null) | FolderInterface;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -404,32 +410,6 @@ export interface Media {
       filename?: string | null;
     };
   };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "payload-folders".
- */
-export interface FolderInterface {
-  id: number;
-  name: string;
-  folder?: (number | null) | FolderInterface;
-  documentsAndFolders?: {
-    docs?: (
-      | {
-          relationTo?: 'payload-folders';
-          value: number | FolderInterface;
-        }
-      | {
-          relationTo?: 'media';
-          value: number | Media;
-        }
-    )[];
-    hasNextPage?: boolean;
-    totalDocs?: number;
-  };
-  folderType?: 'media'[] | null;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1186,10 +1166,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'mux-video';
         value: number | MuxVideo;
-      } | null)
-    | ({
-        relationTo: 'payload-folders';
-        value: number | FolderInterface;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -1245,6 +1221,7 @@ export interface PagesSelect<T extends boolean = true> {
   blocks?:
     | T
     | {
+        calculator?: T | CalculatorSelect<T>;
         cards?: T | CardsSelect<T>;
         cases?: T | CasesSelect<T>;
         contentBlock?: T | ContentBlockSelect<T>;
@@ -1289,6 +1266,17 @@ export interface PagesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Calculator_select".
+ */
+export interface CalculatorSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  bgColor?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1868,7 +1856,6 @@ export interface PostCategoriesSelect<T extends boolean = true> {
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
   blurhash?: T;
-  folder?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -2060,18 +2047,6 @@ export interface MuxVideoSelect<T extends boolean = true> {
         gifUrl?: T;
         id?: T;
       };
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "payload-folders_select".
- */
-export interface PayloadFoldersSelect<T extends boolean = true> {
-  name?: T;
-  folder?: T;
-  documentsAndFolders?: T;
-  folderType?: T;
   updatedAt?: T;
   createdAt?: T;
 }
