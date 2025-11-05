@@ -104,8 +104,8 @@ export const CalculatorComponent: React.FC<CalculatorProps & SharedBlockProps> =
     let marketingBoost = 0
     const selectedMarketing: string[] = []
     if (seo) {
-      marketingBoost += 10
-      selectedMarketing.push("SEO (+10%)")
+      marketingBoost += 20
+      selectedMarketing.push("SEO (+20%)")
     }
     if (ads) {
       marketingBoost += 15
@@ -116,8 +116,8 @@ export const CalculatorComponent: React.FC<CalculatorProps & SharedBlockProps> =
       selectedMarketing.push("Promotievideo (+150 bezoekers +35%)")
     }
     if (chatgpt) {
-      marketingBoost += 10
-      selectedMarketing.push("ChatGPT (+10%)")
+      marketingBoost += 25
+      selectedMarketing.push("ChatGPT (+25%)")
     }
 
     // Vervolgafspraken per jaar (mag 0) -> maandfactor
@@ -227,7 +227,7 @@ export const CalculatorComponent: React.FC<CalculatorProps & SharedBlockProps> =
   )
 
   return (
-    <div className="lg:mt-4 py-16 lg:bg-blue-50">
+    <div className="lg:mt-4 py-16 lg:bg-blue-500">
       <div className="mx-auto max-w-2xl">
         {/* Calculator Container */}
         <div className="overflow-hidden rounded-[20px] bg-blue-500 px-16 py-10">
@@ -306,7 +306,7 @@ export const CalculatorComponent: React.FC<CalculatorProps & SharedBlockProps> =
                   checked={seo}
                   onChange={setSeo}
                   label="Zoekmachine optimalisatie (SEO)"
-                  rate="+10% boost"
+                  rate="+20% boost"
                 />
                 <CheckboxItem
                   id="ads"
@@ -327,7 +327,7 @@ export const CalculatorComponent: React.FC<CalculatorProps & SharedBlockProps> =
                   checked={chatgpt}
                   onChange={setChatgpt}
                   label="ChatGPT"
-                  rate="+10% boost"
+                  rate="+25% boost"
                 />
               </div>
             </div>
@@ -392,8 +392,8 @@ export const CalculatorComponent: React.FC<CalculatorProps & SharedBlockProps> =
 
             {/* Results */}
             {showResults && (
-              <div className="mt-8 animate-[slideIn_0.5s_ease-out] rounded-2xl bg-gradient-to-r from-green-500 to-green-400 p-6">
-                <h3 className="mb-5 text-center text-xl font-bold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]">
+              <div className="mt-8 animate-[slideIn_0.5s_ease-out] rounded-2xl bg-green-600 p-6">
+                <h3 className="mb-5 text-center text-xl font-bold text-white">
                   📊 Uw omzetpotentieel
                 </h3>
                 <div className="space-y-4">
