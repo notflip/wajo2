@@ -16,6 +16,13 @@ export default {
         100: "hsl(var(--beige-100))",
         400: "hsl(var(--beige-400))",
       },
+      green: {
+        50: "hsl(var(--green-50))",
+        100: "hsl(var(--green-100))",
+        500: "hsl(var(--green-500))",
+        600: "hsl(var(--green-600))",
+        950: "hsl(var(--green-950))",
+      },
       blue: {
         50: "hsl(var(--blue-50))",
         100: "hsl(var(--blue-100))",
@@ -70,13 +77,10 @@ export default {
         center: true,
       },
       backgroundImage: {
-        "fade-to-secondary":
-          "linear-gradient(180deg, white 60%, hsl(var(--secondary)) 60%)",
+        "fade-to-secondary": "linear-gradient(180deg, white 60%, hsl(var(--secondary)) 60%)",
         "fade-to-gray": "linear-gradient(180deg, white 60%, hsl(var(--slate-50)) 60%)",
-        "fade-to-gray-reverse":
-          "linear-gradient(180deg, hsl(var(--slate-50)) 60%, white 60%)",
-        "fade-to-black-reverse":
-          "linear-gradient(180deg, hsl(var(--blue-950)) 60%, white 60%)",
+        "fade-to-gray-reverse": "linear-gradient(180deg, hsl(var(--slate-50)) 60%, white 60%)",
+        "fade-to-black-reverse": "linear-gradient(180deg, hsl(var(--blue-950)) 60%, white 60%)",
       },
       fontSize: {
         "heading-1": [

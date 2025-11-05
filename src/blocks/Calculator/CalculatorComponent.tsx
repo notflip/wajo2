@@ -25,6 +25,7 @@ export const CalculatorComponent: React.FC<CalculatorProps & SharedBlockProps> =
   const [seo, setSeo] = useState<boolean>(false)
   const [ads, setAds] = useState<boolean>(false)
   const [video, setVideo] = useState<boolean>(false)
+  const [chatgpt, setChatgpt] = useState<boolean>(false)
 
   // State for results
   const [showResults, setShowResults] = useState<boolean>(false)
@@ -113,6 +114,10 @@ export const CalculatorComponent: React.FC<CalculatorProps & SharedBlockProps> =
     if (video) {
       marketingBoost += 35
       selectedMarketing.push("Promotievideo (+150 bezoekers +35%)")
+    }
+    if (chatgpt) {
+      marketingBoost += 10
+      selectedMarketing.push("ChatGPT (+10%)")
     }
 
     // Vervolgafspraken per jaar (mag 0) -> maandfactor
@@ -222,14 +227,14 @@ export const CalculatorComponent: React.FC<CalculatorProps & SharedBlockProps> =
   )
 
   return (
-    <BlockContainer bgColor={bgColor} {...props}>
+    <div className="lg:mt-4 py-16 lg:bg-blue-50">
       <div className="mx-auto max-w-2xl">
         {/* Calculator Container */}
-        <div className="overflow-hidden rounded-[20px] bg-gradient-to-br from-blue-500 to-blue-400 p-8 shadow-[0_20px_40px_rgba(0,0,0,0.15)]">
+        <div className="overflow-hidden rounded-[20px] bg-blue-500 px-16 py-10">
           {/* Header */}
           <div className="mb-8 text-center">
             <h2 className="mb-3 text-3xl font-bold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
-              {title} xty
+              {title}
             </h2>
             <p className="text-base leading-relaxed text-white/90">{description}</p>
           </div>
@@ -317,6 +322,13 @@ export const CalculatorComponent: React.FC<CalculatorProps & SharedBlockProps> =
                   label="Promotievideo"
                   rate="+150 bezoekers +35% boost"
                 />
+                <CheckboxItem
+                  id="chatgpt"
+                  checked={chatgpt}
+                  onChange={setChatgpt}
+                  label="ChatGPT"
+                  rate="+10% boost"
+                />
               </div>
             </div>
 
@@ -366,7 +378,7 @@ export const CalculatorComponent: React.FC<CalculatorProps & SharedBlockProps> =
             {/* Calculate Button */}
             <button
               onClick={calculateRevenue}
-              className="mt-5 w-full rounded-xl bg-gradient-to-r from-blue-500 to-blue-400 px-6 py-5 text-lg font-semibold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_15px_35px_rgba(74,144,226,0.4)] active:translate-y-0"
+              className="mt-5 w-full rounded-xl bg-green-500 px-6 py-5 text-lg font-semibold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
             >
               Bereken omzetpotentieel
             </button>
@@ -422,6 +434,6 @@ export const CalculatorComponent: React.FC<CalculatorProps & SharedBlockProps> =
           }
         }
       `}</style>
-    </BlockContainer>
+    </div>
   )
 }
