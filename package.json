@@ -57,7 +57,7 @@
     "juice": "^11.0.1",
     "lucide-react": "^0.473.0",
     "motion": "^11.18.2",
-    "next": "^15.5.3",
+    "next": "15.5.7",
     "payload": "^3.55.1",
     "plaiceholder": "^3.0.0",
     "qs-esm": "^7.0.2",
