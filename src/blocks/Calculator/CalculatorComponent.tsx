@@ -196,7 +196,7 @@ export const CalculatorComponent: React.FC<CalculatorProps & SharedBlockProps> =
     rate: string
   }) => (
     <div
-      className={`flex cursor-pointer items-center rounded-lg border-2 bg-slate-50 p-4 transition-all duration-300 hover:border-blue-500 hover:bg-slate-100 ${
+      className={`flex flex-col lg:flex-row cursor-pointer items-left lg:items-center rounded-lg border-2 bg-slate-50 p-4 transition-all duration-300 hover:border-blue-500 hover:bg-slate-100 ${
         checked
           ? "border-blue-500 bg-blue-50 shadow-[0_0_0_3px_rgba(74,144,226,0.1)]"
           : "border-slate-200"
