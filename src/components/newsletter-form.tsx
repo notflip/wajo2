@@ -3,6 +3,7 @@
 import { ArrowRight } from "lucide-react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
+import { useReCaptcha } from "next-recaptcha-v3"
 
 type FormData = {
   email: string
@@ -15,6 +16,7 @@ export default function NewsletterForm() {
     formState: { errors, isSubmitting },
     reset,
   } = useForm<FormData>()
+  const { executeRecaptcha } = useReCaptcha()
 
   const [message, setMessage] = useState<{
     text: string
@@ -24,10 +26,13 @@ export default function NewsletterForm() {
   const onSubmit = async (data: FormData) => {
     setMessage(null)
     try {
+      // Execute reCAPTCHA
+      const token = await executeRecaptcha("newsletter")
+
       const response = await fetch("/api/mailchimp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, recaptchaToken: token }),
       })
 
       const result = await response.json()

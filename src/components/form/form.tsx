@@ -9,6 +9,7 @@ import { Fragment, useState } from "react"
 import { useForm, FormProvider } from "react-hook-form"
 import { fieldsMap } from "@/components/form/fieldsMap"
 import Link from "next/link"
+import { useReCaptcha } from "next-recaptcha-v3"
 
 interface FormProps {
   form: FormType
@@ -18,6 +19,7 @@ export const Form: React.FC<FormProps> = ({ form }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [hasSubmitted, setHasSubmitted] = useState<boolean>()
   const [error, setError] = useState<{ message: string; status?: string } | undefined>()
+  const { executeRecaptcha } = useReCaptcha()
 
   const {
     id: formID,
@@ -43,10 +45,14 @@ export const Form: React.FC<FormProps> = ({ form }) => {
 
   const onSubmit = async (data: Record<string, any>) => {
     try {
+      // Execute reCAPTCHA
+      const token = await executeRecaptcha("form_submit")
+
       const req = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/submissions`, {
         body: JSON.stringify({
           form: formID,
           data,
+          recaptchaToken: token,
         }),
         headers: {
           "Content-Type": "application/json",

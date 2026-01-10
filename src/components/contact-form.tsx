@@ -10,6 +10,7 @@ import { TextareaField } from "@/components/form/TextareaField"
 import { CheckboxField } from "@/components/form/CheckboxField"
 import { useState } from "react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { useReCaptcha } from "next-recaptcha-v3"
 
 import AnimatedButton from "@/components/interface/AnimatedButton"
 
@@ -17,6 +18,7 @@ export function ContactForm() {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState<string | null>(null)
+  const { executeRecaptcha } = useReCaptcha()
 
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(getContactFormSchema()),
@@ -35,6 +37,9 @@ export function ContactForm() {
     setLoading(true)
 
     try {
+      // Execute reCAPTCHA
+      const token = await executeRecaptcha("contact_form")
+
       const response = await fetch("/api/submissions", {
         method: "POST",
         headers: {
@@ -43,6 +48,7 @@ export function ContactForm() {
         body: JSON.stringify({
           form: 4,
           data: data,
+          recaptchaToken: token,
         }),
       })
 
