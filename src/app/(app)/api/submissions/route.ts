@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { verifyRecaptcha } from "@/lib/recaptcha"
+import { getPayload } from "payload"
+import config from "@payload-config"
 
 export async function POST(request: NextRequest) {
   try {
@@ -13,7 +15,6 @@ export async function POST(request: NextRequest) {
       formId: body.form,
       hasData: !!body.data,
       dataKeys: body.data ? Object.keys(body.data) : [],
-      fullBody: body,
     })
 
     const { recaptchaToken, form, data } = body
@@ -40,28 +41,20 @@ export async function POST(request: NextRequest) {
 
     console.log("reCAPTCHA verified successfully!")
 
-    // Forward the submission to Payload CMS
-    const payloadResponse = await fetch(
-      `${process.env.NEXT_PUBLIC_SITE_URL}/api/submissions`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          form,
-          data,
-        }),
-      }
-    )
+    // Submit to Payload CMS directly
+    const payload = await getPayload({ config })
 
-    const payloadData = await payloadResponse.json()
+    console.log("Creating submission in Payload...")
+    const submission = await payload.create({
+      collection: "submissions",
+      data: {
+        form,
+        data,
+      },
+    })
 
-    if (!payloadResponse.ok) {
-      return NextResponse.json(payloadData, { status: payloadResponse.status })
-    }
-
-    return NextResponse.json(payloadData, { status: 200 })
+    console.log("Submission created successfully:", submission.id)
+    return NextResponse.json(submission, { status: 200 })
   } catch (error) {
     console.error("Submission error:", error)
     return NextResponse.json(
