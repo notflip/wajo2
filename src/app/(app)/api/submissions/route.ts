@@ -3,17 +3,33 @@ import { verifyRecaptcha } from "@/lib/recaptcha"
 
 export async function POST(request: NextRequest) {
   try {
+    console.log("=== API ROUTE: /api/submissions ===")
     const body = await request.json()
+    console.log("Request body received:", {
+      hasRecaptchaToken: !!body.recaptchaToken,
+      recaptchaTokenLength: body.recaptchaToken?.length,
+      recaptchaTokenPreview: body.recaptchaToken?.substring(0, 20),
+      hasForm: !!body.form,
+      formId: body.form,
+      hasData: !!body.data,
+      dataKeys: body.data ? Object.keys(body.data) : [],
+      fullBody: body,
+    })
+
     const { recaptchaToken, form, data } = body
 
     if (!recaptchaToken) {
+      console.error("ERROR: No recaptchaToken in request!")
       return NextResponse.json({ errors: [{ message: "reCAPTCHA token is required" }] }, { status: 400 })
     }
 
     // Verify reCAPTCHA token
+    console.log("Verifying reCAPTCHA token...")
     const recaptchaResult = await verifyRecaptcha(recaptchaToken)
+    console.log("reCAPTCHA verification result:", recaptchaResult)
 
     if (!recaptchaResult.success) {
+      console.error("reCAPTCHA verification failed:", recaptchaResult.error)
       return NextResponse.json(
         {
           errors: [{ message: recaptchaResult.error || "reCAPTCHA verification failed" }]
@@ -21,6 +37,8 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       )
     }
+
+    console.log("reCAPTCHA verified successfully!")
 
     // Forward the submission to Payload CMS
     const payloadResponse = await fetch(

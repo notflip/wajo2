@@ -11,18 +11,34 @@ import { fieldsMap } from "@/components/form/fieldsMap"
 import Link from "next/link"
 
 async function executeRecaptcha(action: string): Promise<string> {
+  console.log("executeRecaptcha called with action:", action)
+  console.log("window.grecaptcha exists:", !!(window as any).grecaptcha)
+  console.log("NEXT_PUBLIC_RECAPTCHA_SITE_KEY:", process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY)
+
   const grecaptcha = (window as any).grecaptcha
 
   if (!grecaptcha?.ready || !grecaptcha?.execute) {
+    console.error("reCAPTCHA not loaded!", {
+      grecaptcha: !!grecaptcha,
+      ready: !!grecaptcha?.ready,
+      execute: !!grecaptcha?.execute
+    })
     throw new Error("reCAPTCHA not loaded")
   }
 
   return new Promise((resolve, reject) => {
     grecaptcha.ready(() => {
+      console.log("grecaptcha ready, executing...")
       grecaptcha
         .execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, { action })
-        .then(resolve)
-        .catch(reject)
+        .then((token: string) => {
+          console.log("Token generated successfully, length:", token?.length)
+          resolve(token)
+        })
+        .catch((err: any) => {
+          console.error("Failed to execute grecaptcha:", err)
+          reject(err)
+        })
     })
   })
 }
@@ -60,22 +76,41 @@ export const Form: React.FC<FormProps> = ({ form }) => {
 
   const onSubmit = async (data: Record<string, any>) => {
     try {
+      console.log("=== FORM SUBMIT STARTED ===")
+      console.log("Form ID:", formID)
+      console.log("Form data keys:", Object.keys(data))
+
       // Execute reCAPTCHA
+      console.log("Calling executeRecaptcha...")
       const token = await executeRecaptcha("form_submit")
 
+      console.log("Token received:", !!token)
+      console.log("Token value (first 20 chars):", token?.substring(0, 20))
+
+      const payload = {
+        form: formID,
+        data,
+        recaptchaToken: token,
+      }
+
+      console.log("Payload being sent:", {
+        form: payload.form,
+        dataKeys: Object.keys(payload.data),
+        hasToken: !!payload.recaptchaToken,
+        tokenLength: payload.recaptchaToken?.length,
+      })
+
       const req = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/submissions`, {
-        body: JSON.stringify({
-          form: formID,
-          data,
-          recaptchaToken: token,
-        }),
+        body: JSON.stringify(payload),
         headers: {
           "Content-Type": "application/json",
         },
         method: "POST",
       })
 
+      console.log("Response status:", req.status)
       const res = await req.json()
+      console.log("Response body:", res)
       if (req.status >= 400) {
         setIsLoading(false)
         setError({
