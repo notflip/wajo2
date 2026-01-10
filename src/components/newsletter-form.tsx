@@ -3,10 +3,26 @@
 import { ArrowRight } from "lucide-react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
-import { useReCaptcha } from "next-recaptcha-v3"
 
 type FormData = {
   email: string
+}
+
+async function executeRecaptcha(action: string): Promise<string> {
+  const grecaptcha = (window as any).grecaptcha
+
+  if (!grecaptcha?.ready || !grecaptcha?.execute) {
+    throw new Error("reCAPTCHA not loaded")
+  }
+
+  return new Promise((resolve, reject) => {
+    grecaptcha.ready(() => {
+      grecaptcha
+        .execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, { action })
+        .then(resolve)
+        .catch(reject)
+    })
+  })
 }
 
 export default function NewsletterForm() {
@@ -16,7 +32,6 @@ export default function NewsletterForm() {
     formState: { errors, isSubmitting },
     reset,
   } = useForm<FormData>()
-  const { executeRecaptcha } = useReCaptcha()
 
   const [message, setMessage] = useState<{
     text: string
@@ -46,8 +61,13 @@ export default function NewsletterForm() {
           type: "error",
         })
       }
-    } catch {
-      setMessage({ text: "Er ging iets mis...", type: "error" })
+    } catch (error) {
+      setMessage({
+        text: error instanceof Error && error.message === "reCAPTCHA not loaded"
+          ? "Beveiligingscontrole mislukt. Ververs de pagina."
+          : "Er ging iets mis...",
+        type: "error"
+      })
     }
   }
 

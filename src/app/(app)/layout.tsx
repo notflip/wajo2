@@ -3,7 +3,7 @@ import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google"
 import { AdminBar } from "@/components/AdminBar"
 import { draftMode } from "next/headers"
 import { Nav } from "@/components/Nav"
-import { ReCaptchaProvider } from "next-recaptcha-v3"
+import Script from "next/script"
 
 import localFont from "next/font/local"
 import { Footer } from "@/components/footer"
@@ -62,13 +62,15 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
       <body
         className={`${gilroy.variable} font-sans text-base text-foreground antialiased relative`}
       >
-        <ReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}>
-          {/* <TopNav settings={websiteSettings} /> */}
-          <Nav settings={websiteSettings} />
-          {children}
-          <AdminBar draft={isEnabled} />
-          <Footer />
-        </ReCaptchaProvider>
+        <Script
+          src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
+          strategy="afterInteractive"
+        />
+        {/* <TopNav settings={websiteSettings} /> */}
+        <Nav settings={websiteSettings} />
+        {children}
+        <AdminBar draft={isEnabled} />
+        <Footer />
       </body>
       {process.env.NODE_ENV === "production" && <GoogleTagManager gtmId="GTM-TKF2PKX8" />}
     </html>

@@ -10,15 +10,30 @@ import { TextareaField } from "@/components/form/TextareaField"
 import { CheckboxField } from "@/components/form/CheckboxField"
 import { useState } from "react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { useReCaptcha } from "next-recaptcha-v3"
 
 import AnimatedButton from "@/components/interface/AnimatedButton"
+
+async function executeRecaptcha(action: string): Promise<string> {
+  const grecaptcha = (window as any).grecaptcha
+
+  if (!grecaptcha?.ready || !grecaptcha?.execute) {
+    throw new Error("reCAPTCHA not loaded")
+  }
+
+  return new Promise((resolve, reject) => {
+    grecaptcha.ready(() => {
+      grecaptcha
+        .execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, { action })
+        .then(resolve)
+        .catch(reject)
+    })
+  })
+}
 
 export function ContactForm() {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState<string | null>(null)
-  const { executeRecaptcha } = useReCaptcha()
 
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(getContactFormSchema()),
@@ -65,7 +80,11 @@ export function ContactForm() {
       setLoading(false)
     } catch (error) {
       console.error("Error submitting form:", error)
-      setError("Een overwachte fout heeft zich voorgedaan, neem contact op met een administrator")
+      setError(
+        error instanceof Error && error.message === "reCAPTCHA not loaded"
+          ? "Beveiligingscontrole mislukt. Ververs de pagina en probeer opnieuw."
+          : "Een onverwachte fout heeft zich voorgedaan, neem contact op met een administrator"
+      )
       setLoading(false)
     }
   }

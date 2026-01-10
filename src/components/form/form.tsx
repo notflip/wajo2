@@ -9,7 +9,23 @@ import { Fragment, useState } from "react"
 import { useForm, FormProvider } from "react-hook-form"
 import { fieldsMap } from "@/components/form/fieldsMap"
 import Link from "next/link"
-import { useReCaptcha } from "next-recaptcha-v3"
+
+async function executeRecaptcha(action: string): Promise<string> {
+  const grecaptcha = (window as any).grecaptcha
+
+  if (!grecaptcha?.ready || !grecaptcha?.execute) {
+    throw new Error("reCAPTCHA not loaded")
+  }
+
+  return new Promise((resolve, reject) => {
+    grecaptcha.ready(() => {
+      grecaptcha
+        .execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, { action })
+        .then(resolve)
+        .catch(reject)
+    })
+  })
+}
 
 interface FormProps {
   form: FormType
@@ -19,7 +35,6 @@ export const Form: React.FC<FormProps> = ({ form }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [hasSubmitted, setHasSubmitted] = useState<boolean>()
   const [error, setError] = useState<{ message: string; status?: string } | undefined>()
-  const { executeRecaptcha } = useReCaptcha()
 
   const {
     id: formID,
@@ -83,7 +98,9 @@ export const Form: React.FC<FormProps> = ({ form }) => {
       console.warn(err)
       setIsLoading(false)
       setError({
-        message: "Something went wrong.",
+        message: err instanceof Error && err.message === "reCAPTCHA not loaded"
+          ? "Beveiligingscontrole mislukt. Ververs de pagina en probeer opnieuw."
+          : "Er ging iets fout. Probeer het opnieuw.",
       })
     }
   }
