@@ -51,6 +51,7 @@ export async function POST(request: NextRequest) {
         form,
         data,
       },
+      overrideAccess: true, // Bypass access control since we already verified reCAPTCHA
     })
 
     console.log("Submission created successfully:", submission.id)

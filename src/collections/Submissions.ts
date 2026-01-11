@@ -10,8 +10,8 @@ export const Submissions: CollectionConfig = {
     plural: "Inzendingen",
   },
   access: {
-    create: () => true,
-    read: () => true,
+    create: isAdmin, // Only admins can create via Payload API - force public to use /api/submissions route
+    read: isAdmin, // Only admins can read submissions
     update: () => false,
     delete: isAdmin,
   },
