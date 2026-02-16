@@ -167,6 +167,7 @@ export default buildConfig({
   // Whichever Database Adapter you're using should go here
   // Mongoose is shown as an example, but you can also use Postgres
   db: postgresAdapter({
+    push: false,
     pool: {
       connectionString: process.env.POSTGRES_URL,
     },

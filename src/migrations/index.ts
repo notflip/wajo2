@@ -14,6 +14,7 @@ import * as migration_20250429_131529 from './20250429_131529';
 import * as migration_20250506_085818 from './20250506_085818';
 import * as migration_20250911_120946 from './20250911_120946';
 import * as migration_20250915_181247 from './20250915_181247';
+import * as migration_20260216_add_videos_array from './20260216_add_videos_array';
 
 export const migrations = [
   {
@@ -94,6 +95,11 @@ export const migrations = [
   {
     up: migration_20250915_181247.up,
     down: migration_20250915_181247.down,
-    name: '20250915_181247'
+    name: '20250915_181247',
+  },
+  {
+    up: migration_20260216_add_videos_array.up,
+    down: migration_20260216_add_videos_array.down,
+    name: '20260216_add_videos_array',
   },
 ];

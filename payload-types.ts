@@ -1000,7 +1000,16 @@ export interface Testimonials {
  * via the `definition` "Video".
  */
 export interface Video {
+  /**
+   * Legacy single video field. Use the Videos array below for new content.
+   */
   video?: (number | null) | MuxVideo;
+  videos?:
+    | {
+        video: number | MuxVideo;
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'video';
@@ -1708,6 +1717,12 @@ export interface TestimonialsSelect<T extends boolean = true> {
  */
 export interface VideoSelect<T extends boolean = true> {
   video?: T;
+  videos?:
+    | T
+    | {
+        video?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
