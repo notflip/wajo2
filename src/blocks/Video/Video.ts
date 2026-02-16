@@ -26,6 +26,11 @@ export const Video: Block = {
           relationTo: "mux-video",
           required: true,
         },
+        {
+          name: "title",
+          label: "Title",
+          type: "text",
+        },
       ],
     },
   ],

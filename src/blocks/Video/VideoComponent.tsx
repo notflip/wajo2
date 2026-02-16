@@ -34,20 +34,29 @@ export const VideoComponent: React.FC<Video> = (props: Video) => {
     <BlockContainer {...props} bgColor="gray">
       <div
         className={`grid gap-4 ${
-          count === 1 ? "grid-cols-1" : count === 2 ? "grid-cols-2" : "grid-cols-3"
+          count === 1 ? "grid-cols-1" : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
         }`}
       >
         {videos.map((item, index) => {
           const videoTyped = item.video as MuxVideo
 
           return (
-            <MuxPlayer
-              key={item.id ?? index}
-              playbackId={videoTyped.playbackOptions![0].playbackId!}
-              src={videoTyped.playbackOptions![0].playbackUrl!}
-              poster={videoTyped.playbackOptions![0].posterUrl!}
-              className="w-full h-auto rounded-lg"
-            />
+            <div key={`${item.id}-${index}`} className="relative rounded-lg overflow-hidden">
+              <MuxPlayer
+                playbackId={videoTyped.playbackOptions![0].playbackId!}
+                src={videoTyped.playbackOptions![0].playbackUrl!}
+                poster={videoTyped.playbackOptions![0].posterUrl!}
+                className="w-full h-auto"
+              />
+              {item.title && (
+                <div
+                  className="absolute bottom-0 left-0 right-0 z-10 pointer-events-none px-8 pb-8 pt-16"
+                  style={{ background: "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 50%, transparent 100%)" }}
+                >
+                  <p className="text-white text-lg font-semibold">{item.title}</p>
+                </div>
+              )}
+            </div>
           )
         })}
       </div>

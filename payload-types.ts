@@ -1007,6 +1007,7 @@ export interface Video {
   videos?:
     | {
         video: number | MuxVideo;
+        title?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -1721,6 +1722,7 @@ export interface VideoSelect<T extends boolean = true> {
     | T
     | {
         video?: T;
+        title?: T;
         id?: T;
       };
   id?: T;
